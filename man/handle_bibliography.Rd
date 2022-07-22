@@ -4,10 +4,12 @@
 \alias{handle_bibliography}
 \title{function to solve bibliography problems}
 \usage{
-handle_bibliography(article_dir)
+handle_bibliography(article_dir, override_mode = FALSE)
 }
 \arguments{
 \item{article_dir}{path to the directory which contains tex article}
+
+\item{override_mode}{force use parser and ignore BibTeX bibliography.}
 }
 \description{
 if bibliography exists in bibtex format then (filename.bib) bibtex file will

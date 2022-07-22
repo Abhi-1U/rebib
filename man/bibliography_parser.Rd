@@ -7,7 +7,7 @@
 bibliography_parser(single_bib_data)
 }
 \arguments{
-\item{single_bib_data}{}
+\item{single_bib_data}{a block of bib_data}
 }
 \value{
 bib_record with unique_id, author and

@@ -4,7 +4,7 @@
 #' be preferred.
 #' else this function will generate a minimal bibliography
 #' @param article_dir path to the directory which contains tex article
-#'
+#' @param override_mode force use parser and ignore BibTeX bibliography.
 #' @export bibliography links the bibtex file with latex source code or
 #' generates a minimal bibtex file from embedded bibliography and links that
 #' file to the latex file
@@ -13,13 +13,13 @@
 #' wd <-  system.file("article", package = "rebib")
 #' rebib::handle_bibliography(wd)
 #' cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
-handle_bibliography <- function(article_dir) {
+handle_bibliography <- function(article_dir, override_mode = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
     setwd(article_dir)
     file_name <- get_texfile_name(article_dir)
     bib_file <- get_bib_file(article_dir, file_name)
-    if (! identical(bib_file, "")) {
+    if (! identical(bib_file, "") && (! override_mode)) {
         link_bibliography_line(article_dir, file_name)
     } else {
         print("will need to convert bbl to .bib")
@@ -47,16 +47,31 @@ make_bibtex_file <-function(bibtex_data,file_name) {
         #print(unique_id)
         author <- bibtex_data[["book"]][[iterator]]$author
         title <- bibtex_data[["book"]][[iterator]]$title
+        journal <- bibtex_data[["book"]][[iterator]]$journal
         #print(author)
         #print(title)
         line1 <- sprintf("@book{ %s,", unique_id)
         line2 <- sprintf("author = %s,", author)
-        line3 <- sprintf("title = %s", title)
-        line4 <- sprintf("}")
-        write_external_file(bib_file_name,"a",toString(line1))
-        write_external_file(bib_file_name,"a",toString(line2))
-        write_external_file(bib_file_name,"a",toString(line3))
-        write_external_file(bib_file_name,"a",toString(line4))
+        line3 <- sprintf("title = %s,", title)
+        line5 <- sprintf("}")
+        write_external_file(bib_file_name, "a", toString(line1))
+        write_external_file(bib_file_name, "a", toString(line2))
+        write_external_file(bib_file_name, "a", toString(line3))
+        if (!identical(bibtex_data[["book"]][[iterator]]$URL,NULL)) {
+            # at the end of the day publisher/journal field produce similar
+            # citation expression
+            line4 <- sprintf("publisher = %s,", journal)
+            write_external_file(bib_file_name, "a", toString(line4))
+            url <- bibtex_data[["book"]][[iterator]]$URL
+            line_url <- sprintf("url = {{ %s }}", url)
+            write_external_file(bib_file_name, "a", toString(line_url))
+        } else {
+            # at the end of the day publisher/journal field produce similar
+            # citation expression
+            line4 <- sprintf("publisher = %s", journal)
+            write_external_file(bib_file_name, "a", toString(line4))
+        }
+        write_external_file(bib_file_name, "a", toString(line5))
     }
 }
 
@@ -79,7 +94,9 @@ bib_handler <- function(bib_items) {
         book <- list(
             unique_id = bib_content$unique_id,
             author = bib_content$author,
-            title = bib_content$title)
+            title = bib_content$title,
+            journal = bib_content$journal,
+            URL = bib_content$URL)
         book
     }
     )

@@ -112,6 +112,10 @@ get_md_file_name <- function(article_dir) {
     markdown_file <- gsub(".tex", ".md", lookup_file)
 }
 
-str_split <- function(x,patt) {
-    return(stringr::str_split(x,patt))
+str_split <- function(x, patt) {
+    return(stringr::str_split(x, patt))
+}
+
+str_extract <- function(x, patt) {
+    return(stringr::str_extract(x, patt))
 }

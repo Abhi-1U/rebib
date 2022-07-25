@@ -102,14 +102,15 @@ bibliography_parser <- function(single_bib_data) {
             }
         }
     }
-    title_line <- "{{"
+    title_line <- "{"
     for (line in filtered_data) {
         title_line <- paste(title_line, line)
     }
-    title_line <- paste(title_line, "}}")
+    title_line <- paste(title_line, "}")
     #print(filtered_data)
     if(!identical(which(grepl(url_regex,title_line)),integer(0))){
-        bib_record$URL <- str_extract(title_line, url_regex)
+        bib_record$URL <- gsub("\\.$", "", str_extract(title_line, url_regex))
+        print(bib_record$URL)
         title_line <- gsub(bib_record$URL, "", title_line)
         title_line <- gsub("URL", "",title_line)
         title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)

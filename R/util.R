@@ -50,9 +50,9 @@ make_bibtex_file <-function(bibtex_data,file_name) {
         journal <- bibtex_data[["book"]][[iterator]]$journal
         #print(author)
         #print(title)
-        line1 <- sprintf("@book{ %s,", unique_id)
-        line2 <- sprintf("author = %s,", author)
-        line3 <- sprintf("title = %s,", title)
+        line1 <- sprintf("@book{%s,", unique_id)
+        line2 <- sprintf("author =%s,", author)
+        line3 <- sprintf("title =%s,", title)
         line5 <- sprintf("}")
         write_external_file(bib_file_name, "a", toString(line1))
         write_external_file(bib_file_name, "a", toString(line2))
@@ -60,15 +60,15 @@ make_bibtex_file <-function(bibtex_data,file_name) {
         if (!identical(bibtex_data[["book"]][[iterator]]$URL,NULL)) {
             # at the end of the day publisher/journal field produce similar
             # citation expression
-            line4 <- sprintf("publisher = %s,", journal)
+            line4 <- sprintf("publisher =%s,", journal)
             write_external_file(bib_file_name, "a", toString(line4))
             url <- bibtex_data[["book"]][[iterator]]$URL
-            line_url <- sprintf("url = {{ %s }}", url)
+            line_url <- sprintf("url = {%s}", url)
             write_external_file(bib_file_name, "a", toString(line_url))
         } else {
             # at the end of the day publisher/journal field produce similar
             # citation expression
-            line4 <- sprintf("publisher = %s", journal)
+            line4 <- sprintf("publisher =%s", journal)
             write_external_file(bib_file_name, "a", toString(line4))
         }
         write_external_file(bib_file_name, "a", toString(line5))

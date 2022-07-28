@@ -58,7 +58,11 @@
 </h1></div>
 <!-- badges: start --><!-- badges: end --><p>rebib is a spun off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a> project.</p>
 <p>The decision to do this was based on the fact that the bibliography section in texor package was expanding significantly, enough to have its own package.</p>
-<ul><li>Reads bib chunks to produce minimum viable bibtex equivalent</li></ul>
+<ul>
+<li>Reads bib chunks to produce minimum viable bibtex equivalent</li>
+<li>separate title,URL field (if applicable)</li>
+<li>rest of data is stored in journal(internally) and publisher(when writing bibtex file)</li>
+</ul>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -79,21 +83,34 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="step-by-step-usage">Step By Step Usage<a class="anchor" aria-label="anchor" href="#step-by-step-usage"></a>
+</h2>
+<p>This procedure is meant for debugging errors and finding out what went wrong.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
+<span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/get_texfile_name.html">get_texfile_name</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
+<span><span class="va">bib_items</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/extract_embeded_bib_items.html">extract_embeded_bib_items</a></span><span class="op">(</span><span class="va">wd</span>,<span class="va">file_name</span><span class="op">)</span></span>
+<span><span class="co"># for debugging single entry</span></span>
+<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/bibliography_parser.html">bibliography_parser</a></span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co"># for multiple entries</span></span>
+<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/bib_handler.html">bib_handler</a></span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="sample-conversion">Sample Conversion<a class="anchor" aria-label="anchor" href="#sample-conversion"></a>
 </h2>
 <p>Embedded bibliography :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>\bibitem[R Core Team]{R}</span>
-<span id="cb3-2"><a href="#cb3-2"></a>R Core Team</span>
-<span id="cb3-3"><a href="#cb3-3"></a>\newblock R<span class="op">:</span><span class="st"> </span>A Language and Environment <span class="cf">for</span> Statistical Computing</span>
-<span id="cb3-4"><a href="#cb3-4"></a>\newblock \emph{R Foundation <span class="cf">for</span> Statistical Computing}, Vienna, Austria \penalty0 <span class="fl">2016.</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>\newblock URL <span class="op">:</span><span class="st"> </span>\url{https<span class="op">:</span><span class="er">//</span>www.R<span class="op">-</span>project.org<span class="op">/</span>}, ISBN <span class="dv">3-900051-07-0</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>\bibitem[R Core Team]{R}</span>
+<span id="cb4-2"><a href="#cb4-2"></a>R Core Team</span>
+<span id="cb4-3"><a href="#cb4-3"></a>\newblock R<span class="op">:</span><span class="st"> </span>A Language and Environment <span class="cf">for</span> Statistical Computing</span>
+<span id="cb4-4"><a href="#cb4-4"></a>\newblock \emph{R Foundation <span class="cf">for</span> Statistical Computing}, Vienna, Austria \penalty0 <span class="fl">2016.</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>\newblock URL <span class="op">:</span><span class="st"> </span>\url{https<span class="op">:</span><span class="er">//</span>www.R<span class="op">-</span>project.org<span class="op">/</span>}, ISBN <span class="dv">3-900051-07-0</span></span></code></pre></div>
 <p>generated BibTeX :</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">@</span>book{ R,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>author =<span class="st"> </span>{{ R Core Team }},</span>
-<span id="cb4-3"><a href="#cb4-3"></a>title =<span class="st"> </span>{{  R<span class="op">:</span><span class="st"> </span>A Language and Environment <span class="cf">for</span> Statistical Computing }},</span>
-<span id="cb4-4"><a href="#cb4-4"></a>journal =<span class="st"> </span>{{  R Foundation <span class="cf">for</span> Statistical Computing, Vienna, Austria  <span class="fl">2016.</span> ISBN <span class="dv">3-900051-07-0</span> }},</span>
-<span id="cb4-5"><a href="#cb4-5"></a>url =<span class="st"> </span>{{ https<span class="op">:</span><span class="er">//</span>www.R<span class="op">-</span>project.org<span class="op">/</span>, }}</span>
-<span id="cb4-6"><a href="#cb4-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">@</span>book{R,</span>
+<span id="cb5-2"><a href="#cb5-2"></a>author ={{ R Core Team }},</span>
+<span id="cb5-3"><a href="#cb5-3"></a>title ={{  R<span class="op">:</span><span class="st"> </span>A Language and Environment <span class="cf">for</span> Statistical Computing }},</span>
+<span id="cb5-4"><a href="#cb5-4"></a>publisher ={  R Foundation <span class="cf">for</span> Statistical Computing, Vienna, Austria  <span class="fl">2016.</span>, ISBN <span class="dv">3-900051-07-0</span> },</span>
+<span id="cb5-5"><a href="#cb5-5"></a>url =<span class="st"> </span>{https<span class="op">:</span><span class="er">//</span>www.R<span class="op">-</span>project.org<span class="op">/</span>}</span>
+<span id="cb5-6"><a href="#cb5-6"></a>}</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">

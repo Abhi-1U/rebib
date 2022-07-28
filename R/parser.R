@@ -13,13 +13,18 @@ bibliography_parser <- function(single_bib_data) {
     bib_record <- list()
     start_idx <- NULL
     break_points <- NULL
+    if(length(single_bib_data) == 1) {
+        single_bib_data <- single_bib_data[[1]]
+    }
     # starting with unique identifier
-    if (which(grepl("\\}$", single_bib_data)) ==
-        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))) {
+    if (which(grepl("\\}$", single_bib_data))[1] ==
+        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))[1]) {
         start_idx <- which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))
         # start_idx =1
-        bib_record$unique_id <- str_split(str_split(gsub("\\\\bibitem\\[|\\]",
-                                                         "", single_bib_data[start_idx]), "\\{")[[1]][2], "\\}")[[1]][1]
+        z <- str_split(single_bib_data[1],"\\{")[[1]]
+        bib_record$unique_id <- gsub("\\}","",z[length(z)])
+        #bib_record$unique_id <- str_split(str_split(gsub("\\\\bibitem\\[|\\]",
+        #                                                 "", single_bib_data[start_idx]), "\\{")[[1]][2], "\\}")[[1]][1]
         break_points <- which(grepl("\\\\newblock", single_bib_data))
         # author_names
         # difference between start of identifier and authors = 2
@@ -34,8 +39,8 @@ bibliography_parser <- function(single_bib_data) {
                                        gsub("\\.$", "", single_bib_data[start_idx + 2]), "}}")
         }
     }
-    if ((which(grepl("\\}$", single_bib_data)) - 1) ==
-        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))) {
+    if ((which(grepl("\\}$", single_bib_data)) - 1)[1] ==
+        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))[1]) {
         start_idx <- which(grepl("\\}$", single_bib_data))
         bib_record$unique_id <- gsub("\\}$", "",
                                      str_split(single_bib_data[start_idx], "\\{")[[1]][2])
@@ -109,8 +114,10 @@ bibliography_parser <- function(single_bib_data) {
     title_line <- paste(title_line, "}")
     #print(filtered_data)
     if(!identical(which(grepl(url_regex,title_line)),integer(0))){
-        bib_record$URL <- gsub("\\.$", "", str_extract(title_line, url_regex))
-        print(bib_record$URL)
+        bib_record$URL <- gsub(",", "", gsub("\\.$", "",
+                                            str_extract(title_line, url_regex)))
+
+        #print(bib_record$URL)
         title_line <- gsub(bib_record$URL, "", title_line)
         title_line <- gsub("URL", "",title_line)
         title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)

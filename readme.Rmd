@@ -32,7 +32,8 @@ package.
 
 
 -   Reads bib chunks to produce minimum viable bibtex equivalent
-
+-   separate title,URL field (if applicable)
+-   rest of data is stored in journal(internally) and publisher(when writing bibtex file)
 
 ## Installation
 
@@ -55,6 +56,20 @@ rebib::handle_bibliography(wd)
 cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
 ```
 
+## Step By Step Usage
+ This procedure is meant for debugging errors and finding out what went wrong.
+``` r
+wd <-  system.file("article", package = "rebib")
+file_name <- rebib::get_texfile_name(wd)
+bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
+# for debugging single entry
+rebib::bibliography_parser(bib_items[1])
+# for multiple entries
+rebib::bib_handler(bib_items[1:2])
+```
+
+
+
 ## Sample Conversion 
 
 Embedded bibliography :
@@ -68,10 +83,10 @@ R Core Team
 ```
 generated BibTeX :
 ```
-@book{ R,
-author = {{ R Core Team }},
-title = {{  R: A Language and Environment for Statistical Computing }},
-journal = {{  R Foundation for Statistical Computing, Vienna, Austria  2016. ISBN 3-900051-07-0 }},
-url = {{ https://www.R-project.org/, }}
+@book{R,
+author ={{ R Core Team }},
+title ={{  R: A Language and Environment for Statistical Computing }},
+publisher ={  R Foundation for Statistical Computing, Vienna, Austria  2016., ISBN 3-900051-07-0 },
+url = {https://www.R-project.org/}
 }
 ```

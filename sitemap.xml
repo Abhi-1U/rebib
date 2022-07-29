@@ -34,6 +34,12 @@
     <loc>/reference/get_bib_file.html</loc>
   </url>
   <url>
+    <loc>/reference/get_reference_name.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_reference_type.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_texfile_name.html</loc>
   </url>
   <url>
@@ -50,6 +56,9 @@
   </url>
   <url>
     <loc>/reference/make_bibtex_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/split_bibtex_references.html</loc>
   </url>
   <url>
     <loc>/reference/write_external_file.html</loc>

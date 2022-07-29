@@ -5,10 +5,10 @@
 #' else this function will generate a minimal bibliography
 #' @param article_dir path to the directory which contains tex article
 #' @param override_mode force use parser and ignore BibTeX bibliography.
-#' @export bibliography links the bibtex file with latex source code or
+#' @returns  bibliography links the bibtex file with latex source code or
 #' generates a minimal bibtex file from embedded bibliography and links that
 #' file to the latex file
-#'
+#' @export
 #' @examples
 #' wd <-  system.file("article", package = "rebib")
 #' rebib::handle_bibliography(wd)

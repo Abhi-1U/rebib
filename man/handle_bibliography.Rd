@@ -11,6 +11,11 @@ handle_bibliography(article_dir, override_mode = FALSE)
 
 \item{override_mode}{force use parser and ignore BibTeX bibliography.}
 }
+\value{
+bibliography links the bibtex file with latex source code or
+generates a minimal bibtex file from embedded bibliography and links that
+file to the latex file
+}
 \description{
 if bibliography exists in bibtex format then (filename.bib) bibtex file will
 be preferred.

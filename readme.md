@@ -20,12 +20,13 @@ The decision to do this was based on the fact that the bibliography
 section in texor package was expanding significantly, enough to have its
 own package.
 
--   Reads bib chunks to produce minimum viable bibtex equivalent
--   separate title, URL field, year (if applicable)
--   rest of data is stored in journal(internally) and publisher(when
+-   Reads bib chunks to produce a very close bibtex equivalent
+-   Separate title, URL field, year, ISBN (if applicable)
+-   Rest of data is stored in journal(internally) and publisher(when
     writing bibtex file)
-
-## Installation
+-   Ignores commented bibliography
+-   URL,ISBN,publisher,year are optional fields and will be enabled when
+    relevant \## Installation
 
 install the development version from GitHub with:
 
@@ -78,7 +79,8 @@ generated BibTeX :
     @book{R,
     author = {{ R Core Team }},
     title = {{  R: A Language and Environment for Statistical Computing }},
-    publisher = {  R Foundation for Statistical Computing, Vienna, Austria  ., ISBN 3-900051-07-0 },
+    publisher = {  R Foundation for Statistical Computing, Vienna, Austria },
     year = {2016},
-    url = {https://www.R-project.org/}
+    url = {https://www.R-project.org/},
+    isbn = {3-900051-07-0}
     }

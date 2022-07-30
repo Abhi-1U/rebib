@@ -42,50 +42,115 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
 bibtex_writer <- function(bibtex_data, file_name) {
     bib_file_name <- gsub(".tex", ".bib", file_name)
     for (iterator in seq_along(bibtex_data[["book"]])) {
-        # unique id of reference
+        # optional param
         include_year <- FALSE
         include_url <- FALSE
+        include_isbn <- FALSE
+        include_journal <- FALSE
+
+        # line names
+        line_year <- ""
+        line_isbn <- ""
+        line_url <- ""
+        line_journal <- ""
+
+        # unique id of reference
         unique_id <- bibtex_data[["book"]][[iterator]]$unique_id
         line_uid <- sprintf("@book{%s,", unique_id)
+
         # author field
         author <- bibtex_data[["book"]][[iterator]]$author
         line_author <- sprintf("author = %s,", author)
+
         # title field
         title <- bibtex_data[["book"]][[iterator]]$title
-        line_title <- sprintf("title = %s,", title)
-        # journal/publisher/misc data
-        journal <- bibtex_data[["book"]][[iterator]]$journal
-        line_journal <- sprintf("publisher = %s", journal)
+        line_title <- sprintf("title = %s", title)
+
+
         # year field (optional)
         if (!identical(bibtex_data[["book"]][[iterator]]$year,NULL)){
             year <- bibtex_data[["book"]][[iterator]]$year
             line_year <- sprintf("year = {%s}", year)
-            line_journal <- paste(line_journal,",",sep="")
             include_year <- TRUE
         }
+
         # URL field (optional)
         if (!identical(bibtex_data[["book"]][[iterator]]$URL,NULL)) {
             url <- bibtex_data[["book"]][[iterator]]$URL
             line_url <- sprintf("url = {%s}", url)
-            line_year <- paste(line_year,",",sep="")
             include_url <- TRUE
         }
+
+        # isbn field (optional)
+        if (!identical(bibtex_data[["book"]][[iterator]]$isbn,NULL)) {
+            url <- bibtex_data[["book"]][[iterator]]$isbn
+            line_isbn <- sprintf("isbn = {%s}", url)
+            include_isbn <- TRUE
+        }
+        # journal/publisher/misc data
+
+        # journal field (optional)
+        if (!identical(bibtex_data[["book"]][[iterator]]$journal,NULL)){
+            journal <- bibtex_data[["book"]][[iterator]]$journal
+            line_journal <- sprintf("publisher = {%s}", journal)
+            include_journal <- TRUE
+        }
+
         # ending_line
         line_end <- sprintf("}")
+
+        #write queue
         write_external_file(bib_file_name, "a", toString(line_uid))
         write_external_file(bib_file_name, "a", toString(line_author))
-        write_external_file(bib_file_name, "a", toString(line_title))
-        write_external_file(bib_file_name, "a", toString(line_journal))
-        if (include_year) {
+        # if title is the second last line to be written
+        if (include_journal | include_url | include_isbn | include_year ) {
+            line_title <- paste(line_title,",",sep="")
+            write_external_file(bib_file_name, "a", toString(line_title))
+        } else {
+            write_external_file(bib_file_name, "a", toString(line_title))
+        }
+
+        # if journal/publisher details are the second last line to be written
+        if (include_journal & ( include_isbn | include_url | include_year)) {
+            line_journal <- paste(line_journal,",",sep="")
+            write_external_file(bib_file_name, "a", toString(line_journal))
+        }
+        if (include_journal & ( !include_isbn & !include_url & !include_year)) {
+            write_external_file(bib_file_name, "a", toString(line_journal))
+        } else {
+            #skip
+        }
+
+        # if year is the second last line
+        if (include_year & (include_url | include_isbn)) {
+            line_year <- paste(line_year,",",sep="")
             write_external_file(bib_file_name, "a", toString(line_year))
         }
-        if (include_url) {
+        if (include_year & (!include_isbn & !include_url)) {
+            write_external_file(bib_file_name, "a", toString(line_year))
+        } else {
+            #skip
+        }
+
+        # if url is the second last line
+        if (include_url & include_isbn) {
+            line_url <- paste(line_url,",",sep="")
             write_external_file(bib_file_name, "a", toString(line_url))
         }
+        if (include_url & !include_isbn) {
+            write_external_file(bib_file_name, "a", toString(line_url))
+        } else {
+            #skip
+        }
+
+        if (include_isbn) {
+            write_external_file(bib_file_name, "a", toString(line_isbn))
+        }
+
         write_external_file(bib_file_name, "a", toString(line_end))
+
     }
 }
-
 
 
 #' applies minimal bibliography over bib entries generated
@@ -106,7 +171,8 @@ bib_handler <- function(bib_items) {
             title = bib_content$title,
             journal = bib_content$journal,
             year = bib_content$year,
-            URL = bib_content$URL)
+            URL = bib_content$URL,
+            isbn = bib_content$isbn)
         book
     }
     )
@@ -151,8 +217,8 @@ extract_embeded_bib_items <- function(article_dir, file_name){
                              src_file_data))
     bbl_end <- which(grepl("^\\s*\\\\end\\{thebibliography\\}", src_file_data))
     bbl_data <- src_file_data[bbl_start:bbl_end]
-    ##
-    bib_ignore <- which(grepl("^\\%%", bbl_data))
+    ## ignore comments
+    bbl_data <- filter_bbl_data(bbl_data)
     bib_breakpoints <- which(grepl("^\\s*\\\\bibitem\\[", bbl_data))
     bib_items <- list()
     # creating chunks of bibliography entries
@@ -195,4 +261,20 @@ link_bibliography_line <- function(article_dir, file_name) {
     write_external_file(backup_file, "w", src_file_data)
     # write to original wrapper file
     write_external_file(file_name, "a", bib_line)
+}
+
+#' @title comment filter for bbl data
+#'
+#' @description
+#' removes commented latex lines to avoid wrong reference data
+#' @param bbl_data blocks of bib_data
+#'
+#' @return filtered bbl_data
+#' @export
+filter_bbl_data <- function(bbl_data) {
+    comment_break_points <- which(grepl("^%%", bbl_data))
+    for (pos in comment_break_points) {
+        bbl_data[pos] <- ""
+    }
+    return(bbl_data[nzchar(bbl_data)])
 }

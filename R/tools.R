@@ -1,19 +1,17 @@
 
-#' Get the name of the wrapper file in the article dir
-#'
-#'This function gets the wrapper file name from the
+#' @title get wrapper file name
+#' @description
+#' This function gets the wrapper file name from the
 #'commonly named R-Journal wrapper files.
 #'@details
 #'Usually the R journal wrapper files are named either
-#'1. RJwrapper.tex
-#'2. RJwrap.tex
-#'3. wrapper.tex
+#'1. RJwrapper.tex\\n
+#'2. RJwrap.tex\\n
+#'3. wrapper.tex\\n
 #' @param article_dir path to the directory which contains tex article
 #'
 #' @return String with name of wrapper file or empty
 #' @export
-#'
-#' @examples
 get_wrapper_type <- function(article_dir) {
     wrapper_types <- c("wrapper.tex",
                        "RJwrap.tex",
@@ -30,16 +28,16 @@ get_wrapper_type <- function(article_dir) {
     return(wrapper_file)
 }
 
+#' @title get tex file name
+#' @description
 #' Get the name of the tex file included within wrapper file
 #'
 #'The wrapper file refers to an external tex file which contains
 #'the actual document content.
 #' @param article_dir path to the directory which contains tex article
 #'
-#' @return String name of the tex-file name
+#' @return name of the tex-file (Str)
 #' @export
-#'
-#' @examples
 get_texfile_name <- function(article_dir) {
     lookup_file <- get_wrapper_type(article_dir)
     wrapper_file <- readLines(file.path(article_dir, lookup_file))
@@ -57,6 +55,8 @@ get_texfile_name <- function(article_dir) {
     return(tex_file)
 }
 
+#' @title get bibtex file name
+#' @description
 #' finds the bib file in directory which is referenced in the article
 #'
 #' @param article_dir path to the directory which contains tex article
@@ -64,8 +64,6 @@ get_texfile_name <- function(article_dir) {
 #'
 #' @return name of bib file (character)
 #' @export
-#'
-#' @examples
 get_bib_file <- function(article_dir, file_name) {
     file_list <- list.files(article_dir, recursive = FALSE)
     extensions <- c("*.bib")
@@ -91,31 +89,58 @@ get_bib_file <- function(article_dir, file_name) {
     }
 }
 
+#' @title write lines to external file
+#' @description
 #' quick function to writelines to a file
 #'
 #' @param file_name name of text file to write contents to
 #' @param mode mode of opening
 #' @param raw_text the text/ list of lines to be written
 #'
-#' @return
-#' @export create/append/write a new file
+#' @return create/append/write a new file
+#' @export
 #'
-#' @examples
 write_external_file <- function(file_name, mode, raw_text) {
     write_file <- file(file_name, mode)
     writeLines(raw_text, write_file)
     close(write_file)
 }
 
+#' @title get markdown file name
+#' @description
+#' finds the markdown file in directory which is referenced in the article
+#'
+#' @param article_dir path to the directory which contains tex article
+#'
+#' @return markdown file name (str)
+#' @export
+#'
 get_md_file_name <- function(article_dir) {
     lookup_file <- get_wrapper_type(article_dir)
     markdown_file <- gsub(".tex", ".md", lookup_file)
+    return(markdown_file)
 }
 
+#' @title split string
+#' @description
+#' a wrapper for stringr::str_split
+#' @param x object (Str)
+#' @param patt pattern (Regex Str)
+#'
+#' @return list of vectorized string elements
+#' @export
 str_split <- function(x, patt) {
     return(stringr::str_split(x, patt))
 }
 
+#' @title extract substring
+#' @description
+#' a wrapper for stringr::str_extract
+#' @param x object (Str)
+#' @param patt pattern (Regex Str)
+#'
+#' @return list of extracted string elements
+#' @export
 str_extract <- function(x, patt) {
     return(stringr::str_extract(x, patt))
 }

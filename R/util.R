@@ -25,53 +25,64 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
         print("will need to convert bbl to .bib")
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
         bibtex_data <- bib_handler(bib_items)
-        make_bibtex_file(bibtex_data, file_name)
+        bibtex_writer(bibtex_data, file_name)
         link_bibliography_line(article_dir, file_name)
     }
     on.exit(setwd(old_wd), add = TRUE)
 }
 
+#' @title bibtex writer
 #' writes bibtex data in a structured format to the .bib file
 #'
 #' @param bibtex_data a list of minimal bibtex data
 #' @param file_name name of the tex file
 #'
-#' @return
-#' @export bibtex_file a bibtex file is generated
-#'
-#' @examples
-make_bibtex_file <-function(bibtex_data,file_name) {
+#' @return a bibtex file is written
+#' @export
+bibtex_writer <- function(bibtex_data, file_name) {
     bib_file_name <- gsub(".tex", ".bib", file_name)
-    for (iterator in seq_along(bibtex_data[["book"]])){
+    for (iterator in seq_along(bibtex_data[["book"]])) {
+        # unique id of reference
+        include_year <- FALSE
+        include_url <- FALSE
         unique_id <- bibtex_data[["book"]][[iterator]]$unique_id
-        #print(unique_id)
+        line_uid <- sprintf("@book{%s,", unique_id)
+        # author field
         author <- bibtex_data[["book"]][[iterator]]$author
+        line_author <- sprintf("author = %s,", author)
+        # title field
         title <- bibtex_data[["book"]][[iterator]]$title
+        line_title <- sprintf("title = %s,", title)
+        # journal/publisher/misc data
         journal <- bibtex_data[["book"]][[iterator]]$journal
-        #print(author)
-        #print(title)
-        line1 <- sprintf("@book{%s,", unique_id)
-        line2 <- sprintf("author =%s,", author)
-        line3 <- sprintf("title =%s,", title)
-        line5 <- sprintf("}")
-        write_external_file(bib_file_name, "a", toString(line1))
-        write_external_file(bib_file_name, "a", toString(line2))
-        write_external_file(bib_file_name, "a", toString(line3))
+        line_journal <- sprintf("publisher = %s", journal)
+        # year field (optional)
+        if (!identical(bibtex_data[["book"]][[iterator]]$year,NULL)){
+            year <- bibtex_data[["book"]][[iterator]]$year
+            line_year <- sprintf("year = {%s}", year)
+            line_journal <- paste(line_journal,",",sep="")
+            include_year <- TRUE
+        }
+        # URL field (optional)
         if (!identical(bibtex_data[["book"]][[iterator]]$URL,NULL)) {
-            # at the end of the day publisher/journal field produce similar
-            # citation expression
-            line4 <- sprintf("publisher =%s,", journal)
-            write_external_file(bib_file_name, "a", toString(line4))
             url <- bibtex_data[["book"]][[iterator]]$URL
             line_url <- sprintf("url = {%s}", url)
-            write_external_file(bib_file_name, "a", toString(line_url))
-        } else {
-            # at the end of the day publisher/journal field produce similar
-            # citation expression
-            line4 <- sprintf("publisher =%s", journal)
-            write_external_file(bib_file_name, "a", toString(line4))
+            line_year <- paste(line_year,",",sep="")
+            include_url <- TRUE
         }
-        write_external_file(bib_file_name, "a", toString(line5))
+        # ending_line
+        line_end <- sprintf("}")
+        write_external_file(bib_file_name, "a", toString(line_uid))
+        write_external_file(bib_file_name, "a", toString(line_author))
+        write_external_file(bib_file_name, "a", toString(line_title))
+        write_external_file(bib_file_name, "a", toString(line_journal))
+        if (include_year) {
+            write_external_file(bib_file_name, "a", toString(line_year))
+        }
+        if (include_url) {
+            write_external_file(bib_file_name, "a", toString(line_url))
+        }
+        write_external_file(bib_file_name, "a", toString(line_end))
     }
 }
 
@@ -84,8 +95,6 @@ make_bibtex_file <-function(bibtex_data,file_name) {
 #'
 #' @return bbl_record nested list
 #' @export
-#'
-#' @examples
 bib_handler <- function(bib_items) {
     bbl_record <- list()
     # applies minimal bibliography to all the items
@@ -96,6 +105,7 @@ bib_handler <- function(bib_items) {
             author = bib_content$author,
             title = bib_content$title,
             journal = bib_content$journal,
+            year = bib_content$year,
             URL = bib_content$URL)
         book
     }
@@ -113,10 +123,8 @@ bib_handler <- function(bib_items) {
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name name of the tex file
 #'
-#' @return
-#' @export bbl_file
-#'
-#' @examples
+#' @return bbl_file
+#' @export
 export_embeded_bibliography <- function(article_dir, file_name) {
     src_file_data <- readLines(file.path(article_dir, file_name))
     bbl_start <- which(grepl("^\\s*\\\\begin\\{thebibliography\\}",
@@ -137,8 +145,6 @@ export_embeded_bibliography <- function(article_dir, file_name) {
 #'
 #' @return a list of bib entries separated at bibitem
 #' @export
-#'
-#' @examples
 extract_embeded_bib_items <- function(article_dir, file_name){
     src_file_data <- readLines(file.path(article_dir, file_name))
     bbl_start <- which(grepl("^\\s*\\\\begin\\{thebibliography\\}",
@@ -164,10 +170,9 @@ extract_embeded_bib_items <- function(article_dir, file_name){
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name file name of the tex document
 #'
-#' @return
-#' @export appends the tex file with a line to link bibliography
+#' @return appends the tex file with a line to link bibliography
+#' @export
 #'
-#' @examples
 link_bibliography_line <- function(article_dir, file_name) {
     src_file_data <- readLines(file.path(article_dir, file_name))
     bib_exist <- FALSE

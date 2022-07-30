@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{write_external_file}
 \alias{write_external_file}
-\title{quick function to writelines to a file}
+\title{write lines to external file}
 \usage{
 write_external_file(file_name, mode, raw_text)
 }
@@ -14,7 +14,7 @@ write_external_file(file_name, mode, raw_text)
 \item{raw_text}{the text/ list of lines to be written}
 }
 \value{
-
+create/append/write a new file
 }
 \description{
 quick function to writelines to a file

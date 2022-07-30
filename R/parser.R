@@ -120,7 +120,21 @@ bibliography_parser <- function(single_bib_data) {
         #print(bib_record$URL)
         title_line <- gsub(bib_record$URL, "", title_line)
         title_line <- gsub("URL", "",title_line)
+        # stray colons
         title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
+        # stray full stops
+        title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
+    }
+    year_regex <- "(?:19|20)\\d{2}"
+    #or "^[12][0-9]{3}$"
+    if(!identical(which(grepl(year_regex,title_line)),integer(0))){
+        bib_record$year <- gsub(",", "", gsub("\\.$", "",
+                                        str_extract(title_line, year_regex)))
+        title_line <- gsub(bib_record$year, "", title_line)
+        # stray colons
+        title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
+        # stray full stops
+        title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
     }
     bib_record$journal <- title_line
     return(bib_record)

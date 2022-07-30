@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{get_wrapper_type}
 \alias{get_wrapper_type}
-\title{Get the name of the wrapper file in the article dir}
+\title{get wrapper file name}
 \usage{
 get_wrapper_type(article_dir)
 }
@@ -18,7 +18,7 @@ commonly named R-Journal wrapper files.
 }
 \details{
 Usually the R journal wrapper files are named either
-1. RJwrapper.tex
-2. RJwrap.tex
-3. wrapper.tex
+1. RJwrapper.tex\\n
+2. RJwrap.tex\\n
+3. wrapper.tex\\n
 }

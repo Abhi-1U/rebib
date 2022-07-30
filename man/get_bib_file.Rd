@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{get_bib_file}
 \alias{get_bib_file}
-\title{finds the bib file in directory which is referenced in the article}
+\title{get bibtex file name}
 \usage{
 get_bib_file(article_dir, file_name)
 }

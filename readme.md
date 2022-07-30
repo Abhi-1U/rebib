@@ -4,6 +4,13 @@
 # rebib : Parse/Convert embedded LaTeX bibliography to BibTex
 
 <!-- badges: start -->
+
+[![GitHub Workflow Status
+(branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
+[![GitHub Workflow Status
+(branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
+![GitHub R package version (subdirectory of
+monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)
 <!-- badges: end -->
 
 rebib is a spun off package from
@@ -14,7 +21,7 @@ section in texor package was expanding significantly, enough to have its
 own package.
 
 -   Reads bib chunks to produce minimum viable bibtex equivalent
--   separate title,URL field (if applicable)
+-   separate title, URL field, year (if applicable)
 -   rest of data is stored in journal(internally) and publisher(when
     writing bibtex file)
 
@@ -69,8 +76,9 @@ Embedded bibliography :
 generated BibTeX :
 
     @book{R,
-    author ={{ R Core Team }},
-    title ={{  R: A Language and Environment for Statistical Computing }},
-    publisher ={  R Foundation for Statistical Computing, Vienna, Austria  2016., ISBN 3-900051-07-0 },
+    author = {{ R Core Team }},
+    title = {{  R: A Language and Environment for Statistical Computing }},
+    publisher = {  R Foundation for Statistical Computing, Vienna, Austria  ., ISBN 3-900051-07-0 },
+    year = {2016},
     url = {https://www.R-project.org/}
     }

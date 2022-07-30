@@ -1,5 +1,12 @@
 
-read_bibtex <- function(article_dir, bib_name = "NA",bib_path = "") {
+#' @title bibtex reader
+#'
+#' @param article_dir path to the directory which contains tex article
+#' @param bib_name (optional) name of the bib_file in the article_dir
+#' @param bib_path (optional) full path of a bib_file (if located in different dir)
+#' @return list of BibTex references
+#' @export
+bibtex_reader <- function(article_dir, bib_name = "NA",bib_path = "") {
     # get the name of the bibtex file
     if (bib_name == "NA") {
         tex_file <- get_texfile_name(article_dir)
@@ -15,7 +22,7 @@ read_bibtex <- function(article_dir, bib_name = "NA",bib_path = "") {
     }
     bib_tex_references <- split_bibtex_references(bib_path)
 
-
+    return(bib_tex_references)
 }
 
 #' @title split BibTex references

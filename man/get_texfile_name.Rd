@@ -2,7 +2,7 @@
 % Please edit documentation in R/tools.R
 \name{get_texfile_name}
 \alias{get_texfile_name}
-\title{Get the name of the tex file included within wrapper file}
+\title{get tex file name}
 \usage{
 get_texfile_name(article_dir)
 }
@@ -10,9 +10,11 @@ get_texfile_name(article_dir)
 \item{article_dir}{path to the directory which contains tex article}
 }
 \value{
-String name of the tex-file name
+name of the tex-file (Str)
 }
 \description{
+Get the name of the tex file included within wrapper file
+
 The wrapper file refers to an external tex file which contains
 the actual document content.
 }

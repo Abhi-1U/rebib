@@ -1,3 +1,16 @@
+# version 0.0.9
+
+## features updates :
+
+1. BibTex reference parser/reader
+2. year field implemented
+3. Passing R CMD check
+
+## bug fixes :
+
+1. BibTeX writer re-implemented
+2. more man pages
+
 # version 0.0.5
 
 ## feature updates :

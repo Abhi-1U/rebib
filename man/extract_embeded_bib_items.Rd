@@ -4,7 +4,7 @@
 \alias{extract_embeded_bib_items}
 \title{extract the bibliography in chunks seperated at bibitem}
 \usage{
-extract_embeded_bib_items(article_dir, file_name)
+extract_embeded_bib_items(article_dir = "", file_name = "", file_path = "")
 }
 \arguments{
 \item{article_dir}{path to the directory which contains tex article}

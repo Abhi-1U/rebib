@@ -211,8 +211,13 @@ export_embeded_bibliography <- function(article_dir, file_name) {
 #'
 #' @return a list of bib entries separated at bibitem
 #' @export
-extract_embeded_bib_items <- function(article_dir, file_name){
-    src_file_data <- readLines(file.path(article_dir, file_name))
+extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_path = ""){
+    if( identical(file_path,"")) {
+        src_file_data <- readLines(file.path(article_dir, file_name))
+    } else {
+        # absolute path
+        src_file_data <- readLines(file_path)
+    }
     bbl_start <- which(grepl("^\\s*\\\\begin\\{thebibliography\\}",
                              src_file_data))
     bbl_end <- which(grepl("^\\s*\\\\end\\{thebibliography\\}", src_file_data))
@@ -276,5 +281,28 @@ filter_bbl_data <- function(bbl_data) {
     for (pos in comment_break_points) {
         bbl_data[pos] <- ""
     }
+    comment_break_points_spaced <- which(grepl("%%", bbl_data))
+    for (pos in comment_break_points_spaced) {
+        bbl_data[pos] <- ""
+    }
     return(bbl_data[nzchar(bbl_data)])
 }
+
+#' @title biblio convertor
+#' @description a quick convertor for bbl/tex to bib
+#' @param file_path provide a file_path with file name to point tex/bbl file
+#'
+#' @return bib file
+#' @export
+#'
+biblio_convertor <- function(file_path = "") {
+    bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
+                                    ".bib", sep = ""))
+    bib_items <- extract_embeded_bib_items(file_path = file_path)
+    bibtex_data <- bib_handler(bib_items)
+    bibtex_writer(bibtex_data, bib_file_path)
+}
+
+#' bbl_file <-  system.file("article/sample.bbl", package = "rebib")
+#' rebib::biblio_convertor(file_path = bbl_file)
+#' cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")

@@ -26,7 +26,9 @@ own package.
     writing bibtex file)
 -   Ignores commented bibliography
 -   URL,ISBN,publisher,year are optional fields and will be enabled when
-    relevant \## Installation
+    relevant
+
+## Installation
 
 install the development version from GitHub with:
 
@@ -37,7 +39,7 @@ remotes::install_github("Abhi-1U/rebib")
 pak::pak("Abhi-1U/rebib")
 ```
 
-## General Usage
+## General Usage for Rjournal articles
 
 here is a quick example to use rebib package with a sample Rjournal
 article (included with the package
@@ -47,6 +49,18 @@ article (included with the package
 wd <-  system.file("article", package = "rebib")
 rebib::handle_bibliography(wd)
 cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+```
+
+## General Usage for any other tex/bbl file
+
+here is a quick example to use rebib package with a sample bbl file
+(included with the package
+[inst/article](https://github.com/Abhi-1U/rebib/tree/master/inst/article))
+
+``` r
+bbl_file <-  "" # /path/to/bbl_file
+rebib::biblio_convertor(file_path = bbl_file)
+cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")
 ```
 
 ## Step By Step Usage

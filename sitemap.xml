@@ -22,7 +22,16 @@
     <loc>/reference/bib_handler.html</loc>
   </url>
   <url>
+    <loc>/reference/biblio_convertor.html</loc>
+  </url>
+  <url>
     <loc>/reference/bibliography_parser.html</loc>
+  </url>
+  <url>
+    <loc>/reference/bibtex_reader.html</loc>
+  </url>
+  <url>
+    <loc>/reference/bibtex_writer.html</loc>
   </url>
   <url>
     <loc>/reference/export_embeded_bibliography.html</loc>
@@ -31,7 +40,13 @@
     <loc>/reference/extract_embeded_bib_items.html</loc>
   </url>
   <url>
+    <loc>/reference/filter_bbl_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_bib_file.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_md_file_name.html</loc>
   </url>
   <url>
     <loc>/reference/get_reference_name.html</loc>
@@ -55,10 +70,13 @@
     <loc>/reference/link_bibliography_line.html</loc>
   </url>
   <url>
-    <loc>/reference/make_bibtex_file.html</loc>
+    <loc>/reference/split_bibtex_references.html</loc>
   </url>
   <url>
-    <loc>/reference/split_bibtex_references.html</loc>
+    <loc>/reference/str_extract.html</loc>
+  </url>
+  <url>
+    <loc>/reference/str_split.html</loc>
   </url>
   <url>
     <loc>/reference/write_external_file.html</loc>

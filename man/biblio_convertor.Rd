@@ -15,8 +15,3 @@ bib file
 \description{
 a quick convertor for bbl/tex to bib
 }
-\examples{
-bbl_file <-  system.file("article/sample.bbl", package = "rebib")
-rebib::biblio_convertor(file_path = bbl_file)
-cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")
-}

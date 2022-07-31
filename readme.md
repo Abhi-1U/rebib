@@ -7,10 +7,10 @@
 
 [![GitHub Workflow Status
 (branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
-[![GitHub Workflow Status
-(branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
+[![GitHub Workflow
+Status](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml)
 ![GitHub R package version (subdirectory of
-monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)
+monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)\](<https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION>)
 <!-- badges: end -->
 
 rebib is a spun off package from

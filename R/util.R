@@ -208,7 +208,7 @@ export_embeded_bibliography <- function(article_dir, file_name) {
 #'  functions in flow.
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name name of the file
-#'
+#' @param file_path absolute path of file with file_name
 #' @return a list of bib entries separated at bibitem
 #' @export
 extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_path = ""){
@@ -302,7 +302,3 @@ biblio_convertor <- function(file_path = "") {
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
 }
-
-#' bbl_file <-  system.file("article/sample.bbl", package = "rebib")
-#' rebib::biblio_convertor(file_path = bbl_file)
-#' cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")

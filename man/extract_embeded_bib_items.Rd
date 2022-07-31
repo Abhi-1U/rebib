@@ -10,6 +10,8 @@ extract_embeded_bib_items(article_dir = "", file_name = "", file_path = "")
 \item{article_dir}{path to the directory which contains tex article}
 
 \item{file_name}{name of the file}
+
+\item{file_path}{absolute path of file with file_name}
 }
 \value{
 a list of bib entries separated at bibitem

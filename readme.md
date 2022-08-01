@@ -9,8 +9,8 @@
 (branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
 [![GitHub Workflow
 Status](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml)
-![GitHub R package version (subdirectory of
-monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)\](<https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION>)
+[![GitHub R package version (subdirectory of
+monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)](https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION)
 <!-- badges: end -->
 
 rebib is a spun off package from
@@ -91,9 +91,9 @@ Embedded bibliography :
 generated BibTeX :
 
     @book{R,
-    author = {{ R Core Team }},
-    title = {{  R: A Language and Environment for Statistical Computing }},
-    publisher = {  R Foundation for Statistical Computing, Vienna, Austria },
+    author = {{R Core Team}},
+    title = {{R: A Language and Environment for Statistical Computing}},
+    publisher = {R Foundation for Statistical Computing Vienna Austria},
     year = {2016},
     url = {https://www.R-project.org/},
     isbn = {3-900051-07-0}

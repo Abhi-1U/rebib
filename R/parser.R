@@ -29,16 +29,17 @@ bibliography_parser <- function(single_bib_data) {
         # author_names
         # difference between start of identifier and authors = 2
         if ((break_points[1] - start_idx) == 2) {
-            bib_record$author <- paste("{{", gsub("\\.$", "",
-                                                  single_bib_data[start_idx + 1]), "}}")
+            bib_record$author <- gsub("\\.$", "",
+                                            single_bib_data[start_idx + 1])
         }
         # difference between start of identifier and authors = 3
         if ((break_points[1] - start_idx) == 3) {
-            bib_record$author <- paste("{{", gsub("\\.$", "",
+            bib_record$author <- paste(gsub("\\.$", "",
                                                   single_bib_data[start_idx + 1]),
-                                       gsub("\\.$", "", single_bib_data[start_idx + 2]), "}}")
+                                       gsub("\\.$", "", single_bib_data[start_idx + 2]))
         }
     }
+    bib_record$author <- trimws(bib_record$author, which = "both")
     if ((which(grepl("\\}$", single_bib_data)) - 1)[1] ==
         which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))[1]) {
         start_idx <- which(grepl("\\}$", single_bib_data))
@@ -47,15 +48,14 @@ bibliography_parser <- function(single_bib_data) {
         break_points <- which(grepl("\\\\newblock", single_bib_data))
         # difference between start of identifier and authors = 2
         if ((break_points[1] - start_idx) == 2) {
-            bib_record$author <- paste("{{",
-                                       gsub("\\.$", "", single_bib_data[start_idx + 1]), "}}")
+            bib_record$author <- gsub("\\.$", "", single_bib_data[start_idx + 1])
         }
         # difference between start of identifier and authors = 3
         if ((break_points[1] - start_idx) == 3) {
-            bib_record$author <- paste("{{",
+            bib_record$author <- paste(
                                        gsub("\\.$", "", single_bib_data[start_idx + 1]),
-                                       gsub("\\.$", "", single_bib_data[start_idx + 2]),
-                                       "}}")
+                                       gsub("\\.$", "", single_bib_data[start_idx + 2])
+                                       )
         }
     }
     if (length(break_points) == 1) {
@@ -70,7 +70,7 @@ bibliography_parser <- function(single_bib_data) {
         bib_record$title <- gsub("\\{", "",bib_record$title)
         bib_record$title <- gsub("\\}", "", bib_record$title)
         bib_record$title <- gsub("\\.$", "",bib_record$title)
-        bib_record$title <- paste("{{",bib_record$title,"}}")
+        bib_record$title <- trimws(bib_record$title, which = "both")
     }
     # difference between the title and publisher is 2
     if ((break_points[2] - break_points[1]) == 2) {
@@ -82,7 +82,7 @@ bibliography_parser <- function(single_bib_data) {
         bib_record$title <- gsub("\\{", "",bib_record$title)
         bib_record$title <- gsub("\\}", "", bib_record$title)
         bib_record$title <- gsub("\\.$", "",bib_record$title)
-        bib_record$title <- paste("{{",bib_record$title,"}}")
+        bib_record$title <- trimws(bib_record$title, which = "both")
 
     }
     # if year is in title itself
@@ -132,9 +132,9 @@ bibliography_parser <- function(single_bib_data) {
     if(!identical(which(grepl(url_regex,title_line)),integer(0))){
         bib_record$URL <- gsub(",", "", gsub("\\.$", "",
                                             str_extract(title_line, url_regex)))
-
         #print(bib_record$URL)
         title_line <- gsub(bib_record$URL, "", title_line)
+        #print(title_line)
         title_line <- gsub("URL", "",title_line)
         # stray colons
         title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
@@ -171,7 +171,13 @@ bibliography_parser <- function(single_bib_data) {
         title_line <- gsub("[[:space:]]+\\.,+[[:space:]]","",title_line)
     }
     title_line <- gsub("\\.","",title_line)
+    title_line <- gsub("\\,","",title_line)
     if (!grepl("[[:alpha:]]+", title_line)) {
+        title_line <- NULL
+    }
+    #  stray spaces
+    title_line <- trimws(title_line, which = "both")
+    if (identical(title_line, character(0))) {
         title_line <- NULL
     }
     bib_record$journal <- title_line

@@ -60,11 +60,11 @@ bibtex_writer <- function(bibtex_data, file_name) {
 
         # author field
         author <- bibtex_data[["book"]][[iterator]]$author
-        line_author <- sprintf("author = %s,", author)
+        line_author <- sprintf("author = {{%s}},", author)
 
         # title field
         title <- bibtex_data[["book"]][[iterator]]$title
-        line_title <- sprintf("title = %s", title)
+        line_title <- sprintf("title = {{%s}}", title)
 
 
         # year field (optional)
@@ -284,6 +284,10 @@ filter_bbl_data <- function(bbl_data) {
     comment_break_points_spaced <- which(grepl("%%", bbl_data))
     for (pos in comment_break_points_spaced) {
         bbl_data[pos] <- ""
+    }
+    # trim unnecessary whitespace
+    for (pos in seq_along(bbl_data)) {
+        bbl_data[pos] <- trimws(bbl_data[pos], which = "both")
     }
     return(bbl_data[nzchar(bbl_data)])
 }

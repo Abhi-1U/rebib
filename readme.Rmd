@@ -37,7 +37,7 @@ package.
 -   Rest of data is stored in journal(internally) and publisher(when writing bibtex file)
 -   Ignores commented bibliography 
 -   URL,ISBN,publisher,year are optional fields and will be enabled when relevant
-
+-   Citation counter
 ## Installation
 
 

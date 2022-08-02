@@ -27,8 +27,7 @@ own package.
 -   Ignores commented bibliography
 -   URL,ISBN,publisher,year are optional fields and will be enabled when
     relevant
-
-## Installation
+-   Citation counter \## Installation
 
 install the development version from GitHub with:
 

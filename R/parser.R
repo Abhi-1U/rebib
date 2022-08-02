@@ -110,7 +110,9 @@ bibliography_parser <- function(single_bib_data) {
         "\\url",
         "\\{",
         "\\}",
-        "\\\\"
+        "\\\\",
+        "beginscriptsize",
+        "endscriptsize"
     )
     filtered_data <- remaining_data
     for (line in seq_along(remaining_data)) {

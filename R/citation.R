@@ -9,8 +9,8 @@
 #'
 #' @examples
 #' file_path <- system.file("examples/article",
-#'                  package = "texor")
-#' cite <- texor::count_inline(file_path)
+#'                  package = "rebib")
+#' cite <- rebib::count_inline(file_path)
 count_inline <- function(file_path) {
     # readLines
     raw_lines <- readLines(file_path)

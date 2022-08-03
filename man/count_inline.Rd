@@ -18,6 +18,6 @@ currently supported inlines \\cite,\\citealp, \\citep, \\citet
 }
 \examples{
 file_path <- system.file("examples/article",
-                 package = "texor")
-cite <- texor::count_inline(file_path)
+                 package = "rebib")
+cite <- rebib::count_inline(file_path)
 }

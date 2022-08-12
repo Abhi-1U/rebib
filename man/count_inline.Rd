@@ -17,7 +17,7 @@ counts Cite inline elements embedded within the latex file
 currently supported inlines \\cite,\\citealp, \\citep, \\citet
 }
 \examples{
-file_path <- system.file("examples/article",
+file_path <- system.file("examples/article/example.tex",
                  package = "rebib")
 cite <- rebib::count_inline(file_path)
 }

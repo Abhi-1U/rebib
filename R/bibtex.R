@@ -2,25 +2,14 @@
 #' @title bibtex reader
 #'
 #' @param article_dir path to the directory which contains tex article
-#' @param bib_name (optional) name of the bib_file in the article_dir
-#' @param bib_path (optional) full path of a bib_file (if located in different dir)
 #' @return list of BibTex references
 #' @export
-bibtex_reader <- function(article_dir, bib_name = "NA",bib_path = "") {
+bibtex_reader <- function(article_dir) {
     # get the name of the bibtex file
-    if (bib_name == "NA") {
-        tex_file <- get_texfile_name(article_dir)
-        bib_file <- get_bib_file(article_dir,tex_file)
-    } else {
-        bib_file <- bib_name
-    }
-    # assume the bib file is in the article_dir
-    if (bib_path == "") {
-        bib_path <- paste(article_dir, bib_name, sep = "/")
-    } else {
-        bib_path <- bib_path
-    }
-    bib_tex_references <- split_bibtex_references(bib_path)
+    tex_file <- get_texfile_name(article_dir)
+    bib_file <- get_bib_file(article_dir,tex_file)
+    bib_file_path <- paste(article_dir, bib_file, sep = "/")
+    bib_tex_references <- split_bibtex_references(bib_file_path)
 
     return(bib_tex_references)
 }
@@ -87,8 +76,9 @@ get_reference_type <- function(bib_reference) {
 #' print(ref_name)
 get_reference_name <- function(bib_reference) {
     patt <- "\\{\\s*(.*?)\\s*\\,"
-    ref_type <- stringr::str_extract(bib_reference, patt)
-    ref_type <- gsub("\\{", "", ref_type)
-    ref_type <- gsub("\\,", "", ref_type)
-    return(ref_type)
+    ref_name <- stringr::str_extract(bib_reference, patt)
+    ref_name <- gsub("\\{", "", ref_name)
+    ref_name <- gsub("\\,", "", ref_name)
+    ref_name <- paste0("{", ref_name, "}")
+    return(ref_name)
 }

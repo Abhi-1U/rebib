@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' file_path <- system.file("examples/article",
+#' file_path <- system.file("examples/article/example.tex",
 #'                  package = "rebib")
 #' cite <- rebib::count_inline(file_path)
 count_inline <- function(file_path) {
@@ -20,6 +20,7 @@ count_inline <- function(file_path) {
     for ( comment in comments) {
         raw_lines[comment] <- ""
     }
+    citation_references <- list()
     count <- 0
     begin_patt <- c("\\\\cite\\{",
                     "\\\\citealp\\{",
@@ -35,6 +36,7 @@ count_inline <- function(file_path) {
             for (word in raw_words[[1]]) {
                 if (grepl(begin_patt[1], word)) {
                     count = count + 1
+                    citation_references <- append(citation_references, word)
                 }
             }
         }
@@ -45,6 +47,7 @@ count_inline <- function(file_path) {
             for (word in raw_words[[1]]) {
                 if (grepl(begin_patt[2], word)) {
                     count = count + 1
+                    citation_references <- append(citation_references, word)
                 }
             }
         }
@@ -55,6 +58,7 @@ count_inline <- function(file_path) {
             for (word in raw_words[[1]]) {
                 if (grepl(begin_patt[4], word)) {
                     count = count + 1
+                    citation_references <- append(citation_references, word)
                 }
             }
         }
@@ -65,9 +69,31 @@ count_inline <- function(file_path) {
             for (word in raw_words[[1]]) {
                 if (grepl(begin_patt[3], word)) {
                     count = count + 1
+                    citation_references <- append(citation_references, word)
                 }
             }
         }
     }
-    return(count)
+    citation_references <- unlist(citation_references)
+    citation_references <- filter_citation_references(citation_references)
+    citation_data <- list()
+    citation_data$count <- count
+    citation_data$references <- citation_references
+    return(citation_data)
+}
+
+#' @title filter citation references
+#' @description a filter for extracting citation references
+#' @param citation_references a vector of citation references(unfiltered)
+#'
+#' @return a vector of filtered citation references
+#' @export
+filter_citation_references <- function(citation_references) {
+    for (iterator in seq_along(citation_references)) {
+        citation_line <- citation_references[iterator]
+        # filtering out things
+        citation_line <- stringr::str_extract(citation_line, "(\\{.*?\\})")
+        citation_references[iterator] <- citation_line
+    }
+    return(citation_references)
 }

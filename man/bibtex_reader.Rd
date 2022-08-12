@@ -4,14 +4,10 @@
 \alias{bibtex_reader}
 \title{bibtex reader}
 \usage{
-bibtex_reader(article_dir, bib_name = "NA", bib_path = "")
+bibtex_reader(article_dir)
 }
 \arguments{
 \item{article_dir}{path to the directory which contains tex article}
-
-\item{bib_name}{(optional) name of the bib_file in the article_dir}
-
-\item{bib_path}{(optional) full path of a bib_file (if located in different dir)}
 }
 \value{
 list of BibTex references

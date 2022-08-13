@@ -25,6 +25,9 @@
     <loc>/reference/biblio_convertor.html</loc>
   </url>
   <url>
+    <loc>/reference/bibliography_exists.html</loc>
+  </url>
+  <url>
     <loc>/reference/bibliography_parser.html</loc>
   </url>
   <url>
@@ -74,6 +77,12 @@
   </url>
   <url>
     <loc>/reference/link_bibliography_line.html</loc>
+  </url>
+  <url>
+    <loc>/reference/log_setup.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rebib_log.html</loc>
   </url>
   <url>
     <loc>/reference/split_bibtex_references.html</loc>

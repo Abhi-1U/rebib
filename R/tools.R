@@ -66,7 +66,7 @@ get_texfile_name <- function(article_dir) {
 #' @export
 get_bib_file <- function(article_dir, file_name) {
     file_list <- list.files(article_dir, recursive = FALSE)
-    extensions <- c("*.bib")
+    extensions <- c("*.bib$")
     linked_bib <- toString(paste(tools::file_path_sans_ext(file_name),
                                  ".bib", sep = ""))
     bib_file <- unique(grep(paste(extensions, collapse = "|"),

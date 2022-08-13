@@ -17,16 +17,24 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
     setwd(article_dir)
+    log_setup(article_dir)
+    rebib_log(paste0("working directory : ", article_dir), "info")
     file_name <- get_texfile_name(article_dir)
+    rebib_log(paste0("file name : ", file_name), "info")
     bib_file <- get_bib_file(article_dir, file_name)
     if (! identical(bib_file, "") && (! override_mode)) {
+        rebib_log("BibTeX file exists", "info")
+        rebib_log("Wont parse for bibliography", "info")
         link_bibliography_line(article_dir, file_name)
     } else {
-        print("will need to convert bbl to .bib")
+        rebib_log("BibTeX file does not exist", "info")
+        rebib_log("will parse for bibliography", "info")
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
         bibtex_data <- bib_handler(bib_items)
+        rebib_log(bibtex_data, "debug")
         bibtex_writer(bibtex_data, file_name)
         link_bibliography_line(article_dir, file_name)
+        rebib_log("bibtex file created", "info")
     }
     on.exit(setwd(old_wd), add = TRUE)
 }
@@ -306,4 +314,30 @@ biblio_convertor <- function(file_path = "") {
     bib_items <- extract_embeded_bib_items(file_path = file_path)
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
+}
+
+#' @title bibliography exists
+#' @description check if embedded bibliography exists in the latex file or not
+#' @param article_dir path to the directory which contains tex article
+#'
+#' @return TRUE/FALSE
+#' @export
+#'
+#' @examples
+#' wd <-  system.file("article", package = "rebib")
+#' rebib::bibliography_exists(wd)
+bibliography_exists <- function(article_dir) {
+    file_name <- get_texfile_name(article_dir)
+    tex_file_path <- paste(article_dir, file_name, sep = "/")
+    src_file_data <- readLines(tex_file_path)
+    src_file_data <- filter_bbl_data(src_file_data)
+    bbl_start <- which(grepl("^\\s*\\\\begin\\{thebibliography\\}",
+                         src_file_data))
+    bbl_end <- which(grepl("^\\s*\\\\end\\{thebibliography\\}",
+                         src_file_data))
+    if(identical(bbl_start, integer(0)) | identical(bbl_end, integer(0))){
+        return(FALSE)
+    } else {
+        return(TRUE)
+    }
 }

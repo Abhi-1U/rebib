@@ -13,6 +13,7 @@ Imports:
     yaml,
     stringr,
     xfun,
+    logger,
 Authors@R: person("Abhishek", "Ulayil", email = "perricoq@outlook.com",
     role = c("aut", "cre"))
 Suggests: 

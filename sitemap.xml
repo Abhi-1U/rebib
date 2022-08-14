@@ -19,6 +19,9 @@
     <loc>/readme.html</loc>
   </url>
   <url>
+    <loc>/reference/aggregate_bibliography.html</loc>
+  </url>
+  <url>
     <loc>/reference/bib_handler.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>/reference/filter_citation_references.html</loc>
+  </url>
+  <url>
+    <loc>/reference/filter_repetition.html</loc>
   </url>
   <url>
     <loc>/reference/get_bib_file.html</loc>

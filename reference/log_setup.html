@@ -48,13 +48,21 @@ logging</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">log_setup</span><span class="op">(</span><span class="va">article_dir</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">log_setup</span><span class="op">(</span><span class="va">article_dir</span>, <span class="va">file_name</span>, <span class="va">idx</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>article_dir</dt>
 <dd><p>path to the directory which contains tex article</p></dd>
+
+
+<dt>file_name</dt>
+<dd><p>name of the log file</p></dd>
+
+
+<dt>idx</dt>
+<dd><p>index of log level</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -67,7 +75,7 @@ logging</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">log_setup</span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu">log_setup</span><span class="op">(</span><span class="va">wd</span>, <span class="st">"log-file.log"</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

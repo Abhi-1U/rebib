@@ -1,3 +1,18 @@
+# version 0.1.2
+
+## features updates :
+
+1. Logging events
+2. Bibliography Aggregation
+
+## bug fixes :
+
+1. BibTeX writer improved
+2. more man pages
+3. citation reader
+4. absolute path support
+
+
 # version 0.0.9
 
 ## features updates :

@@ -1,7 +1,7 @@
 Package: rebib
 Type: Package
 Title: Convert LaTeX embedded bibliography to bibtex
-Version: 0.0.9
+Version: 0.1.2
 Author: Abhishek Ulayil
 Description: rebib parses and converts embedded biblioraphy in LaTeX files into bibtex.
 License: MIT + file LICENSE

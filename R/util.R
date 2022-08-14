@@ -50,7 +50,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
 #' @return a bibtex file is written
 #' @export
 bibtex_writer <- function(bibtex_data, file_name) {
-    bib_file_name <- gsub(".tex", ".bib", file_name)
+    bib_file_name <- gsub(".tex$", ".bib", file_name)
     for (iterator in seq_along(bibtex_data[["book"]])) {
         # optional param
         include_year <- FALSE
@@ -161,6 +161,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         write_external_file(bib_file_name, "a", toString(line_end))
 
     }
+    write_external_file(bib_file_name, "a", toString(""))
 }
 
 
@@ -274,9 +275,10 @@ link_bibliography_line <- function(article_dir, file_name) {
     }
     # Backup original wrapper file
     backup_file <- paste(file_name,".bk",sep="")
+    file_path <- paste(article_dir, file_name, sep = "/")
     write_external_file(backup_file, "w", src_file_data)
     # write to original wrapper file
-    write_external_file(file_name, "a", bib_line)
+    write_external_file(file_path, "a", bib_line)
 }
 
 #' @title comment filter for bbl data

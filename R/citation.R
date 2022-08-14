@@ -1,6 +1,6 @@
-#' @title count citation elements
-#' @description  counts Cite inline elements embedded within the latex file
-#' currently supported inlines \\cite,\\citealp, \\citep, \\citet
+#' @title citation reader
+#' @description  counts/reads  Cite inline elements embedded within the latex
+#' file currently supported inlines \\cite,\\citealp, \\citep, \\citet
 #'
 #' @param file_path path to the LaTeX file
 #'
@@ -10,8 +10,9 @@
 #' @examples
 #' file_path <- system.file("examples/article/example.tex",
 #'                  package = "rebib")
-#' cite <- rebib::count_inline(file_path)
-count_inline <- function(file_path) {
+#' cite <- rebib::citation_reader(file_path)
+#' cite
+citation_reader <- function(file_path) {
     # readLines
     raw_lines <- readLines(file_path)
     raw_words <- str_split(raw_lines," ")

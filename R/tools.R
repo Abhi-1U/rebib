@@ -1,4 +1,3 @@
-
 #' @title get wrapper file name
 #' @description
 #' This function gets the wrapper file name from the
@@ -11,7 +10,6 @@
 #' @param article_dir path to the directory which contains tex article
 #'
 #' @return String with name of wrapper file or empty
-#' @export
 get_wrapper_type <- function(article_dir) {
     wrapper_types <- c("wrapper.tex",
                        "RJwrap.tex",
@@ -37,7 +35,6 @@ get_wrapper_type <- function(article_dir) {
 #' @param article_dir path to the directory which contains tex article
 #'
 #' @return name of the tex-file (Str)
-#' @export
 get_texfile_name <- function(article_dir) {
     lookup_file <- get_wrapper_type(article_dir)
     wrapper_file <- readLines(file.path(article_dir, lookup_file))
@@ -63,7 +60,6 @@ get_texfile_name <- function(article_dir) {
 #' @param file_name name of the tex file
 #'
 #' @return name of bib file (character)
-#' @export
 get_bib_file <- function(article_dir, file_name) {
     file_list <- list.files(article_dir, recursive = FALSE)
     extensions <- c("*.bib$")
@@ -98,8 +94,6 @@ get_bib_file <- function(article_dir, file_name) {
 #' @param raw_text the text/ list of lines to be written
 #'
 #' @return create/append/write a new file
-#' @export
-#'
 write_external_file <- function(file_name, mode, raw_text) {
     write_file <- file(file_name, mode)
     writeLines(raw_text, write_file)
@@ -113,8 +107,6 @@ write_external_file <- function(file_name, mode, raw_text) {
 #' @param article_dir path to the directory which contains tex article
 #'
 #' @return markdown file name (str)
-#' @export
-#'
 get_md_file_name <- function(article_dir) {
     lookup_file <- get_wrapper_type(article_dir)
     markdown_file <- gsub(".tex", ".md", lookup_file)
@@ -128,7 +120,6 @@ get_md_file_name <- function(article_dir) {
 #' @param patt pattern (Regex Str)
 #'
 #' @return list of vectorized string elements
-#' @export
 str_split <- function(x, patt) {
     return(stringr::str_split(x, patt))
 }
@@ -140,7 +131,6 @@ str_split <- function(x, patt) {
 #' @param patt pattern (Regex Str)
 #'
 #' @return list of extracted string elements
-#' @export
 str_extract <- function(x, patt) {
     return(stringr::str_extract(x, patt))
 }

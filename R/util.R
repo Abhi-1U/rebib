@@ -17,24 +17,26 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
     setwd(article_dir)
-    log_setup(article_dir)
-    rebib_log(paste0("working directory : ", article_dir), "info")
+    date <- Sys.Date()
+    log_file <- paste0("rebib-log-",date,".log")
+    log_setup(article_dir, log_file, 2)
+    rebib_log(paste0("working directory : ", article_dir), "info", 2)
     file_name <- get_texfile_name(article_dir)
-    rebib_log(paste0("file name : ", file_name), "info")
+    rebib_log(paste0("file name : ", file_name), "info", 2)
     bib_file <- get_bib_file(article_dir, file_name)
     if (! identical(bib_file, "") && (! override_mode)) {
-        rebib_log("BibTeX file exists", "info")
-        rebib_log("Wont parse for bibliography", "info")
+        rebib_log("BibTeX file exists", "info", 2)
+        rebib_log("Wont parse for bibliography", "info", 2)
         link_bibliography_line(article_dir, file_name)
     } else {
-        rebib_log("BibTeX file does not exist", "info")
-        rebib_log("will parse for bibliography", "info")
+        rebib_log("BibTeX file does not exist", "info", 2)
+        rebib_log("will parse for bibliography", "info", 2)
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
         bibtex_data <- bib_handler(bib_items)
-        rebib_log(bibtex_data, "debug")
+        rebib_log(bibtex_data, "debug", 2)
         bibtex_writer(bibtex_data, file_name)
         link_bibliography_line(article_dir, file_name)
-        rebib_log("bibtex file created", "info")
+        rebib_log("bibtex file created", "info", 2)
     }
     on.exit(setwd(old_wd), add = TRUE)
 }
@@ -309,11 +311,18 @@ filter_bbl_data <- function(bbl_data) {
 #' @export
 #'
 biblio_convertor <- function(file_path = "") {
+    date <- Sys.Date()
+    log_file <- paste0("rebib-biblio-",date,".log")
+    log_setup(dirname(file_path), log_file, 3)
+    rebib_log(paste0("working directory : ", dirname(file_path)), "info", 3)
+    rebib_log(paste0("file name : ", basename(file_path)), "info", 3)
     bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
                                     ".bib", sep = ""))
     bib_items <- extract_embeded_bib_items(file_path = file_path)
+    rebib_log(paste0("bib entries : ", length(bib_items)), "info", 3)
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
+    rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 3)
 }
 
 #' @title bibliography exists

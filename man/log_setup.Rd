@@ -4,10 +4,14 @@
 \alias{log_setup}
 \title{rebib log setup}
 \usage{
-log_setup(article_dir)
+log_setup(article_dir, file_name, idx)
 }
 \arguments{
 \item{article_dir}{path to the directory which contains tex article}
+
+\item{file_name}{name of the log file}
+
+\item{idx}{index of log level}
 }
 \value{
 null
@@ -18,5 +22,5 @@ logging
 }
 \examples{
  wd <-  system.file("article", package = "rebib")
-rebib::log_setup(wd)
+ rebib::log_setup(wd, "log-file.log", 2)
 }

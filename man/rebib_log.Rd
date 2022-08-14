@@ -4,12 +4,14 @@
 \alias{rebib_log}
 \title{log messages for various categories}
 \usage{
-rebib_log(message, category)
+rebib_log(message, category, idx)
 }
 \arguments{
 \item{message}{message to be sent}
 
 \item{category}{category of the log message}
+
+\item{idx}{index of log level}
 }
 \value{
 null
@@ -19,7 +21,7 @@ a wrapper function for logging different types of log entries
 }
 \examples{
  wd <-  system.file("article", package = "rebib")
-rebib::log_setup(wd)
-rebib::rebib_log("Hello", "INFO")
+rebib::log_setup(wd, "log-file.log", 2)
+rebib::rebib_log("Hello", "INFO", 2)
 cat(readLines(paste(wd,"/rebib-log-",Sys.Date(),".log",sep="")),sep="\n")
 }

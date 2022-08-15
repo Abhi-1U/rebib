@@ -63,18 +63,20 @@
 <div class="page-header"><h1 id="rebib--parseconvert-embedded-latex-bibliography-to-bibtex">rebib : Parse/Convert embedded LaTeX bibliography to BibTex<a class="anchor" aria-label="anchor" href="#rebib--parseconvert-embedded-latex-bibliography-to-bibtex"></a>
 </h1></div>
 <!-- badges: start -->
-<p>rebib is a spun-off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a> package.</p>
-<p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to have a dedicated package.</p>
+<p>rebib is a spun-off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a>.</p>
+<p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to deserve a dedicated space.</p>
 <ul>
 <li>Reads bib chunks to produce a very close BibTeX equivalent</li>
 <li>Title and author are usually mandatory fields</li>
 <li>URL, ISBN, publisher, and year are optional fields and will be enabled when relevant</li>
-<li>Rest of the data is stored in <code>journal</code>(internally) and <code>publisher</code>(when writing BibTeX file)</li>
+<li>Rest of the data is stored in <code>"journal"</code>(internally) and <code>"publisher"</code>(when writing BibTeX file)</li>
 <li>Ignores commented LaTeX code</li>
 <li>Citation tracker</li>
 <li>Logging of events</li>
 <li>Bibliography Aggregation</li>
 </ul>
+<p>This mindmap summarizes the feature set beautifully:</p>
+<p><img src="reference/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;"></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>

@@ -46,17 +46,19 @@
 
 <div id="rebib--parseconvert-embedded-latex-bibliography-to-bibtex" class="section level1">
 <!-- badges: start --><p><a href="https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml" class="external-link"><img src="https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&amp;style=for-the-badge" alt="GitHub Workflow Status (branch)"></a> <a href="https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml" class="external-link"><img src="https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?label=R-CMD-CHECK&amp;style=for-the-badge" alt="GitHub Workflow Status"></a> <a href="https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION" class="external-link"><img src="https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&amp;label=rebib&amp;style=for-the-badge" alt="GitHub R package version (subdirectory of monorepo)"></a> <!-- badges: end --></p>
-<p>rebib is a spun-off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a> package.</p>
-<p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to have a dedicated package.</p>
+<p>rebib is a spun-off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a>.</p>
+<p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to deserve a dedicated space.</p>
 <ul><li>Reads bib chunks to produce a very close BibTeX equivalent</li>
 <li>Title and author are usually mandatory fields</li>
 <li>URL, ISBN, publisher, and year are optional fields and will be enabled when relevant</li>
-<li>Rest of the data is stored in <code>journal</code>(internally) and <code>publisher</code>(when writing BibTeX file)</li>
+<li>Rest of the data is stored in <code>"journal"</code>(internally) and <code>"publisher"</code>(when writing BibTeX file)</li>
 <li>Ignores commented LaTeX code</li>
 <li>Citation tracker</li>
 <li>Logging of events</li>
 <li>Bibliography Aggregation</li>
-</ul><div class="section level2">
+</ul><p>This mindmap summarizes the feature set beautifully:</p>
+<p><img src="reference/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;"></p>
+<div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a></h2>
 <p>install the development version from GitHub with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">

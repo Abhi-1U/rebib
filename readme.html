@@ -21,6 +21,12 @@
       <ul class="navbar-nav me-auto"><li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/01-Introduction.html">Introduction to rebib</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -40,14 +46,14 @@
 
 <div id="rebib--parseconvert-embedded-latex-bibliography-to-bibtex" class="section level1">
 <!-- badges: start --><p><a href="https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml" class="external-link"><img src="https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&amp;style=for-the-badge" alt="GitHub Workflow Status (branch)"></a> <a href="https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml" class="external-link"><img src="https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?label=R-CMD-CHECK&amp;style=for-the-badge" alt="GitHub Workflow Status"></a> <a href="https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION" class="external-link"><img src="https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&amp;label=rebib&amp;style=for-the-badge" alt="GitHub R package version (subdirectory of monorepo)"></a> <!-- badges: end --></p>
-<p>rebib is a spun off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a> project.</p>
-<p>The decision to do this was based on the fact that the bibliography section in texor package was expanding significantly, enough to have its own package.</p>
-<ul><li>Reads bib chunks to produce a very close bibtex equivalent</li>
-<li>Separate title, URL field, year, ISBN (if applicable)</li>
-<li>Rest of data is stored in journal(internally) and publisher(when writing bibtex file)</li>
-<li>Ignores commented bibliography</li>
-<li>URL,ISBN,publisher,year are optional fields and will be enabled when relevant</li>
-<li>Citation counter</li>
+<p>rebib is a spun-off package from <a href="https://github.com/Abhi-1U/texor" class="external-link">texor</a> package.</p>
+<p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to have a dedicated package.</p>
+<ul><li>Reads bib chunks to produce a very close BibTeX equivalent</li>
+<li>Title and author are usually mandatory fields</li>
+<li>URL, ISBN, publisher, and year are optional fields and will be enabled when relevant</li>
+<li>Rest of the data is stored in <code>journal</code>(internally) and <code>publisher</code>(when writing BibTeX file)</li>
+<li>Ignores commented LaTeX code</li>
+<li>Citation tracker</li>
 <li>Logging of events</li>
 <li>Bibliography Aggregation</li>
 </ul><div class="section level2">

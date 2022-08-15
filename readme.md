@@ -13,21 +13,21 @@ Status](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?
 monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)](https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION)
 <!-- badges: end -->
 
-rebib is a spun off package from
-[texor](https://github.com/Abhi-1U/texor) project.
+rebib is a spun-off package from
+[texor](https://github.com/Abhi-1U/texor) package.
 
-The decision to do this was based on the fact that the bibliography
-section in texor package was expanding significantly, enough to have its
-own package.
+The decision to do this is the fact that the bibliography section in
+texor package was expanding significantly, enough to have a dedicated
+package.
 
--   Reads bib chunks to produce a very close bibtex equivalent
--   Separate title, URL field, year, ISBN (if applicable)
--   Rest of data is stored in journal(internally) and publisher(when
-    writing bibtex file)
--   Ignores commented bibliography
--   URL,ISBN,publisher,year are optional fields and will be enabled when
-    relevant
--   Citation counter
+-   Reads bib chunks to produce a very close BibTeX equivalent
+-   Title and author are usually mandatory fields
+-   URL, ISBN, publisher, and year are optional fields and will be
+    enabled when relevant
+-   Rest of the data is stored in `journal`(internally) and
+    `publisher`(when writing BibTeX file)
+-   Ignores commented LaTeX code
+-   Citation tracker
 -   Logging of events
 -   Bibliography Aggregation
 

@@ -14,22 +14,26 @@ monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESC
 <!-- badges: end -->
 
 rebib is a spun-off package from
-[texor](https://github.com/Abhi-1U/texor) package.
+[texor](https://github.com/Abhi-1U/texor).
 
 The decision to do this is the fact that the bibliography section in
-texor package was expanding significantly, enough to have a dedicated
-package.
+texor package was expanding significantly, enough to deserve a dedicated
+space.
 
 -   Reads bib chunks to produce a very close BibTeX equivalent
 -   Title and author are usually mandatory fields
 -   URL, ISBN, publisher, and year are optional fields and will be
     enabled when relevant
--   Rest of the data is stored in `journal`(internally) and
-    `publisher`(when writing BibTeX file)
+-   Rest of the data is stored in `"journal"`(internally) and
+    `"publisher"`(when writing BibTeX file)
 -   Ignores commented LaTeX code
 -   Citation tracker
 -   Logging of events
 -   Bibliography Aggregation
+
+This mindmap summarizes the feature set beautifully:
+
+<img src="man/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;" />
 
 ## Installation
 

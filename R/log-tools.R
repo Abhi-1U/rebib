@@ -36,7 +36,7 @@ log_setup <- function(article_dir, file_name, idx) {
 #'  wd <-  system.file("article", package = "rebib")
 #' rebib::log_setup(wd, "log-file.log", 2)
 #' rebib::rebib_log("Hello", "INFO", 2)
-#' cat(readLines(paste(wd,"/rebib-log-",Sys.Date(),".log",sep="")),sep="\n")
+#' cat(readLines(paste(wd,"/log-file.log",sep="")),sep="\n")
 rebib_log <- function(message, category, idx) {
     if (identical(tolower(category), "info")) {
         logger::log_info(message)

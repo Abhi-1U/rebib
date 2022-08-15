@@ -23,5 +23,5 @@ a wrapper function for logging different types of log entries
  wd <-  system.file("article", package = "rebib")
 rebib::log_setup(wd, "log-file.log", 2)
 rebib::rebib_log("Hello", "INFO", 2)
-cat(readLines(paste(wd,"/rebib-log-",Sys.Date(),".log",sep="")),sep="\n")
+cat(readLines(paste(wd,"/log-file.log",sep="")),sep="\n")
 }

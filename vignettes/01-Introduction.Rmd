@@ -19,11 +19,10 @@ library(rebib)
 ```
 
 
-rebib is a spun-off package from [texor](https://github.com/Abhi-1U/texor)
-package.
+rebib is a spun-off package from [texor](https://github.com/Abhi-1U/texor).
 
 The decision to do this is the fact that the bibliography section 
-in texor package was expanding significantly, enough to have a dedicated package.
+in texor package was expanding significantly, enough to deserve a dedicated space.
 
 Thus rebib was born and has improved over the past few months to include more advanced features and utilities. 
 
@@ -41,7 +40,7 @@ The rebib package converts embedded LaTeX bibliographies into a close  BibTeX eq
 -   Reads bib chunks to produce a very close BibTeX equivalent
 -   Title and author are usually mandatory fields
 -   URL, ISBN, publisher, and year are optional fields and will be enabled when relevant
--   Rest of the data is stored in `journal`(internally) and `publisher`(when writing BibTeX file)
+-   Rest of the data is stored in `"journal"`(internally) and `"publisher"`(when writing BibTeX file)
 -   Ignores commented LaTeX code 
 -   Citation tracker
 -   Logging of events

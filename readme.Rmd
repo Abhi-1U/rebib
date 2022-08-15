@@ -26,20 +26,26 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-rebib is a spun-off package from [texor](https://github.com/Abhi-1U/texor)
-package.
+rebib is a spun-off package from [texor](https://github.com/Abhi-1U/texor).
 
 The decision to do this is the fact that the bibliography section 
-in texor package was expanding significantly, enough to have a dedicated package.
+in texor package was expanding significantly, enough to deserve a dedicated space.
 
 -   Reads bib chunks to produce a very close BibTeX equivalent
 -   Title and author are usually mandatory fields
 -   URL, ISBN, publisher, and year are optional fields and will be enabled when relevant
--   Rest of the data is stored in `journal`(internally) and `publisher`(when writing BibTeX file)
+-   Rest of the data is stored in `"journal"`(internally) and `"publisher"`(when writing BibTeX file)
 -   Ignores commented LaTeX code 
 -   Citation tracker
 -   Logging of events
 -   Bibliography Aggregation
+
+This mindmap summarizes the feature set beautifully:
+
+```{r mindmap, fig.alt="A mindmap summary for feature set of rebib package",fig.align='center',fig.cap="A mindmap summary for feature set of rebib package",fig.width='',echo=FALSE}
+knitr::include_graphics("man/figures/rebib.svg")
+```
+
 
 ## Installation
 

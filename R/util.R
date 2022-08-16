@@ -275,8 +275,9 @@ link_bibliography_line <- function(article_dir, file_name) {
     }
     # Backup original wrapper file
     backup_file <- paste(file_name,".bk",sep="")
+    backup_file_path <- paste(article_dir, backup_file, sep = "/")
     file_path <- paste(article_dir, file_name, sep = "/")
-    write_external_file(backup_file, "w", src_file_data)
+    write_external_file(backup_file_path, "w", src_file_data)
     # write to original wrapper file
     write_external_file(file_path, "a", bib_line)
 }

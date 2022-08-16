@@ -78,7 +78,7 @@ citation_reader <- function(file_path) {
     citation_references <- unlist(citation_references)
     citation_references <- filter_citation_references(citation_references)
     citation_data <- list()
-    citation_data$count <- count
+    citation_data$count <- length(citation_references)
     citation_data$references <- citation_references
     return(citation_data)
 }
@@ -90,11 +90,23 @@ citation_reader <- function(file_path) {
 #' @return a vector of filtered citation references
 #' @export
 filter_citation_references <- function(citation_references) {
+    filtered_citation_references <- list()
     for (iterator in seq_along(citation_references)) {
         citation_line <- citation_references[iterator]
         # filtering out things
         citation_line <- stringr::str_extract(citation_line, "(\\{.*?\\})")
-        citation_references[iterator] <- citation_line
+        if (grepl(",", citation_line)){
+            cites <- stringr::str_split(citation_line,",")
+            filtered_citation_references <- append(filtered_citation_references,paste0(cites[[1]][1],"}"))
+            end <- length(cites[[1]])-1
+            for (value in 2:end) {
+                filtered_citation_references <- append(filtered_citation_references,paste0("{",cites[[1]][value],"}"))
+            }
+            filtered_citation_references <- append(filtered_citation_references,paste0("{",cites[[1]][end+1]))
+            #print(cites)
+        } else {
+            filtered_citation_references <- append(filtered_citation_references,citation_line)
+        }
     }
-    return(citation_references)
+    return(unlist(filtered_citation_references))
 }

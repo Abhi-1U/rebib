@@ -64,7 +64,11 @@ pak::pak("Abhi-1U/rebib")
 (included with the package [inst/article](https://github.com/Abhi-1U/rebib/tree/master/inst/article))
 ``` r
 wd <-  system.file("article", package = "rebib")
+# for files without BibTeX source
 rebib::handle_bibliography(wd)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+# for files with BibTeX source as well as embedded enntries
+rebib::aggregate_bibliography(wd)
 cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
 ```
 

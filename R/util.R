@@ -45,7 +45,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
 #' writes bibtex data in a structured format to the .bib file
 #'
 #' @param bibtex_data a list of minimal bibtex data
-#' @param file_name name of the tex file
+#' @param file_name name or path of the tex file
 #'
 #' @return a bibtex file is written
 #' @export

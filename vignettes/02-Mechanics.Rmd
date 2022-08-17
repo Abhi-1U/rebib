@@ -1,0 +1,98 @@
+---
+title: "rebib parser mechanics"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{02-Mechanics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup,echo=FALSE}
+library(rebib)
+```
+
+The magic behind rebib is a parser which parses bibliographic data and assorts them according to the matching regular expressions.
+
+## Stage 1: Read the Embedded Bibliography Block
+
+This stage is a minor step where it reads the Embedded Bibliography from the LaTeX document. This step also includes Filtering out the commented code to avoid un-intended entries read.
+
+Lastly, the data is broken down based on the LaTeX macro `\\bibitem` as a marker for a new entry and this assorted data is exported to a variable.
+
+```{r stage1,echo=TRUE}
+wd <-  system.file("article", package = "rebib")
+file_name <- rebib:::get_texfile_name(wd)
+bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
+bib_items[[1]]
+bib_items[[2]]
+```
+
+
+## Stage 2: Regex Powered Parser
+
+
+Now, with the chunks of bibliographic entries, each is passed to a parser which will break it down based on regular expressions.
+The logic is to use the LaTeX macro `\\newblock` as a placeholder to identify the position of text elements relative to it.
+
+The first value to be parsed is the `unique_id` also called the citation reference which is used to cite elements inside the article. Usually, this is in the first or second line of the whole entry. The position of the 
+`unique_id` will determine the position of the author names.
+
+```{r stage2.1,echo=TRUE}
+bib_items[[1]][1]
+```
+
+After reading the `unique_id`, the parser will attempt to read the author name(s) up to two lines long (Usually this is the case in most articles).
+
+
+```{r stage2.2,echo=TRUE}
+bib_items[[1]][2]
+```
+
+Next, the title is extracted based on the position of the new blocks or the end of the bib chunk. 
+
+
+```{r stage2.3,echo=TRUE}
+bib_items[[1]][3]
+```
+
+This way the crucial elements of the bibliographic entry (unique_id, author names and title ) are parsed out.
+
+The remaining data is stored as `journal` internally and `publisher` when writing to a new BibTeX file.
+
+
+```{r stage2.4,echo=TRUE}
+bib_items[[1]][4:6]
+```
+
+A series of filters for ISBN, URL and year fields are applied to search for relevant extractable data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. 
+There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file. 
+
+
+```{r stage2.5,echo=TRUE}
+bib_entry <- rebib::bib_handler(bib_items)
+bib_entry
+```
+
+## Stage 3: BibTeX writer
+
+After reading the bibliographic entries and splitting out meaningful values from them, we can finally write a structured file in the BibTeX format.
+
+The writer will read the bib chunks one at a time based on the metadata extracted and will write only those fields. The default entry type is a book, which should not have any problems with the web articles. 
+
+```{r stage3,echo=TRUE}
+file_path <- paste0(wd,"/",file_name)
+bib_path <- paste0(wd,"/example.bib")
+file.remove(bib_path)
+rebib:::bibtex_writer(bib_entry,file_path)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+```
+
+
+I expect the authors who are converting the document to take a look and check if there are any errors or missing values. 

@@ -43,6 +43,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/01-Introduction.html">Introduction to rebib</a>
     <a class="dropdown-item" href="../articles/02-Mechanics.html">rebib parser mechanics</a>
+    <a class="dropdown-item" href="../articles/03-RJarticle.html">Using rebib with RJarticle</a>
   </div>
 </li>
 <li class="nav-item">
@@ -120,7 +121,7 @@
 <span><span class="co">#&gt; [1] "\\newblock \\emph{Journal of Computational and Graphical Statistics}, 3:\\penalty0"</span></span>
 <span><span class="co">#&gt; [2] "299--314, 1996."                                                                   </span></span>
 <span><span class="co">#&gt; [3] "\\newblock URL : \\url{https://doi.org/10.1080/10618600.1996.10474713}"</span></span></code></pre></div>
-<p>A series of filters for ISBN, URL and year fields are applied to search for relevant extractable data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file.</p>
+<p>A series of filters for ISBN, URL and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib_entry</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/bib_handler.html">bib_handler</a></span><span class="op">(</span><span class="va">bib_items</span><span class="op">)</span></span>
 <span><span class="va">bib_entry</span></span>
@@ -174,7 +175,7 @@
 <h2 id="stage-3-bibtex-writer">Stage 3: BibTeX writer<a class="anchor" aria-label="anchor" href="#stage-3-bibtex-writer"></a>
 </h2>
 <p>After reading the bibliographic entries and splitting out meaningful values from them, we can finally write a structured file in the BibTeX format.</p>
-<p>The writer will read the bib chunks one at a time based on the metadata extracted and will write only those fields. The default entry type is a book, which should not have any problems with the web articles.</p>
+<p>The writer will read the bib chunks one at a time based on the metadata extracted and will write the corresponding data fields. The default entry type is a book, which should not have any problems with the web articles.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"/"</span>,<span class="va">file_name</span><span class="op">)</span></span>
 <span><span class="va">bib_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"/example.bib"</span><span class="op">)</span></span>

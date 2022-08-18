@@ -316,16 +316,16 @@ filter_bbl_data <- function(bbl_data) {
 biblio_convertor <- function(file_path = "") {
     date <- Sys.Date()
     log_file <- paste0("rebib-biblio-",date,".log")
-    log_setup(dirname(file_path), log_file, 3)
-    rebib_log(paste0("working directory : ", dirname(file_path)), "info", 3)
-    rebib_log(paste0("file name : ", basename(file_path)), "info", 3)
+    log_setup(dirname(file_path), log_file, 1)
+    rebib_log(paste0("working directory : ", dirname(file_path)), "info", 1)
+    rebib_log(paste0("file name : ", basename(file_path)), "info", 1)
     bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
                                     ".bib", sep = ""))
     bib_items <- extract_embeded_bib_items(file_path = file_path)
-    rebib_log(paste0("bib entries : ", length(bib_items)), "info", 3)
+    rebib_log(paste0("bib entries : ", length(bib_items)), "info", 1)
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
-    rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 3)
+    rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 1)
 }
 
 #' @title bibliography exists

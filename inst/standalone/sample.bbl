@@ -1,0 +1,59 @@
+% License : Creative Commons CC-BY 4.0
+\begin{thebibliography}{1}
+    \expandafter\ifx\csname
+    natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+    \expandafter\ifx\csname url\endcsname\relax \def\url#1{{\tt #1}}\fi
+
+  \bibitem[Bartky \& Harrison(1979)]{bartky79}
+    R.I.~Bartky and E.~Harrison.
+    \newblock Standard and Daylight Saving Time.
+    \newblock \emph{Scientific American}, 240:46--53, 1979.
+
+  %% \bibitem[Becker, Chambers and Wilks(1988)]{becker88}
+  %%   R.A.~Becker, J.M.~Chambers and A.R.~Wilks,
+  %%   \newblock The New S Language.
+  %%   \newblock Wadsworth and Brooks/Cole, 1988.
+
+  \bibitem[ISO-8601(1988)]{iso88}
+    ISO-8601.
+    \newblock \emph{Data Elements and Interchange Formats -- Information
+    Interchange, Representation of Dates and Time}.
+    \newblock International Organization for Standardization,
+    Reference Number ISO 8601, 1988.
+
+  %% \bibitem[James and Pregibon(1992)]{james92}
+  %%   D.A.~James and D.~Pregibon.
+  %%   \newblock Chronological Objects for Data Analysis.
+  %%   \newblock Reprint, 1992.
+
+  \bibitem[Montes(1996)]{montes96}
+    M.J.~Montes.
+    \newblock Butcher's Algorithm for Calculating the Date of Easter in
+    the Gregorian Calendar, 1996.
+
+  \bibitem[Ripley \& Hornik(2001)]{ripley01}
+    B.D.~Ripley and K.~Hornik.
+    \newblock Date-Time Classes.
+    \newblock \emph{R-News}, 1(2):8--12, 2001.
+
+%% \bibitem[SIFMA()]{sifma}
+%%  SIFMA.
+%% \newblock Securities Industry and Financial Management Association.
+%% \newblock \url{http://www.sifma.org}.
+
+  \bibitem[Seidelmann(1992)]{seidelmann92}
+    P.K.~Seidelmann~(Editor).
+    \newblock \emph{Explanatory Supplement to the Astronomical Almanac}.
+    \newblock University Science Books, Herndon, 1992.
+
+  \bibitem[T{\o}ndering(2008)]{tondering08}
+    C.~T{\o}ndering.
+    \newblock Frequently Asked Questions about Calendars, 2008.
+    \newblock URL \url{http://www.tondering.dk/claus/calendar.html}.
+
+  %% \bibitem[Wikipedia()]{wikipedia}
+  %%   Wikipedia.
+  %%   \newblock Day Count Convention.
+  %%   \newblock \url{en.wikipedia.org/wiki/Day\_count\_convention}.
+
+\end{thebibliography}

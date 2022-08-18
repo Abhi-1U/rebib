@@ -1,0 +1,33 @@
+---
+title: "Using rebib in general"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{04-GeneralUse}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup,echo = FALSE}
+library(rebib)
+```
+
+
+While using rebib with a LaTeX document, one can use the following two options as per their needs :
+
+## 1. Bibliography Converter
+The bibliography converter will convert any LaTex or BBL file given as a path. This way, one can generate BibTeX from the embedded bibliography or BBL file.
+
+```{r bibliocon, echo = TRUE}
+wd <-  system.file("standalone", package = "rebib")
+bbl_path <- paste(wd, "sample.bbl", sep = "/")
+rebib::biblio_convertor(bbl_path)
+```
+
+

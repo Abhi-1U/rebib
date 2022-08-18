@@ -1,0 +1,55 @@
+---
+title: "Using rebib with RJarticle"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RJarticle}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup,echo=FALSE}
+library(rebib)
+```
+
+While using rebib with RJ article LaTeX files one can use the following two options as per their needs :
+
+## 1. Bibliography Constructor
+
+In bibliography construction mode, rebib will check for existing BibTeX files and will convert the embedded bibliography only when there are no 
+linked BibTeX files in the RJ article.
+
+``` latex
+%% typically rebib will search for this line in the RJ article, not the RJwrapper file
+\bibliography{example}
+```
+If there is no linked BibTeX file, rebib will begin its procedure of converting the embedded bibliography to BibTeX and then link it with the article file as well.
+
+### Usage example
+
+```{r rebibcons, echo=TRUE}
+wd <-  system.file("article", package = "rebib")
+bib_path <- paste0(wd,"/example.bib")
+file.remove(bib_path)
+# for files without BibTeX source
+rebib::handle_bibliography(wd)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+```
+## 2. Bibliography Aggregation
+If you have a BibTeX file and it is missing some references then this mode can help you read the embedded bibliography and combine the two bibliographies in a single BibTeX file.
+
+### Usage example
+
+```{r rebibaggr, echo=TRUE}
+wd <-  system.file("aggr_example", package = "rebib")
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+# for files with BibTeX source as well as embedded entries
+rebib::aggregate_bibliography(wd)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+```

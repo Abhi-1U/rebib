@@ -71,7 +71,7 @@ The remaining data is stored as `journal` internally and `publisher` when writin
 bib_items[[1]][4:6]
 ```
 
-A series of filters for ISBN, URL and year fields are applied to search for relevant extractable data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. 
+A series of filters for ISBN, URL and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. 
 There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file. 
 
 
@@ -84,7 +84,7 @@ bib_entry
 
 After reading the bibliographic entries and splitting out meaningful values from them, we can finally write a structured file in the BibTeX format.
 
-The writer will read the bib chunks one at a time based on the metadata extracted and will write only those fields. The default entry type is a book, which should not have any problems with the web articles. 
+The writer will read the bib chunks one at a time based on the metadata extracted and will write the corresponding data fields. The default entry type is a book, which should not have any problems with the web articles. 
 
 ```{r stage3,echo=TRUE}
 file_path <- paste0(wd,"/",file_name)

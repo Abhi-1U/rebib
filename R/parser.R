@@ -140,7 +140,7 @@ bibliography_parser <- function(single_bib_data) {
         bib_record$URL <- gsub(",", "", gsub("\\.$", "",
                                             str_extract(title_line, url_regex)))
         #print(bib_record$URL)
-        title_line <- gsub(bib_record$URL, "", title_line)
+        title_line <- gsub(url_regex, "", title_line)
         #print(title_line)
         title_line <- gsub("URL", "",title_line)
         # stray colons

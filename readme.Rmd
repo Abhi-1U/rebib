@@ -86,7 +86,7 @@ cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")
  This procedure is meant for debugging errors and finding out what went wrong.
 ``` r
 wd <-  system.file("article", package = "rebib")
-file_name <- rebib::get_texfile_name(wd)
+file_name <- rebib:::get_texfile_name(wd)
 bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
 # for debugging single entry
 rebib::bibliography_parser(bib_items[1])

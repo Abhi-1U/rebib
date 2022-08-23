@@ -42,10 +42,15 @@ in texor package was expanding significantly, enough to deserve a dedicated spac
 
 This mindmap summarizes the feature set beautifully:
 
-```{r mindmap, fig.alt="A mindmap summary for feature set of rebib package",fig.align='center',fig.cap="A mindmap summary for feature set of rebib package",fig.width='',echo=FALSE}
+```{r mindmap, fig.alt="A mindmap summary for feature set of rebib package",fig.align='center',fig.cap="A mindmap summary for feature set of rebib package",echo=FALSE}
 knitr::include_graphics("man/figures/rebib.svg")
 ```
 
+This FlowChart Describes the Aggregation Feature:
+
+```{r bib_agg,fig.alt="A Flow chart of Bibliography Aggregation",fig.align='center',fig.cap="A Flow chart of Bibliography Aggregation",echo=FALSE}
+knitr::include_graphics("man/figures/bib_agg.svg")
+```
 
 ## Installation
 

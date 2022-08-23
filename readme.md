@@ -35,6 +35,10 @@ This mindmap summarizes the feature set beautifully:
 
 <img src="man/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;" />
 
+This FlowChart Describes the Aggregation Feature:
+
+<img src="man/figures/bib_agg.svg" title="A Flow chart of Bibliography Aggregation" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;" />
+
 ## Installation
 
 install the development version from GitHub with:
@@ -54,7 +58,11 @@ article (included with the package
 
 ``` r
 wd <-  system.file("article", package = "rebib")
+# for files without BibTeX source
 rebib::handle_bibliography(wd)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+# for files with BibTeX source as well as embedded enntries
+rebib::aggregate_bibliography(wd)
 cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
 ```
 
@@ -77,7 +85,7 @@ wrong.
 
 ``` r
 wd <-  system.file("article", package = "rebib")
-file_name <- rebib::get_texfile_name(wd)
+file_name <- rebib:::get_texfile_name(wd)
 bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
 # for debugging single entry
 rebib::bibliography_parser(bib_items[1])

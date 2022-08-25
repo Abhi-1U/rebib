@@ -93,3 +93,24 @@ test_that("parser parsing bibliography test 5", {
     expect_equal(out$URL, "http://www.tondering.dk/claus/calendar.html")
     expect_equal(out$unique_id, "tondering08")
 })
+
+test_6 <- c(
+    "\\bibitem[Wuertz et~al.(2013)Wuertz, with contribution~from Michal~Miklovic,",
+    "Boudt, Chausse, and {others}]{WuertzChalabiMiklovicBoudtChausseOthers2013}",
+    "D.~Wuertz, Y.~C. with contribution~from Michal~Miklovic, C.~Boudt, P.~Chausse,",
+    "and {others}.",
+    "\\newblock \\emph{{fGarch}: Rmetrics -- Autoregressive Conditional",
+    "Heteroskedastic Modelling}, 2013.",
+    "\\newblock URL \\url{http://CRAN.R-project.org/package=fGarch}.",
+    "\\newblock R package version 3010.82."
+)
+
+test_that("parser parsing bibliography test 6", {
+    out <- rebib:::bibliography_parser(test_6)
+    expect_equal(out$author, "D.~Wuertz, Y.~C. with contribution~from Michal~Miklovic, C.~Boudt, P.~Chausse, and {others}")
+    expect_equal(out$journal, "R package version 3010.82")
+    expect_equal(out$year, "2013")
+    expect_equal(out$title, "fGarch: Rmetrics -- Autoregressive Conditional Heteroskedastic Modelling, ")
+    expect_equal(out$URL, "http://CRAN.R-project.org/package=fGarch")
+    expect_equal(out$unique_id, "WuertzChalabiMiklovicBoudtChausseOthers2013")
+})

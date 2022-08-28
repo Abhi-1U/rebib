@@ -17,8 +17,10 @@ log_setup <- function(article_dir, file_name, idx) {
     } else {
         #pass
     }
-    logger::log_threshold(index = idx)
-    logger::log_appender(logger::appender_file(log_file_path),index=idx)
+    logger::log_threshold(namespace = 'rebib')
+    logger::log_appender(logger::appender_file(log_file_path),
+                         namespace = "rebib",
+                         index=idx)
 
 }
 
@@ -39,30 +41,31 @@ log_setup <- function(article_dir, file_name, idx) {
 #' cat(readLines(paste(wd,"/log-file.log",sep="")),sep="\n")
 rebib_log <- function(message, category, idx) {
     if (identical(tolower(category), "info")) {
-        logger::log_info(message)
-        logger::log_appender(index = idx)
+        logger::log_info(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "success")) {
-        logger::log_success(message)
-        logger::log_appender(index = idx)
+        logger::log_success(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "warning")) {
-        logger::log_warn(message)
-        logger::log_appender(index = idx)
+        logger::log_warn(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "debug")) {
-        logger::log_debug(message,index =2)
-        logger::log_appender(index = idx)
+        logger::log_debug(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "error")) {
-        logger::log_error(message)
-        logger::log_appender(index = idx)
+        logger::log_error(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "failure")) {
-        logger::log_failure(message)
-        logger::log_appender(index = idx)
+        logger::log_failure(message, namespace = 'rebib')
+        logger::log_appender(namespace = 'rebib')
     } else {
         #pass
         #logger::log_info(message)
     }
+    return()
 }

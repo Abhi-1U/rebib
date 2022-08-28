@@ -114,3 +114,21 @@ test_that("parser parsing bibliography test 6", {
     expect_equal(out$URL, "http://CRAN.R-project.org/package=fGarch")
     expect_equal(out$unique_id, "WuertzChalabiMiklovicBoudtChausseOthers2013")
 })
+
+test_7 <- c("\\bibitem[Hampton et~al.(2006)Hampton, Scheuerell, and",
+            "Schindler]{Hamptonetal2006}",
+            "S.~E. Hampton, M.~D. Scheuerell, and D.~E. Schindler.",
+            "\\newblock Coalescence in the {L}ake {W}ashington story: interaction strengths",
+            "in a planktonic food web.",
+            "\\newblock \\emph{Limnology and Oceanography}, 51\\penalty0 (5):\\penalty0",
+            "2042--2051, 2006."
+            )
+test_that("parser parsing bibliography test 7", {
+    out <- rebib:::bibliography_parser(test_7)
+    expect_equal(out$author, "S.~E. Hampton, M.~D. Scheuerell, and D.~E. Schindler")
+    expect_equal(out$journal, "Limnology and Oceanography51 (5): 2042--2051")
+    expect_equal(out$year, "2006")
+    expect_equal(out$title, "Coalescence in the Lake Washington story: interaction strengths in a planktonic food web")
+    expect_equal(out$URL, NULL)
+    expect_equal(out$unique_id, "Hamptonetal2006")
+})

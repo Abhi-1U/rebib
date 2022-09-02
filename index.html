@@ -82,11 +82,35 @@
 <p><img src="reference/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;"></p>
 <p>This FlowChart Describes the Aggregation Feature:</p>
 <p><img src="reference/figures/bib_agg.svg" title="A Flow chart of Bibliography Aggregation" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;"></p>
+<div class="section level3">
+<h3 id="note-">Note :<a class="anchor" aria-label="anchor" href="#note-"></a>
+</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Please use absolute paths when working with texor<span class="sc">/</span>rebib <span class="sc">!</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>The reason is that earlier rebib used to work with relative paths by using </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(), <span class="fu">getwd</span>() to handle working directories. However this was not an ideal</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>method to handle paths and working on files.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Hence I had to <span class="cf">switch</span> to absolute path system <span class="cf">for</span> almost all functions where</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>automation is possible and works well. As there was no changing of working</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>directories there is less risk of setting up a wrong working directory when </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>failing certain function.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Use forward <span class="fu">slashes</span> (<span class="sc">/</span>) <span class="cf">in</span> paths and do not add a forward slash at the end of </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>the path</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> example </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Wrong usage <span class="sc">:</span> C<span class="sc">:</span>\projects\texor\main</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>wrong usage <span class="sc">:</span> C<span class="sc">:</span><span class="er">/</span>projects<span class="sc">/</span>texor<span class="sc">/</span>main<span class="sc">/</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>wrong usage <span class="sc">:</span> C<span class="sc">:</span>\\projects\\texor\\main\\ </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>wrong usage <span class="sc">:</span> C<span class="sc">:</span>\\projects\\texor\\<span class="fu">main</span> (this may work with R)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Correct usage <span class="sc">:</span> C<span class="sc">:</span><span class="er">/</span>projects<span class="sc">/</span>texor<span class="sc">/</span>main</span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>install the development version from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"Abhi-1U/rebib"</span><span class="op">)</span></span>
 <span><span class="co"># install.packages("pak")</span></span>
@@ -96,7 +120,7 @@
 <h2 id="general-usage-for-rjournal-articles">General Usage for Rjournal articles<a class="anchor" aria-label="anchor" href="#general-usage-for-rjournal-articles"></a>
 </h2>
 <p>here is a quick example to use rebib package with a sample Rjournal article (included with the package <a href="https://github.com/Abhi-1U/rebib/tree/master/inst/article" class="external-link">inst/article</a>)</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
 <span><span class="co"># for files without BibTeX source</span></span>
 <span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/handle_bibliography.html">handle_bibliography</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
@@ -109,7 +133,7 @@
 <h2 id="general-usage-for-any-other-texbbl-file">General Usage for any other tex/bbl file<a class="anchor" aria-label="anchor" href="#general-usage-for-any-other-texbbl-file"></a>
 </h2>
 <p>here is a quick example to use rebib package with a sample bbl file (included with the package <a href="https://github.com/Abhi-1U/rebib/tree/master/inst/article" class="external-link">inst/article</a>)</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bbl_file</span> <span class="op">&lt;-</span>  <span class="st">""</span> <span class="co"># /path/to/bbl_file</span></span>
 <span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/biblio_convertor.html">biblio_convertor</a></span><span class="op">(</span>file_path <span class="op">=</span> <span class="va">bbl_file</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"bbl"</span>,<span class="st">"bib"</span>,<span class="va">bbl_file</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
@@ -118,7 +142,7 @@
 <h2 id="step-by-step-usage">Step By Step Usage<a class="anchor" aria-label="anchor" href="#step-by-step-usage"></a>
 </h2>
 <p>This procedure is meant for debugging errors and finding out what went wrong.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
 <span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">:::</span><span class="fu"><a href="reference/get_texfile_name.html">get_texfile_name</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
 <span><span class="va">bib_items</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/extract_embeded_bib_items.html">extract_embeded_bib_items</a></span><span class="op">(</span><span class="va">wd</span>,<span class="va">file_name</span><span class="op">)</span></span>
@@ -131,20 +155,20 @@
 <h2 id="sample-conversion">Sample Conversion<a class="anchor" aria-label="anchor" href="#sample-conversion"></a>
 </h2>
 <p>Embedded bibliography :</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>\bibitem[R Core Team]{R}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>R Core Team</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>\newblock R<span class="sc">:</span> A Language and Environment <span class="cf">for</span> Statistical Computing</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>\newblock \emph{R Foundation <span class="cf">for</span> Statistical Computing}, Vienna, Austria \penalty0 <span class="fl">2016.</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>\newblock URL <span class="sc">:</span> \url{https<span class="sc">:</span><span class="er">//</span>www.R<span class="sc">-</span>project.org<span class="sc">/</span>}, ISBN <span class="dv">3-900051-07-0</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>\bibitem[R Core Team]{R}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>R Core Team</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>\newblock R<span class="sc">:</span> A Language and Environment <span class="cf">for</span> Statistical Computing</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>\newblock \emph{R Foundation <span class="cf">for</span> Statistical Computing}, Vienna, Austria \penalty0 <span class="fl">2016.</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>\newblock URL <span class="sc">:</span> \url{https<span class="sc">:</span><span class="er">//</span>www.R<span class="sc">-</span>project.org<span class="sc">/</span>}, ISBN <span class="dv">3-900051-07-0</span></span></code></pre></div>
 <p>generated BibTeX :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>book{R,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>author <span class="ot">=</span> {{R Core Team}},</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> {{R<span class="sc">:</span> A Language and Environment <span class="cf">for</span> Statistical Computing}},</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>publisher <span class="ot">=</span> {R Foundation <span class="cf">for</span> Statistical Computing Vienna Austria},</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>year <span class="ot">=</span> {<span class="dv">2016</span>},</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>www.R<span class="sc">-</span>project.org<span class="sc">/</span>},</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>isbn <span class="ot">=</span> {<span class="dv">3-900051-07-0</span>}</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>book{R,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>author <span class="ot">=</span> {{R Core Team}},</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>title <span class="ot">=</span> {{R<span class="sc">:</span> A Language and Environment <span class="cf">for</span> Statistical Computing}},</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>publisher <span class="ot">=</span> {R Foundation <span class="cf">for</span> Statistical Computing Vienna Austria},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>year <span class="ot">=</span> {<span class="dv">2016</span>},</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>www.R<span class="sc">-</span>project.org<span class="sc">/</span>},</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>isbn <span class="ot">=</span> {<span class="dv">3-900051-07-0</span>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">

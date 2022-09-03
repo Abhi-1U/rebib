@@ -54,12 +54,14 @@ bibtex_writer <- function(bibtex_data, file_name) {
     bib_file_name <- gsub(".tex$", ".bib", file_name)
     for (iterator in seq_along(bibtex_data[["book"]])) {
         # optional param
+        include_pages <- FALSE
         include_year <- FALSE
         include_url <- FALSE
         include_isbn <- FALSE
         include_journal <- FALSE
 
         # line names
+        line_pages <- ""
         line_year <- ""
         line_isbn <- ""
         line_url <- ""
@@ -81,7 +83,12 @@ bibtex_writer <- function(bibtex_data, file_name) {
         }
         line_title <- sprintf("title = {{%s}}", title)
 
-
+        # pages field (optional)
+        if (!identical(bibtex_data[["book"]][[iterator]]$pages,NULL)){
+            pages <- bibtex_data[["book"]][[iterator]]$pages
+            line_pages <- sprintf("pages = {%s}", pages)
+            include_pages <- TRUE
+        }
         # year field (optional)
         if (!identical(bibtex_data[["book"]][[iterator]]$year,NULL)){
             year <- bibtex_data[["book"]][[iterator]]$year
@@ -118,7 +125,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         write_external_file(bib_file_name, "a", toString(line_uid))
         write_external_file(bib_file_name, "a", toString(line_author))
         # if title is the second last line to be written
-        if (include_journal | include_url | include_isbn | include_year ) {
+        if (include_journal | include_url | include_isbn | include_year | include_pages) {
             line_title <- paste(line_title,",",sep="")
             write_external_file(bib_file_name, "a", toString(line_title))
         } else {
@@ -126,16 +133,25 @@ bibtex_writer <- function(bibtex_data, file_name) {
         }
 
         # if journal/publisher details are the second last line to be written
-        if (include_journal & ( include_isbn | include_url | include_year)) {
+        if (include_journal & ( include_isbn | include_url | include_year | include_pages)) {
             line_journal <- paste(line_journal,",",sep="")
             write_external_file(bib_file_name, "a", toString(line_journal))
         }
-        if (include_journal & ( !include_isbn & !include_url & !include_year)) {
+        if (include_journal & ( !include_isbn & !include_url & !include_year & !include_pages)) {
             write_external_file(bib_file_name, "a", toString(line_journal))
         } else {
             #skip
         }
-
+        # if pages is the second last line
+        if (include_pages & (include_url | include_isbn | include_year)) {
+            line_pages <- paste(line_pages,",",sep="")
+            write_external_file(bib_file_name, "a", toString(line_pages))
+        }
+        if (include_year & (!include_isbn & !include_url & !include_year)) {
+            write_external_file(bib_file_name, "a", toString(line_pages))
+        } else {
+            #skip
+        }
         # if year is the second last line
         if (include_year & (include_url | include_isbn)) {
             line_year <- paste(line_year,",",sep="")
@@ -188,7 +204,8 @@ bib_handler <- function(bib_items) {
             journal = bib_content$journal,
             year = bib_content$year,
             URL = bib_content$URL,
-            isbn = bib_content$isbn)
+            isbn = bib_content$isbn,
+            pages = bib_content$pages)
         book
     }
     )

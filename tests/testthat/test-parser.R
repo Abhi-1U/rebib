@@ -13,6 +13,8 @@ test_that("parser parsing bibliography test 1", {
     expect_equal(out$title, "Butcher's Algorithm for Calculating the Date of Easter in")
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "montes96")
+    expect_equal(out$pages, NULL)
+
 })
 # This test case has 3 line long title which will challenge the parser
 test_2 <- c(
@@ -33,6 +35,7 @@ test_that("parser parsing bibliography test 2", {
     expect_equal(out$title, "LMERConvenienceFunctions: A suite of functions to back-fit   fixed effects and forward-fit random effects, as well as other miscellaneous   functions., ")
     expect_equal(out$URL, "http://CRAN.R-project.org/package=LMERConvenienceFunctions")
     expect_equal(out$unique_id, "Tremblay:2012")
+    expect_equal(out$pages, NULL)
 })
 
 # This example has a slightly complicated journal field
@@ -49,11 +52,12 @@ test_3 <- c(
 test_that("parser parsing bibliography test 3", {
     out <- rebib:::bibliography_parser(test_3)
     expect_equal(out$author, "H.~Akaike")
-    expect_equal(out$journal, "In Petrov BN and Csaki BFeditorsSecond international    symposium on information theorypages 267--281Academiai KiadoBudapest")
+    expect_equal(out$journal, "In Petrov BN and Csaki BFeditorsSecond international    symposium on information theorypages Academiai KiadoBudapest")
     expect_equal(out$year, "1973")
     expect_equal(out$title, "Information theory and an extension of the maximum likelihood principle")
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "Akaike:1973")
+    expect_equal(out$pages, "267--281")
 })
 # This test case has a long author name field.
 test_4 <- c(
@@ -75,6 +79,7 @@ test_that("parser parsing bibliography test 4", {
     expect_equal(out$title, "AMORE: A MORE Flexible Neural Network Package, ")
     expect_equal(out$URL, "http://wiki.r-project.org/rwiki/doku.php?id=packages:cran:amore")
     expect_equal(out$unique_id, "AMORE")
+    expect_equal(out$pages, NULL)
 })
 # the publisher/journal field will be missing here
 test_5 <- c(
@@ -92,6 +97,7 @@ test_that("parser parsing bibliography test 5", {
     expect_equal(out$title, "Frequently Asked Questions about Calendars, ")
     expect_equal(out$URL, "http://www.tondering.dk/claus/calendar.html")
     expect_equal(out$unique_id, "tondering08")
+    expect_equal(out$pages, NULL)
 })
 
 test_6 <- c(
@@ -113,6 +119,7 @@ test_that("parser parsing bibliography test 6", {
     expect_equal(out$title, "fGarch: Rmetrics -- Autoregressive Conditional Heteroskedastic Modelling, ")
     expect_equal(out$URL, "http://CRAN.R-project.org/package=fGarch")
     expect_equal(out$unique_id, "WuertzChalabiMiklovicBoudtChausseOthers2013")
+    expect_equal(out$pages, NULL)
 })
 
 test_7 <- c("\\bibitem[Hampton et~al.(2006)Hampton, Scheuerell, and",
@@ -126,11 +133,12 @@ test_7 <- c("\\bibitem[Hampton et~al.(2006)Hampton, Scheuerell, and",
 test_that("parser parsing bibliography test 7", {
     out <- rebib:::bibliography_parser(test_7)
     expect_equal(out$author, "S.~E. Hampton, M.~D. Scheuerell, and D.~E. Schindler")
-    expect_equal(out$journal, "Limnology and Oceanography51 (5): 2042--2051")
+    expect_equal(out$journal, "Limnology and Oceanography51 (5):")
     expect_equal(out$year, "2006")
     expect_equal(out$title, "Coalescence in the Lake Washington story: interaction strengths in a planktonic food web")
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "Hamptonetal2006")
+    expect_equal(out$pages, "2042--2051")
 })
 
 test_8 <- c("\\bibitem[Markussen(2013)]{pcomm:SM13}",
@@ -140,9 +148,9 @@ test_8 <- c("\\bibitem[Markussen(2013)]{pcomm:SM13}",
 test_that("parser parsing bibliography test 8", {
     out <- rebib:::bibliography_parser(test_8)
     expect_equal(out$author, "S.~Markussen")
-    expect_equal(out$journal, NULL)
+    expect_equal(out$journal, "Personal Communication")
     expect_equal(out$year, "2013")
-    expect_equal(out$title, "Personal Communication")
+    expect_equal(out$title, NULL)
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "pcomm:SM13")
 })

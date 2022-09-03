@@ -59,8 +59,11 @@ bibliography_parser <- function(single_bib_data) {
     if (length(break_points) == 1) {
        break_points[2] <- length(single_bib_data)
     }
+    if((break_points[2] - break_points[1]) == 0) {
+        bib_record$title <- NULL
+    }
     # difference between the title and publisher is 1
-    if ((break_points[2] - break_points[1]) == 1) {
+    if ((break_points[2] - break_points[1]) == 1){
         bib_record$title <- gsub("\\\\newblock", "",
                                  single_bib_data[break_points[1]])
         bib_record$title <- gsub("emph", "",bib_record$title)
@@ -88,7 +91,7 @@ bibliography_parser <- function(single_bib_data) {
 
     }
     # if year is in title itself
-    year_regex <- "(?:19|20)\\d{2}"
+    year_regex <- "((19|20)[0-9][0-9])"
     if (!identical(which(grepl(year_regex,bib_record$title)),integer(0))) {
         bib_record$year <- gsub(",", "", gsub("\\.$", "",
                                     str_extract(bib_record$title, year_regex)))
@@ -103,6 +106,7 @@ bibliography_parser <- function(single_bib_data) {
         #bib_record$title <- gsub("[[:space:]]+\\.+[[:space:]]","",
         #                                                    bib_record$title)
     }
+    pages_regex <- "(\\d+--\\d+)"
     url_regex <- "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
     remaining_data <- single_bib_data[break_points[2]:length(single_bib_data)]
     #remaining_data <- single_bib_data[break_points[2]:length(single_bib_data)]
@@ -149,11 +153,22 @@ bibliography_parser <- function(single_bib_data) {
         #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
     }
     # fetching year from remaining data
+    # page_ranges
+    if(!identical(which(grepl(pages_regex,title_line)),integer(0))){
+        bib_record$pages <- gsub(",", "", gsub("\\.$", "",
+                                              str_extract(title_line, pages_regex)))
+        title_line <- gsub(bib_record$pages, "", title_line)
+        # stray colons
+        #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
+        # stray full stops
+        #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
+    }
     # year_regex is above
     #or "^[12][0-9]{3}$"
     if(!identical(which(grepl(year_regex,title_line)),integer(0))){
         bib_record$year <- gsub(",", "", gsub("\\.$", "",
                                         str_extract(title_line, year_regex)))
+        bib_record$year <- trimws(bib_record$year, which = "both")
         title_line <- gsub(bib_record$year, "", title_line)
         # stray colons
         #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)

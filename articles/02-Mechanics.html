@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">rebib</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +108,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib_items</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "\\bibitem[Ihaka, Ross and Gentleman, Robert]{ihaka:1996}"</span></span></code></pre></div>
-<p>After reading the <code>unique_id</code>, the parser will attempt to read the author name(s) up to two lines long (Usually this is the case in most articles).</p>
+<p>After reading the <code>unique_id</code>, the parser will attempt to read the author name(s) <del>up to two lines long</del> (Usually this is the case in most articles).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib_items</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "Ihaka, Ross and Gentleman, Robert"</span></span></code></pre></div>
@@ -123,7 +123,7 @@
 <span><span class="co">#&gt; [1] "\\newblock \\emph{Journal of Computational and Graphical Statistics}, 3:\\penalty0"</span></span>
 <span><span class="co">#&gt; [2] "299--314, 1996."                                                                   </span></span>
 <span><span class="co">#&gt; [3] "\\newblock URL : \\url{https://doi.org/10.1080/10618600.1996.10474713}"</span></span></code></pre></div>
-<p>A series of filters for ISBN, URL and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file.</p>
+<p>A series of filters for ISBN, URL, pages and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bib_entry</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/bib_handler.html">bib_handler</a></span><span class="op">(</span><span class="va">bib_items</span><span class="op">)</span></span>
 <span><span class="va">bib_entry</span></span>

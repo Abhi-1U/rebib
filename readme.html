@@ -53,7 +53,7 @@
 <p>The decision to do this is the fact that the bibliography section in texor package was expanding significantly, enough to deserve a dedicated space.</p>
 <ul><li>Reads bib chunks to produce a very close BibTeX equivalent</li>
 <li>Title and author are usually mandatory fields</li>
-<li>URL, ISBN, publisher, and year are optional fields and will be enabled when relevant</li>
+<li>URL, ISBN, publisher, pages and year are optional fields and will be enabled when relevant</li>
 <li>Rest of the data is stored in <code>"journal"</code>(internally) and <code>"publisher"</code>(when writing BibTeX file)</li>
 <li>Ignores commented LaTeX code</li>
 <li>Citation tracker</li>
@@ -65,7 +65,8 @@
 <p><img src="reference/figures/bib_agg.svg" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;"></p>
 <div class="section level3">
 <h3 id="note-">Note :<a class="anchor" aria-label="anchor" href="#note-"></a></h3>
-<p>Update : relative paths should also work with version 0.1.7 and above Please use absolute paths when working with texor/rebib !</p>
+<p>Update : relative paths should also work with version 0.1.7 and above</p>
+<p>Please use absolute paths when working with texor/rebib !</p>
 <p><del>The reason is that earlier rebib used to work with relative paths by using setwd(), getwd() to handle working directories. However this was not an ideal method to handle paths and working on files.</del></p>
 <p><del>Hence I had to switch to absolute path system for almost all functions where automation is possible and works well. As there was no changing of working directories there is less risk of setting up a wrong working directory when failing certain function.</del></p>
 <p>Use forward slashes (/) in paths and do not add a forward slash at the end of the path for example</p>

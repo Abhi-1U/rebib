@@ -39,7 +39,7 @@ The rebib package converts embedded LaTeX bibliographies into a close  BibTeX eq
 
 -   Reads bib chunks to produce a very close BibTeX equivalent
 -   Title and author are usually mandatory fields
--   URL, ISBN, publisher, and year are optional fields and will be enabled when relevant
+-   URL, ISBN, publisher, pages and year are optional fields and will be enabled when relevant
 -   Rest of the data is stored in `"journal"`(internally) and `"publisher"`(when writing BibTeX file)
 -   Ignores commented LaTeX code 
 -   Citation tracker

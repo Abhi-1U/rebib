@@ -10,7 +10,7 @@ bibtex_writer(bibtex_data, file_name)
 \arguments{
 \item{bibtex_data}{a list of minimal bibtex data}
 
-\item{file_name}{name of the tex file}
+\item{file_name}{name or path of the tex file}
 }
 \value{
 a bibtex file is written

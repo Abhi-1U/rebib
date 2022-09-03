@@ -1,3 +1,18 @@
+# version 0.1.7
+
+## features updates :
+
+1. New Vignettes
+2. testthat test cases
+3. Added Pages field
+
+## bug fixes :
+1. Github issue #9
+2. Updated path for backup file before adding external bib file reference.
+3. Multiple citations are split into individual citations.
+4. Fixed year handling issue Github issue #11
+5. fixed issue with missing spaces in the journal field
+
 # version 0.1.2
 
 ## features updates :

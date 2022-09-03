@@ -31,3 +31,18 @@ rebib::biblio_convertor(bbl_path)
 ```
 
 
+## 2. Bibliography Aggregator
+The bibliography aggregator will append the existing BibTeX file with bibliographic entries extracted from the LaTeX or BBL file.
+
+The Flow Chart here visualizes the sequence.
+```{r bib_agg,fig.alt="A Flow chart of Bibliography Aggregation",fig.align='center',fig.cap="A Flow chart of Bibliography Aggregation",echo=FALSE}
+knitr::include_graphics("../man/figures/bib_agg.svg")
+```
+
+```{r biblioaggr, echo = FALSE}
+wd <-  system.file("aggr_example", package = "rebib")
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+# for files with BibTeX source as well as embedded entries
+rebib::aggregate_bibliography(wd)
+cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+```

@@ -48,7 +48,7 @@ The first value to be parsed is the `unique_id` also called the citation referen
 bib_items[[1]][1]
 ```
 
-After reading the `unique_id`, the parser will attempt to read the author name(s) up to two lines long (Usually this is the case in most articles).
+After reading the `unique_id`, the parser will attempt to read the author name(s) ~~up to two lines long~~  (Usually this is the case in most articles).
 
 
 ```{r stage2.2,echo=TRUE}
@@ -71,7 +71,7 @@ The remaining data is stored as `journal` internally and `publisher` when writin
 bib_items[[1]][4:6]
 ```
 
-A series of filters for ISBN, URL and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. 
+A series of filters for ISBN, URL, pages and year fields are applied to search for relevant data from the remaining data. If the data is not available then it is set as NULL and will be skipped while writing the BibTeX file. 
 There is a lot of filtering of common LaTeX elements and after that, the data remaining is stored in a structured format to be written to a file. 
 
 

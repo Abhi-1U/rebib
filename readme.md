@@ -33,34 +33,34 @@ space.
 
 This mindmap summarizes the feature set beautifully:
 
-<img src="man/figures/rebib.svg" title="A mindmap summary for feature set of rebib package" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/rebib.svg" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;" />
 
 This FlowChart Describes the Aggregation Feature:
 
-<img src="man/figures/bib_agg.svg" title="A Flow chart of Bibliography Aggregation" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;" />
+<img src="man/figures/bib_agg.svg" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;" />
 
 ### Note :
 
-    Please use absolute paths when working with texor/rebib !
+Update : relative paths should also work with version 0.1.7 and above
+Please use absolute paths when working with texor/rebib !
 
-    The reason is that earlier rebib used to work with relative paths by using 
-    setwd(), getwd() to handle working directories. However this was not an ideal
-    method to handle paths and working on files.
+~~The reason is that earlier rebib used to work with relative paths by
+using setwd(), getwd() to handle working directories. However this was
+not an ideal method to handle paths and working on files.~~
 
-    Hence I had to switch to absolute path system for almost all functions where
-    automation is possible and works well. As there was no changing of working
-    directories there is less risk of setting up a wrong working directory when 
-    failing certain function.
+~~Hence I had to switch to absolute path system for almost all functions
+where automation is possible and works well. As there was no changing of
+working directories there is less risk of setting up a wrong working
+directory when failing certain function.~~
 
-    Use forward slashes (/) in paths and do not add a forward slash at the end of 
-    the path
-    for example 
-    Wrong usage : C:\projects\texor\main
-    wrong usage : C:/projects/texor/main/
-    wrong usage : C:\\projects\\texor\\main\\ 
-    wrong usage : C:\\projects\\texor\\main (this may work with R)
+Use forward slashes (/) in paths and do not add a forward slash at the
+end of the path for example
 
-    Correct usage : C:/projects/texor/main
+1.  Wrong usage : `C:\projects\texor\main`
+2.  wrong usage : `C:/projects/texor/main/`
+3.  wrong usage : `C:\\projects\\texor\\main\\`
+4.  wrong usage : `C:\\projects\\texor\\main` (this may work with R)
+5.  Correct usage : `C:/projects/texor/main`
 
 ## Installation
 

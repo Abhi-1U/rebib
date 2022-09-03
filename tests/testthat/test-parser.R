@@ -52,7 +52,7 @@ test_3 <- c(
 test_that("parser parsing bibliography test 3", {
     out <- rebib:::bibliography_parser(test_3)
     expect_equal(out$author, "H.~Akaike")
-    expect_equal(out$journal, "In Petrov BN and Csaki BFeditorsSecond international    symposium on information theorypages Academiai KiadoBudapest")
+    expect_equal(out$journal, "In Petrov BN and Csaki BF editors Second international   symposium on information theory pages  Academiai Kiado Budapest")
     expect_equal(out$year, "1973")
     expect_equal(out$title, "Information theory and an extension of the maximum likelihood principle")
     expect_equal(out$URL, NULL)
@@ -133,7 +133,7 @@ test_7 <- c("\\bibitem[Hampton et~al.(2006)Hampton, Scheuerell, and",
 test_that("parser parsing bibliography test 7", {
     out <- rebib:::bibliography_parser(test_7)
     expect_equal(out$author, "S.~E. Hampton, M.~D. Scheuerell, and D.~E. Schindler")
-    expect_equal(out$journal, "Limnology and Oceanography51 (5):")
+    expect_equal(out$journal, "Limnology and Oceanography 51 (5):")
     expect_equal(out$year, "2006")
     expect_equal(out$title, "Coalescence in the Lake Washington story: interaction strengths in a planktonic food web")
     expect_equal(out$URL, NULL)

@@ -136,7 +136,7 @@ bibliography_parser <- function(single_bib_data) {
     }
     title_line <- ""
     for (line in filtered_data) {
-        title_line <- paste(title_line, line)
+        title_line <- paste(title_line, line, sep = "")
     }
     #print(filtered_data)
     # fetching URL from remaining data
@@ -195,8 +195,8 @@ bibliography_parser <- function(single_bib_data) {
     title_line <- gsub("\\.$","",title_line)
     title_line <- gsub("\\,$","",title_line)
     #title_line <- gsub(" ","",title_line)
-    title_line <- gsub("\\.+[[:space:]]","",title_line)
-    title_line <- gsub("\\,+[[:space:]]","",title_line)
+    title_line <- gsub("\\.+[[:space:]]"," ",title_line)
+    title_line <- gsub("\\,+[[:space:]]"," ",title_line)
     if (!grepl("[[:alpha:]]+", title_line)) {
         title_line <- NULL
     }

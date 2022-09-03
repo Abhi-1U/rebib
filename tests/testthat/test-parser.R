@@ -132,3 +132,17 @@ test_that("parser parsing bibliography test 7", {
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "Hamptonetal2006")
 })
+
+test_8 <- c("\\bibitem[Markussen(2013)]{pcomm:SM13}",
+            "S.~Markussen.",
+            "\\newblock Personal Communication, 2013."
+            )
+test_that("parser parsing bibliography test 8", {
+    out <- rebib:::bibliography_parser(test_8)
+    expect_equal(out$author, "S.~Markussen")
+    expect_equal(out$journal, NULL)
+    expect_equal(out$year, "2013")
+    expect_equal(out$title, "Personal Communication")
+    expect_equal(out$URL, NULL)
+    expect_equal(out$unique_id, "pcomm:SM13")
+})

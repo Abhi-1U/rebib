@@ -10,9 +10,7 @@ LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
     tools,
-    yaml,
     stringr,
-    xfun,
     logger,
 Authors@R: person("Abhishek", "Ulayil", email = "perricoq@outlook.com",
     role = c("aut", "cre"))

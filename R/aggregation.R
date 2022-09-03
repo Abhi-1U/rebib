@@ -5,6 +5,7 @@
 #' @return aggregated bib file
 #' @export
 aggregate_bibliography <- function(article_dir) {
+    article_dir <- normalizePath(article_dir)
     date <- Sys.Date()
     log_file <- paste0("bib-agrr-log-",date,".log")
     log_setup(article_dir, log_file, 1)
@@ -61,3 +62,4 @@ filter_repetition <- function(bbl_data, bib_data) {
     }
     return(delta_bbl_data)
 }
+

@@ -22,7 +22,7 @@ space.
 
 -   Reads bib chunks to produce a very close BibTeX equivalent
 -   Title and author are usually mandatory fields
--   URL, ISBN, publisher, and year are optional fields and will be
+-   URL, ISBN, publisher, pages and year are optional fields and will be
     enabled when relevant
 -   Rest of the data is stored in `"journal"`(internally) and
     `"publisher"`(when writing BibTeX file)
@@ -42,6 +42,7 @@ This FlowChart Describes the Aggregation Feature:
 ### Note :
 
 Update : relative paths should also work with version 0.1.7 and above
+
 Please use absolute paths when working with texor/rebib !
 
 ~~The reason is that earlier rebib used to work with relative paths by

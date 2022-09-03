@@ -55,7 +55,8 @@ knitr::include_graphics("man/figures/bib_agg.svg")
 ### Note :
 
 
-Update : relative paths should also work with version 0.1.7 and above
+Update : relative paths should also work with version 0.1.7 and above  
+
 Please use absolute paths when working with texor/rebib !
 
 ~~The reason is that earlier rebib used to work with relative paths by using 

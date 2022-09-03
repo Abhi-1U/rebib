@@ -76,6 +76,9 @@ bibtex_writer <- function(bibtex_data, file_name) {
 
         # title field
         title <- bibtex_data[["book"]][[iterator]]$title
+        if (identical(title,NULL)) {
+            title <- ""
+        }
         line_title <- sprintf("title = {{%s}}", title)
 
 

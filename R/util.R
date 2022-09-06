@@ -16,7 +16,7 @@
 handle_bibliography <- function(article_dir, override_mode = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
-    article_dir <- normalizePath(article_dir)
+    article_dir <- xfun::normalize_path(article_dir)
     setwd(article_dir)
     date <- Sys.Date()
     log_file <- paste0("rebib-log-",date,".log")
@@ -278,7 +278,7 @@ extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_pat
 #' @export
 #'
 link_bibliography_line <- function(article_dir, file_name) {
-    article_dir <- normalizePath(article_dir)
+    article_dir <- xfun::normalize_path(article_dir)
     src_file_data <- readLines(file.path(article_dir, file_name))
     bib_exist <- FALSE
     for (line in src_file_data) {
@@ -336,7 +336,7 @@ filter_bbl_data <- function(bbl_data) {
 #' @export
 #'
 biblio_convertor <- function(file_path = "") {
-    file_path <- normalizePath(file_path)
+    file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()
     log_file <- paste0("rebib-biblio-",date,".log")
     log_setup(dirname(file_path), log_file, 1)
@@ -362,7 +362,7 @@ biblio_convertor <- function(file_path = "") {
 #' wd <-  system.file("article", package = "rebib")
 #' rebib::bibliography_exists(wd)
 bibliography_exists <- function(article_dir) {
-    article_dir <- normalizePath(article_dir)
+    article_dir <- xfun::normalize_path(article_dir)
     file_name <- get_texfile_name(article_dir)
     tex_file_path <- paste(article_dir, file_name, sep = "/")
     src_file_data <- readLines(tex_file_path)

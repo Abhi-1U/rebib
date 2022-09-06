@@ -12,6 +12,7 @@ Imports:
     tools,
     stringr,
     logger,
+    xfun,
 Authors@R: person("Abhishek", "Ulayil", email = "perricoq@outlook.com",
     role = c("aut", "cre"))
 Suggests: 

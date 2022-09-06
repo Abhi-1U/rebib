@@ -5,7 +5,7 @@
 #' @return aggregated bib file
 #' @export
 aggregate_bibliography <- function(article_dir) {
-    article_dir <- normalizePath(article_dir)
+    article_dir <- xfun::normalize_path(article_dir)
     date <- Sys.Date()
     log_file <- paste0("bib-agrr-log-",date,".log")
     log_setup(article_dir, log_file, 1)

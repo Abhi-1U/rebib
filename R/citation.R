@@ -14,7 +14,7 @@
 #' cite
 citation_reader <- function(file_path) {
     # readLines
-    file_path <- normalizePath(file_path)
+    file_path <- xfun::normalize_path(file_path)
     raw_lines <- readLines(file_path)
     raw_words <- str_split(raw_lines," ")
     # filters comments in the given tex file

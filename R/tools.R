@@ -11,6 +11,7 @@
 #'
 #' @return String with name of wrapper file or empty
 get_wrapper_type <- function(article_dir) {
+    article_dir <- xfun::normalize_path(article_dir)
     wrapper_types <- c("wrapper.tex",
                        "RJwrap.tex",
                        "RJwrapper.tex")
@@ -36,6 +37,7 @@ get_wrapper_type <- function(article_dir) {
 #'
 #' @return name of the tex-file (Str)
 get_texfile_name <- function(article_dir) {
+    article_dir <- xfun::normalize_path(article_dir)
     lookup_file <- get_wrapper_type(article_dir)
     wrapper_file <- readLines(file.path(article_dir, lookup_file))
     article_start <- which(grepl(
@@ -61,6 +63,7 @@ get_texfile_name <- function(article_dir) {
 #'
 #' @return name of bib file (character)
 get_bib_file <- function(article_dir, file_name) {
+    article_dir <- xfun::normalize_path(article_dir)
     file_list <- list.files(article_dir, recursive = FALSE)
     extensions <- c("*.bib$")
     linked_bib <- toString(paste(tools::file_path_sans_ext(file_name),
@@ -95,6 +98,7 @@ get_bib_file <- function(article_dir, file_name) {
 #'
 #' @return create/append/write a new file
 write_external_file <- function(file_name, mode, raw_text) {
+    file_name <- xfun::normalize_path(file_name)
     write_file <- file(file_name, mode)
     writeLines(raw_text, write_file)
     close(write_file)
@@ -108,6 +112,7 @@ write_external_file <- function(file_name, mode, raw_text) {
 #'
 #' @return markdown file name (str)
 get_md_file_name <- function(article_dir) {
+    article_dir <- xfun::normalize_path(article_dir)
     lookup_file <- get_wrapper_type(article_dir)
     markdown_file <- gsub(".tex", ".md", lookup_file)
     return(markdown_file)

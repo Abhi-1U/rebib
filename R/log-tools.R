@@ -11,6 +11,7 @@
 #'  wd <-  system.file("article", package = "rebib")
 #'  rebib::log_setup(wd, "log-file.log", 2)
 log_setup <- function(article_dir, file_name, idx) {
+    article_dir <- xfun::normalize_path(article_dir)
     log_file_path <- paste(article_dir, file_name, sep = "/")
     if(! file.exists(log_file_path)) {
         file.create(log_file_path,showWarnings = T)

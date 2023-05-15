@@ -6,9 +6,9 @@
 <!-- badges: start -->
 
 [![GitHub Workflow Status
-(branch)](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/pkgdown/master?label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
+(branch)](https://img.shields.io/github/actions/workflow/status/Abhi-1U/rebib/pkg_down.yaml?branch=master&label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
 [![GitHub Workflow
-Status](https://img.shields.io/github/workflow/status/Abhi-1U/rebib/R_cmd_check?label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml)
+Status](https://img.shields.io/github/actions/workflow/status/Abhi-1U/rebib/cmdcheck.yaml?branch=master&label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml)
 [![GitHub R package version (subdirectory of
 monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)](https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION)
 <!-- badges: end -->
@@ -20,24 +20,38 @@ The decision to do this is the fact that the bibliography section in
 texor package was expanding significantly, enough to deserve a dedicated
 space.
 
--   Reads bib chunks to produce a very close BibTeX equivalent
--   Title and author are usually mandatory fields
--   URL, ISBN, publisher, pages and year are optional fields and will be
-    enabled when relevant
--   Rest of the data is stored in `"journal"`(internally) and
-    `"publisher"`(when writing BibTeX file)
--   Ignores commented LaTeX code
--   Citation tracker
--   Logging of events
--   Bibliography Aggregation
+- Reads bib chunks to produce a very close BibTeX equivalent
+- Title and author are usually mandatory fields
+- URL, ISBN, publisher, pages and year are optional fields and will be
+  enabled when relevant
+- Rest of the data is stored in `"journal"`(internally) and
+  `"publisher"`(when writing BibTeX file)
+- Ignores commented LaTeX code
+- Citation tracker
+- Logging of events
+- Bibliography Aggregation
 
 This mindmap summarizes the feature set beautifully:
 
-<img src="man/figures/rebib.svg" alt="A mindmap summary for feature set of rebib package" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="man/figures/rebib.svg" alt="A mindmap summary for feature set of rebib package" width="100%" />
+<p class="caption">
+A mindmap summary for feature set of rebib package
+</p>
+
+</div>
 
 This FlowChart Describes the Aggregation Feature:
 
-<img src="man/figures/bib_agg.svg" alt="A Flow chart of Bibliography Aggregation" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="man/figures/bib_agg.svg" alt="A Flow chart of Bibliography Aggregation" width="100%" />
+<p class="caption">
+A Flow chart of Bibliography Aggregation
+</p>
+
+</div>
 
 ### Note :
 

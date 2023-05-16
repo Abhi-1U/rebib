@@ -51,7 +51,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
 #' @return a bibtex file is written
 #' @export
 bibtex_writer <- function(bibtex_data, file_name) {
-    bib_file_name <- gsub(".tex$", ".bib", file_name)
+    bib_file_name <- xfun::with_ext(file_name,"bib")
     for (iterator in seq_along(bibtex_data[["book"]])) {
         # optional param
         include_pages <- FALSE
@@ -231,7 +231,7 @@ export_embeded_bibliography <- function(article_dir, file_name) {
     bbl_end <- which(grepl("^\\s*\\\\end\\{thebibliography\\}",
                            src_file_data))
     bbl_data <- src_file_data[bbl_start:bbl_end]
-    bbl_file_name <- gsub(".tex", ".bbl", file_name)
+    bbl_file_name <- xfun::with_ext(file_name, "bbl")
     write_external_file(bbl_file_name, "w", bbl_data)
 }
 

@@ -89,7 +89,7 @@ commented code to avoid un-intended entries read.</p>
 data is exported to a variable.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
-<span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">:::</span><span class="fu"><a href="../reference/get_texfile_name.html">get_texfile_name</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
+<span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">:::</span><span class="fu">get_texfile_name</span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
 <span><span class="va">bib_items</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/extract_embeded_bib_items.html">extract_embeded_bib_items</a></span><span class="op">(</span><span class="va">wd</span>,<span class="va">file_name</span><span class="op">)</span></span>
 <span><span class="va">bib_items</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; [1] "\\bibitem[Ihaka, Ross and Gentleman, Robert]{ihaka:1996}"                          </span></span>

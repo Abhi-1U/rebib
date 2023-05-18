@@ -46,12 +46,6 @@
     <loc>/reference/bibliography_exists.html</loc>
   </url>
   <url>
-    <loc>/reference/bibliography_parser.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bibtex_reader.html</loc>
-  </url>
-  <url>
     <loc>/reference/bibtex_writer.html</loc>
   </url>
   <url>
@@ -64,40 +58,16 @@
     <loc>/reference/extract_embeded_bib_items.html</loc>
   </url>
   <url>
-    <loc>/reference/filter_bbl_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filter_citation_references.html</loc>
-  </url>
-  <url>
-    <loc>/reference/filter_repetition.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_bib_file.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_md_file_name.html</loc>
-  </url>
-  <url>
     <loc>/reference/get_reference_name.html</loc>
   </url>
   <url>
     <loc>/reference/get_reference_type.html</loc>
   </url>
   <url>
-    <loc>/reference/get_texfile_name.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_wrapper_type.html</loc>
-  </url>
-  <url>
     <loc>/reference/handle_bibliography.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/link_bibliography_line.html</loc>
   </url>
   <url>
     <loc>/reference/log_setup.html</loc>
@@ -107,14 +77,5 @@
   </url>
   <url>
     <loc>/reference/split_bibtex_references.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_extract.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_split.html</loc>
-  </url>
-  <url>
-    <loc>/reference/write_external_file.html</loc>
   </url>
 </urlset>

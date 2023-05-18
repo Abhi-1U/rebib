@@ -70,6 +70,39 @@
 <p>aggregated bib file</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">test_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"aggr_example"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">aggregate_bibliography</span><span class="op">(</span><span class="va">test_folder</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found Bib file  example.bib"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found Bib file  example.bib"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">test_folder</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "@book{ihaka:1996,"                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "  author = {{Ihaka, Ross and Gentleman, Robert}},"                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "  title = {{R: A Language for Data Analysis and Graphics}},"                                                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "  publisher = {Journal of Computational and Graphical Statistics 3: 299--314},"                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "  year = {1996},"                                                                                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "  url = {https://doi.org/10.1080/10618600.1996.10474713}"                                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "}"                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "@book{R,"                                                                                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "author = {R {Core Team}},"                                                                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "title = {{R: A Language and Environment for Statistical Computing}},"                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "publisher = {R Foundation for Statistical Computing Vienna Austria    :},"                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "year = {2016},"                                                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "url = {https://www.R-project.org/},"                                                                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "isbn = {3-900051-07-0}"                                                                                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "}"                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "@book{Tremblay:2012,"                                                                                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "author = {A.~{Tremblay}},"                                                                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "title = {{LMERConvenienceFunctions: A suite of functions to back-fit fixed effects and forward-fit random effects, as well as other miscellaneous functions., }},"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "publisher = {R package version 1.6.8.2},"                                                                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "year = {2012},"                                                                                                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "url = {http://CRAN.R-project.org/package=LMERConvenienceFunctions}"                                                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "}"                                                                                                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] ""                                                                                                                                                                 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

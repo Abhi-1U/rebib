@@ -47,9 +47,9 @@ handle_bibliography <- function(article_dir, override_mode = FALSE) {
 #'
 #' @param bibtex_data a list of minimal bibtex data
 #' @param file_name name or path of the tex file
-#'
+#' @keywords internal
 #' @return a bibtex file is written
-#' @export
+#' @noRd
 bibtex_writer <- function(bibtex_data, file_name) {
     bib_file_name <- xfun::with_ext(file_name,"bib")
     for (iterator in seq_along(bibtex_data[["book"]])) {
@@ -189,9 +189,9 @@ bibtex_writer <- function(bibtex_data, file_name) {
 #'
 #' which are extracted by the extraction function.
 #' @param bib_items bib entries extracted from extraction function
-#'
+#' @keywords internal
 #' @return bbl_record nested list
-#' @export
+#' @noRd
 bib_handler <- function(bib_items) {
     bbl_record <- list()
     # applies minimal bibliography to all the items
@@ -221,9 +221,9 @@ bib_handler <- function(bib_items) {
 #'
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name name of the tex file
-#'
+#' @keywords internal
 #' @return bbl_file
-#' @export
+#' @noRd
 export_embeded_bibliography <- function(article_dir, file_name) {
     src_file_data <- readLines(file.path(article_dir, file_name))
     bbl_start <- which(grepl("^\\s*\\\\begin\\{thebibliography\\}",
@@ -242,8 +242,9 @@ export_embeded_bibliography <- function(article_dir, file_name) {
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name name of the file
 #' @param file_path absolute path of file with file_name
+#' @keywords internal
 #' @return a list of bib entries separated at bibitem
-#' @export
+#' @noRd
 extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_path = ""){
     if( identical(file_path,"")) {
         src_file_data <- readLines(file.path(article_dir, file_name))
@@ -273,10 +274,10 @@ extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_pat
 #'
 #' @param article_dir path to the directory which contains tex article
 #' @param file_name file name of the tex document
-#'
+#' @keywords internal
 #' @return appends the tex file with a line to link bibliography
-#' @export
-#'
+#' @keywords internal
+#' @noRd
 link_bibliography_line <- function(article_dir, file_name) {
     article_dir <- xfun::normalize_path(article_dir)
     src_file_data <- readLines(file.path(article_dir, file_name))
@@ -309,9 +310,10 @@ link_bibliography_line <- function(article_dir, file_name) {
 #' @description
 #' removes commented latex lines to avoid wrong reference data
 #' @param bbl_data blocks of bib_data
-#'
+#' @keywords internal
 #' @return filtered bbl_data
-#' @export
+#' @keywords internal
+#' @noRd
 filter_bbl_data <- function(bbl_data) {
     comment_break_points <- which(grepl("^%%", bbl_data))
     for (pos in comment_break_points) {
@@ -334,7 +336,10 @@ filter_bbl_data <- function(bbl_data) {
 #'
 #' @return bib file
 #' @export
-#'
+#' @examples
+#' test_file <- system.file("standalone/sample.bbl", package = "rebib")
+#' rebib::biblio_convertor(file_path = test_file)
+#' head(readLines(xfun::with_ext(test_file,"bib")))
 biblio_convertor <- function(file_path = "") {
     file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()

@@ -31,53 +31,13 @@ space.
 - Logging of events
 - Bibliography Aggregation
 
-This mindmap summarizes the feature set beautifully:
-
-<div class="figure" style="text-align: center">
-
-<img src="man/figures/rebib.svg" alt="A mindmap summary for feature set of rebib package" width="100%" />
-<p class="caption">
-A mindmap summary for feature set of rebib package
-</p>
-
-</div>
-
-This FlowChart Describes the Aggregation Feature:
-
-<div class="figure" style="text-align: center">
-
-<img src="man/figures/bib_agg.svg" alt="A Flow chart of Bibliography Aggregation" width="100%" />
-<p class="caption">
-A Flow chart of Bibliography Aggregation
-</p>
-
-</div>
-
-### Note :
-
-Update : relative paths should also work with version 0.1.7 and above
-
-Please use absolute paths when working with texor/rebib !
-
-~~The reason is that earlier rebib used to work with relative paths by
-using setwd(), getwd() to handle working directories. However this was
-not an ideal method to handle paths and working on files.~~
-
-~~Hence I had to switch to absolute path system for almost all functions
-where automation is possible and works well. As there was no changing of
-working directories there is less risk of setting up a wrong working
-directory when failing certain function.~~
-
-Use forward slashes (/) in paths and do not add a forward slash at the
-end of the path for example
-
-1.  Wrong usage : `C:\projects\texor\main`
-2.  wrong usage : `C:/projects/texor/main/`
-3.  wrong usage : `C:\\projects\\texor\\main\\`
-4.  wrong usage : `C:\\projects\\texor\\main` (this may work with R)
-5.  Correct usage : `C:/projects/texor/main`
-
 ## Installation
+
+install the mainline version from CRAN with:
+
+``` r
+install.packages('rebib')
+```
 
 install the development version from GitHub with:
 

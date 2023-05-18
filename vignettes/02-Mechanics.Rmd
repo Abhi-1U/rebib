@@ -29,7 +29,7 @@ Lastly, the data is broken down based on the LaTeX macro `\\bibitem` as a marker
 ```{r stage1,echo=TRUE}
 wd <-  system.file("article", package = "rebib")
 file_name <- rebib:::get_texfile_name(wd)
-bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
+bib_items <- rebib:::extract_embeded_bib_items(wd,file_name)
 bib_items[[1]]
 bib_items[[2]]
 ```
@@ -76,7 +76,7 @@ There is a lot of filtering of common LaTeX elements and after that, the data re
 
 
 ```{r stage2.5,echo=TRUE}
-bib_entry <- rebib::bib_handler(bib_items)
+bib_entry <- rebib:::bib_handler(bib_items)
 bib_entry
 ```
 

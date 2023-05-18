@@ -4,9 +4,11 @@
 
 1. Updated Contributor Details and DESCRIPTION
 2. Getting Ready for CRAN
-3. Updated LICENSE and added `cph`
+3. Updated LICENSE and added `cph` 
+
 ## bug fixes :  
 1. Corrected usage of `gsub()` for changing extensions with `xfun::with_ext()`. 
+2. Cleaned up documentation and removed un-wanted functions/docs.
 
 # version 0.1.7
 

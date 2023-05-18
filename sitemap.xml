@@ -37,25 +37,13 @@
     <loc>/reference/aggregate_bibliography.html</loc>
   </url>
   <url>
-    <loc>/reference/bib_handler.html</loc>
-  </url>
-  <url>
     <loc>/reference/biblio_convertor.html</loc>
   </url>
   <url>
     <loc>/reference/bibliography_exists.html</loc>
   </url>
   <url>
-    <loc>/reference/bibtex_writer.html</loc>
-  </url>
-  <url>
     <loc>/reference/citation_reader.html</loc>
-  </url>
-  <url>
-    <loc>/reference/export_embeded_bibliography.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extract_embeded_bib_items.html</loc>
   </url>
   <url>
     <loc>/reference/get_reference_name.html</loc>

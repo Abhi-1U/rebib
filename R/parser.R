@@ -6,7 +6,7 @@
 #'
 #' @return bib_record with unique_id, author and
 #'         title(also containing other info)
-#' @export
+#' @noRd
 bibliography_parser <- function(single_bib_data) {
     bib_record <- list()
     start_idx <- NULL

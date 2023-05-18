@@ -4,6 +4,10 @@
 #'
 #' @return aggregated bib file
 #' @export
+#' @examples
+#' test_folder <- system.file("aggr_example", package = "rebib")
+#' rebib::aggregate_bibliography(test_folder)
+#' readLines(paste(test_folder,"example.bib",sep="/"))
 aggregate_bibliography <- function(article_dir) {
     article_dir <- xfun::normalize_path(article_dir)
     date <- Sys.Date()
@@ -41,8 +45,10 @@ aggregate_bibliography <- function(article_dir) {
 #'
 #' @param bbl_data parsed embedded bibliography data
 #' @param bib_data bibtex reference data
-#'
+#' @keywords internal
 #' @return aggregated bbl_data
+#'
+#' @noRd
 filter_repetition <- function(bbl_data, bib_data) {
     bbl_uids <- list()
     for (iterator in seq_along(bbl_data$book)) {

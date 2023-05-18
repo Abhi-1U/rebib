@@ -3,14 +3,13 @@
 #'
 #' @param article_dir path to the directory which contains tex article
 #' @return list of BibTex references
-#' @export
+#' @noRd
 bibtex_reader <- function(article_dir) {
     # get the name of the bibtex file
     tex_file <- get_texfile_name(article_dir)
     bib_file <- get_bib_file(article_dir,tex_file)
     bib_file_path <- paste(article_dir, bib_file, sep = "/")
     bib_tex_references <- split_bibtex_references(bib_file_path)
-
     return(bib_tex_references)
 }
 

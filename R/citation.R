@@ -89,7 +89,7 @@ citation_reader <- function(file_path) {
 #' @param citation_references a vector of citation references(unfiltered)
 #'
 #' @return a vector of filtered citation references
-#' @export
+#' @noRd
 filter_citation_references <- function(citation_references) {
     filtered_citation_references <- list()
     for (iterator in seq_along(citation_references)) {

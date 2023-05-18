@@ -15,3 +15,8 @@ aggregated bib file
 \description{
 aggregate bibliograhy to fill in the missing references
 }
+\examples{
+test_folder <- system.file("aggr_example", package = "rebib")
+rebib::aggregate_bibliography(test_folder)
+readLines(paste(test_folder,"example.bib",sep="/"))
+}

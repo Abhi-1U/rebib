@@ -1,3 +1,13 @@
+# version 0.2.0
+
+## features updates :  
+
+1. Updated Contributor Details and DESCRIPTION
+2. Getting Ready for CRAN
+3. Updated LICENSE and added `cph`
+## bug fixes :  
+1. Corrected usage of `gsub()` for changing extensions with `xfun::with_ext()`. 
+
 # version 0.1.7
 
 ## features updates :
@@ -5,8 +15,9 @@
 1. New Vignettes
 2. testthat test cases
 3. Added Pages field
-
+    
 ## bug fixes :
+  
 1. Github issue #9
 2. Updated path for backup file before adding external bib file reference.
 3. Multiple citations are split into individual citations.

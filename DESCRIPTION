@@ -1,7 +1,7 @@
 Package: rebib
 Type: Package
-Title: Convert Embedded LaTeX Bibliography to 'bibtex' and Aggregate Bibliographies
-Version: 0.2.0
+Title: Tools to Convert and Aggregate Bibliographies
+Version: 0.1.7
 Authors@R: 
     c(person(given = "Abhishek",
              family = "Ulayil",
@@ -28,8 +28,13 @@ Authors@R:
              email = "dicook@monash.edu",
              role = "ctb",
              comment = c(ORCID = "0000-0002-3813-7155")))
-Description: Parse and convert embedded bibliography in LaTeX files into `bibtex`.
+Description: Authors working with 'LaTeX' articles use the built-in bibliography
+    options and 'BibTeX' files. While this might work with 'LaTeX', it does not
+    function well with Web articles. As a way out, 'rebib' offers tools to
+    convert and combine bibliographies from both sources. 
 License: MIT + file LICENSE
+URL: https://github.com/Abhi-1U/rebib#readme
+BugReports: https://github.com/Abhi-1U/rebib/issues
 Encoding: UTF-8
 Imports: 
     tools,

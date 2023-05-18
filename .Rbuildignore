@@ -4,5 +4,6 @@
 ^docs$
 ^pkgdown$
 ^.*\.Rmd$
-^.*\.md$
+^readme.md$
 ^\.github$
+^cran-comments\.md$

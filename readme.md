@@ -73,7 +73,7 @@ here is a quick example to use rebib package with a sample bbl file
 ``` r
 bbl_file <-  "" # /path/to/bbl_file
 rebib::biblio_convertor(file_path = bbl_file)
-cat(readLines(gsub("bbl","bib",bbl_file)),sep = "\n")
+cat(readLines(xfun::with_ext(bbl_file, "bib")),sep = "\n")
 ```
 
 ## Step By Step Usage
@@ -84,11 +84,11 @@ wrong.
 ``` r
 wd <-  system.file("article", package = "rebib")
 file_name <- rebib:::get_texfile_name(wd)
-bib_items <- rebib::extract_embeded_bib_items(wd,file_name)
+bib_items <- rebib:::extract_embeded_bib_items(wd,file_name)
 # for debugging single entry
-rebib::bibliography_parser(bib_items[1])
+rebib:::bibliography_parser(bib_items[1])
 # for multiple entries
-rebib::bib_handler(bib_items[1:2])
+rebib:::bib_handler(bib_items[1:2])
 ```
 
 ## Sample Conversion

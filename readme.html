@@ -36,7 +36,13 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"></ul></div>
+      <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/Abhi-1U/rebib/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul></div>
 
     
   </div>
@@ -44,7 +50,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>rebib : Parse/Convert embedded LaTeX bibliography to BibTex</h1>
-      
+      <small class="dont-index">Source: <a href="https://github.com/Abhi-1U/rebib/blob/HEAD/readme.md" class="external-link"><code>readme.md</code></a></small>
     </div>
 
 <div id="rebib--parseconvert-embedded-latex-bibliography-to-bibtex" class="section level1">
@@ -91,7 +97,7 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bbl_file</span> <span class="op">&lt;-</span>  <span class="st">""</span> <span class="co"># /path/to/bbl_file</span></span>
 <span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="reference/biblio_convertor.html">biblio_convertor</a></span><span class="op">(</span>file_path <span class="op">=</span> <span class="va">bbl_file</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"bbl"</span>,<span class="st">"bib"</span>,<span class="va">bbl_file</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu">xfun</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xfun/man/file_ext.html" class="external-link">with_ext</a></span><span class="op">(</span><span class="va">bbl_file</span>, <span class="st">"bib"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="step-by-step-usage">Step By Step Usage<a class="anchor" aria-label="anchor" href="#step-by-step-usage"></a></h2>
@@ -99,11 +105,11 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
 <span><span class="va">file_name</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">:::</span><span class="fu">get_texfile_name</span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
-<span><span class="va">bib_items</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">::</span><span class="fu">extract_embeded_bib_items</span><span class="op">(</span><span class="va">wd</span>,<span class="va">file_name</span><span class="op">)</span></span>
+<span><span class="va">bib_items</span> <span class="op">&lt;-</span> <span class="fu">rebib</span><span class="fu">:::</span><span class="fu">extract_embeded_bib_items</span><span class="op">(</span><span class="va">wd</span>,<span class="va">file_name</span><span class="op">)</span></span>
 <span><span class="co"># for debugging single entry</span></span>
-<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">bibliography_parser</span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="fu">rebib</span><span class="fu">:::</span><span class="fu">bibliography_parser</span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># for multiple entries</span></span>
-<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">bib_handler</span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">rebib</span><span class="fu">:::</span><span class="fu">bib_handler</span><span class="op">(</span><span class="va">bib_items</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="sample-conversion">Sample Conversion<a class="anchor" aria-label="anchor" href="#sample-conversion"></a></h2>

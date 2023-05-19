@@ -107,7 +107,10 @@ article file as well.</p>
 <span><span class="co"># for files without BibTeX source</span></span>
 <span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/handle_bibliography.html">handle_bibliography</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "No Bib files found !"</span></span>
+<span><span class="co">#&gt; [1] "BibTeX file does not exist"</span></span>
+<span><span class="co">#&gt; [1] "will parse for bibliography"</span></span>
 <span><span class="co">#&gt; [1] "\\bibliography{bib_file} exists!"</span></span>
+<span><span class="co">#&gt; [1] "bibtex file created"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
 <span><span class="co">#&gt; author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>
@@ -171,9 +174,11 @@ bibliographies in a single BibTeX file.</p>
 <span><span class="co"># for files with BibTeX source as well as embedded entries</span></span>
 <span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/aggregate_bibliography.html">aggregate_bibliography</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Found Bib file  example.bib"</span></span>
+<span><span class="co">#&gt; [1] "bibliography aggregation possible"</span></span>
 <span><span class="co">#&gt; [1] "Found Bib file  example.bib"</span></span>
+<span><span class="co">#&gt; [1] "aggregation delta : 0"</span></span>
 <span><span class="co">#&gt; [1] "\\bibliography{bib_file} exists!"</span></span>
-<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt; [1] "BibTeX file aggregated"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
 <span><span class="co">#&gt;   author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>

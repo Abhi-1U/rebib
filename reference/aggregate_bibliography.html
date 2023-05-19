@@ -60,13 +60,17 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aggregate_bibliography</span><span class="op">(</span><span class="va">article_dir</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aggregate_bibliography</span><span class="op">(</span><span class="va">article_dir</span>, log_rebib <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>article_dir</dt>
 <dd><p>path to the directory which contains tex article</p></dd>
+
+
+<dt>log_rebib</dt>
+<dd><p>option to enable log files for rebib</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -81,8 +85,10 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">test_folder</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"aggr_example"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">aggregate_bibliography</span><span class="op">(</span><span class="va">test_folder</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found Bib file  example.bib"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "bibliography aggregation possible"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Found Bib file  example.bib"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "aggregation delta : 2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "BibTeX file aggregated"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">test_folder</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "@book{ihaka:1996,"                                                                                                                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "  author = {{Ihaka, Ross and Gentleman, Robert}},"                                                                                                                </span>

@@ -1,6 +1,6 @@
 #' @title citation reader
 #' @description  counts/reads  Cite inline elements embedded within the latex
-#' file currently supported inlines \\cite,\\citealp, \\citep, \\citet
+#' file
 #'
 #' @param file_path path to the LaTeX file
 #'

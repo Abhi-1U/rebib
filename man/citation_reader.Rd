@@ -14,7 +14,7 @@ count of the inline element
 }
 \description{
 counts/reads  Cite inline elements embedded within the latex
-file currently supported inlines \\cite,\\citealp, \\citep, \\citet
+file currently supported inlines
 }
 \examples{
 file_path <- system.file("article/example.tex",

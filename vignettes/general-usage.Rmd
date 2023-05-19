@@ -2,7 +2,7 @@
 title: "Using rebib in general"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{04-GeneralUse}
+  %\VignetteIndexEntry{general-usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

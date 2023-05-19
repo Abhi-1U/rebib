@@ -2,7 +2,7 @@
 title: "Introduction to rebib"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{01-Introduction}
+  %\VignetteIndexEntry{general-introduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

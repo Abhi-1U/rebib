@@ -2,7 +2,7 @@
 title: "rebib parser mechanics"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{02-Mechanics}
+  %\VignetteIndexEntry{parser-mechanics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -5,6 +5,7 @@
 #' else this function will generate a minimal bibliography
 #' @param article_dir path to the directory which contains tex article
 #' @param override_mode force use parser and ignore BibTeX bibliography.
+#' @param log_rebib option to enable log files for rebib
 #' @returns  bibliography links the bibtex file with latex source code or
 #' generates a minimal bibtex file from embedded bibliography and links that
 #' file to the latex file
@@ -13,31 +14,52 @@
 #' wd <-  system.file("article", package = "rebib")
 #' rebib::handle_bibliography(wd)
 #' cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
-handle_bibliography <- function(article_dir, override_mode = FALSE) {
+handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
     article_dir <- xfun::normalize_path(article_dir)
     setwd(article_dir)
     date <- Sys.Date()
-    log_file <- paste0("rebib-log-",date,".log")
-    log_setup(article_dir, log_file, 2)
-    rebib_log(paste0("working directory : ", article_dir), "info", 2)
     file_name <- get_texfile_name(article_dir)
-    rebib_log(paste0("file name : ", file_name), "info", 2)
+    if (log_rebib){
+        log_file <- paste0("rebib-log-",date,".log")
+        log_setup(article_dir, log_file, 2)
+        rebib_log(paste0("working directory : ", article_dir), "info", 2)
+        rebib_log(paste0("file name : ", file_name), "info", 2)
+    }
+
     bib_file <- get_bib_file(article_dir, file_name)
     if (! identical(bib_file, "") && (! override_mode)) {
-        rebib_log("BibTeX file exists", "info", 2)
-        rebib_log("Wont parse for bibliography", "info", 2)
+        if (log_rebib){
+            rebib_log("BibTeX file exists", "info", 2)
+            rebib_log("Wont parse for bibliography", "info", 2)
+        }
+        else {
+            print("BibTeX file exists")
+            print("Wont parse for bibliography")
+        }
         link_bibliography_line(article_dir, file_name)
     } else {
-        rebib_log("BibTeX file does not exist", "info", 2)
-        rebib_log("will parse for bibliography", "info", 2)
+        if (log_rebib){
+            rebib_log("BibTeX file does not exist", "info", 2)
+            rebib_log("will parse for bibliography", "info", 2)
+        }
+        else{
+            print("BibTeX file does not exist")
+            print("will parse for bibliography")
+        }
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
         bibtex_data <- bib_handler(bib_items)
-        rebib_log(bibtex_data, "debug", 2)
         bibtex_writer(bibtex_data, file_name)
         link_bibliography_line(article_dir, file_name)
-        rebib_log("bibtex file created", "info", 2)
+        if (log_rebib){
+            rebib_log(bibtex_data, "debug", 2)
+            rebib_log("bibtex file created", "info", 2)
+        }
+        else{
+            print("bibtex file created")
+        }
+
     }
     on.exit(setwd(old_wd), add = TRUE)
 }
@@ -330,30 +352,46 @@ filter_bbl_data <- function(bbl_data) {
     return(bbl_data[nzchar(bbl_data)])
 }
 
-#' @title biblio convertor
-#' @description a quick convertor for bbl/tex to bib
+#' @title bibliography converter
+#' @description a quick converter for bbl/tex to bib
 #' @param file_path provide a file_path with file name to point tex/bbl file
-#'
+#' @param log_rebib option to enable log files for rebib
 #' @return bib file
 #' @export
 #' @examples
 #' test_file <- system.file("standalone/sample.bbl", package = "rebib")
-#' rebib::biblio_convertor(file_path = test_file)
+#' rebib::biblio_converter(file_path = test_file)
 #' head(readLines(xfun::with_ext(test_file,"bib")))
-biblio_convertor <- function(file_path = "") {
+biblio_converter <- function(file_path = "", log_rebib = FALSE) {
     file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()
-    log_file <- paste0("rebib-biblio-",date,".log")
-    log_setup(dirname(file_path), log_file, 1)
-    rebib_log(paste0("working directory : ", dirname(file_path)), "info", 1)
-    rebib_log(paste0("file name : ", basename(file_path)), "info", 1)
+    if (log_rebib){
+        log_file <- paste0("rebib-biblio-",date,".log")
+        log_setup(dirname(file_path), log_file, 1)
+        rebib_log(paste0("working directory : ", dirname(file_path)), "info", 1)
+        rebib_log(paste0("file name : ", basename(file_path)), "info", 1)
+    }
+    else{
+        print(paste0("working directory : ", dirname(file_path)))
+    }
     bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
                                     ".bib", sep = ""))
     bib_items <- extract_embeded_bib_items(file_path = file_path)
-    rebib_log(paste0("bib entries : ", length(bib_items)), "info", 1)
+    if (log_rebib){
+        rebib_log(paste0("bib entries : ", length(bib_items)), "info", 1)
+    }
+    else{
+        print(paste0("bib entries : ", length(bib_items)))
+    }
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
-    rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 1)
+    if (log_rebib){
+        rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 1)
+    }
+    else{
+        print(paste0("Written BibTeX file : ", bib_file_path))
+    }
+
 }
 
 #' @title bibliography exists

@@ -4,10 +4,12 @@
 \alias{aggregate_bibliography}
 \title{aggregate bibliography}
 \usage{
-aggregate_bibliography(article_dir)
+aggregate_bibliography(article_dir, log_rebib = FALSE)
 }
 \arguments{
 \item{article_dir}{path to the directory which contains tex article}
+
+\item{log_rebib}{option to enable log files for rebib}
 }
 \value{
 aggregated bib file

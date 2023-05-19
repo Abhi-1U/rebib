@@ -27,7 +27,7 @@ The bibliography converter will convert any LaTex or BBL file given as a path. T
 ```{r bibliocon, echo = TRUE}
 wd <-  system.file("standalone", package = "rebib")
 bbl_path <- paste(wd, "sample.bbl", sep = "/")
-rebib::biblio_convertor(bbl_path)
+rebib::biblio_converter(bbl_path)
 ```
 
 

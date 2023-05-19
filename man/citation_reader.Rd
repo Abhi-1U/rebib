@@ -17,7 +17,7 @@ counts/reads  Cite inline elements embedded within the latex
 file currently supported inlines \\cite,\\citealp, \\citep, \\citet
 }
 \examples{
-file_path <- system.file("examples/article/example.tex",
+file_path <- system.file("article/example.tex",
                  package = "rebib")
 cite <- rebib::citation_reader(file_path)
 cite

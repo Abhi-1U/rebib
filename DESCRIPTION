@@ -1,7 +1,7 @@
 Package: rebib
 Type: Package
 Title: Tools to Convert and Aggregate Bibliographies
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(person(given = "Abhishek",
              family = "Ulayil",
@@ -40,7 +40,7 @@ Imports:
     tools,
     stringr,
     logger,
-    xfun    
+    xfun
 Suggests: 
     knitr,
     rmarkdown,

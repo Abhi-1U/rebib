@@ -1,6 +1,6 @@
 Package: rebib
 Type: Package
-Title: Tools to Convert and Aggregate Bibliographies
+Title: Convert and Aggregate Bibliographies
 Version: 0.2.1
 Authors@R: 
     c(person(given = "Abhishek",

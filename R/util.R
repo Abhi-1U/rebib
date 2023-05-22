@@ -19,6 +19,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
     old_wd <- getwd()
     article_dir <- xfun::normalize_path(article_dir)
     setwd(article_dir)
+    on.exit(setwd(old_wd), add = TRUE)
     date <- Sys.Date()
     file_name <- get_texfile_name(article_dir)
     if (log_rebib){
@@ -61,7 +62,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
         }
 
     }
-    on.exit(setwd(old_wd), add = TRUE)
+
 }
 
 #' @title bibtex writer

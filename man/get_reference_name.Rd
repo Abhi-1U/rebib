@@ -18,5 +18,4 @@ get reference name
 \examples{
 ref_first_line <- "@book{ihaka:1996,"
 ref_name <- rebib::get_reference_name(ref_first_line)
-print(ref_name)
 }

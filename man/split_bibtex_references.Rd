@@ -20,5 +20,4 @@ wd <-  system.file("article", package = "rebib")
 rebib::handle_bibliography(wd)
 bib_path <- paste(wd, "example.bib", sep = "/")
 references <- rebib::split_bibtex_references(bib_path)
-print(references)
 }

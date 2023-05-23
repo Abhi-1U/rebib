@@ -25,7 +25,6 @@ bibtex_reader <- function(article_dir) {
 #' rebib::handle_bibliography(wd)
 #' bib_path <- paste(wd, "example.bib", sep = "/")
 #' references <- rebib::split_bibtex_references(bib_path)
-#' print(references)
 split_bibtex_references <- function(bib_path) {
     bib_references <- list()
     bib_types <- list()
@@ -53,7 +52,6 @@ split_bibtex_references <- function(bib_path) {
 #' @examples
 #' ref_first_line <- "@book{ihaka:1996,"
 #' ref_type <- rebib::get_reference_type(ref_first_line)
-#' print(ref_type)
 get_reference_type <- function(bib_reference) {
     patt <- "\\@\\s*(.*?)\\s*\\{"
     ref_type <- stringr::str_extract(bib_reference, patt)
@@ -72,7 +70,6 @@ get_reference_type <- function(bib_reference) {
 #' @examples
 #' ref_first_line <- "@book{ihaka:1996,"
 #' ref_name <- rebib::get_reference_name(ref_first_line)
-#' print(ref_name)
 get_reference_name <- function(bib_reference) {
     patt <- "\\{\\s*(.*?)\\s*\\,"
     ref_name <- stringr::str_extract(bib_reference, patt)

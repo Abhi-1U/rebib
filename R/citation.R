@@ -104,7 +104,6 @@ filter_citation_references <- function(citation_references) {
                 filtered_citation_references <- append(filtered_citation_references,paste0("{",cites[[1]][value],"}"))
             }
             filtered_citation_references <- append(filtered_citation_references,paste0("{",cites[[1]][end+1]))
-            #print(cites)
         } else {
             filtered_citation_references <- append(filtered_citation_references,citation_line)
         }

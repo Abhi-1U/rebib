@@ -13,7 +13,6 @@
 #' @examples
 #' wd <-  system.file("article", package = "rebib")
 #' rebib::handle_bibliography(wd)
-#' cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
 handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
@@ -36,8 +35,8 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
             rebib_log("Wont parse for bibliography", "info", 2)
         }
         else {
-            print("BibTeX file exists")
-            print("Wont parse for bibliography")
+            message("BibTeX file exists")
+            message("Wont parse for bibliography")
         }
         link_bibliography_line(article_dir, file_name)
     } else {
@@ -46,8 +45,8 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
             rebib_log("will parse for bibliography", "info", 2)
         }
         else{
-            print("BibTeX file does not exist")
-            print("will parse for bibliography")
+            message("BibTeX file does not exist")
+            message("will parse for bibliography")
         }
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
         bibtex_data <- bib_handler(bib_items)
@@ -58,7 +57,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
             rebib_log("bibtex file created", "info", 2)
         }
         else{
-            print("bibtex file created")
+            message("bibtex file created")
         }
 
     }
@@ -312,7 +311,7 @@ link_bibliography_line <- function(article_dir, file_name) {
         }
     }
     if (bib_exist) {
-        print("\\bibliography{bib_file} exists!")
+        message("\\bibliography{bib_file} exists!")
         return("")
     } else {
         bib_line <- paste("\\bibliography{",
@@ -373,7 +372,7 @@ biblio_converter <- function(file_path = "", log_rebib = FALSE) {
         rebib_log(paste0("file name : ", basename(file_path)), "info", 1)
     }
     else{
-        print(paste0("working directory : ", dirname(file_path)))
+        message(paste0("working directory : ", dirname(file_path)))
     }
     bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
                                     ".bib", sep = ""))
@@ -382,7 +381,7 @@ biblio_converter <- function(file_path = "", log_rebib = FALSE) {
         rebib_log(paste0("bib entries : ", length(bib_items)), "info", 1)
     }
     else{
-        print(paste0("bib entries : ", length(bib_items)))
+        message(paste0("bib entries : ", length(bib_items)))
     }
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
@@ -390,7 +389,7 @@ biblio_converter <- function(file_path = "", log_rebib = FALSE) {
         rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 1)
     }
     else{
-        print(paste0("Written BibTeX file : ", bib_file_path))
+        message(paste0("Written BibTeX file : ", bib_file_path))
     }
 
 }

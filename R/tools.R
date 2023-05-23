@@ -23,7 +23,7 @@ get_wrapper_type <- function(article_dir) {
         }
     }
     if (wrapper_file == "") {
-        print("Error : No Wrapper File Found in the article dir")
+        warning("Error : No Wrapper File Found in the article dir")
     }
     return(wrapper_file)
 }
@@ -74,17 +74,17 @@ get_bib_file <- function(article_dir, file_name) {
     bib_file <- unique(grep(paste(extensions, collapse = "|"),
                             file_list, value = TRUE))
     if (identical(bib_file, character(0))) {
-        print("No Bib files found !")
+        warning("No Bib files found !")
         return("")
     }
     if (identical(class(bib_file), "character") &&
         identical(linked_bib, bib_file)) {
-        print(paste("Found Bib file ", bib_file))
+        message(paste("Found Bib file ", bib_file))
         return(bib_file)
     } else {
         for (file in bib_file) {
             if (identical(file, linked_bib)) {
-                print(paste("Found Bib file ", bib_file))
+                message(paste("Found Bib file ", bib_file))
                 return(file)
             }
         }

@@ -29,7 +29,7 @@ aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
             rebib_log("Cannot aggregate bibliography as there is no embedded bibliography", "info", 1)
         }
         else{
-            print("Cannot aggregate bibliography as there is no embedded bibliography")
+            message("Cannot aggregate bibliography as there is no embedded bibliography")
         }
         return(0)
     }
@@ -40,7 +40,7 @@ aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
             rebib_log(paste0("Further Log entries in rebib-log-", date, ".log file"), "info", 1)
         }
         else{
-            print("Cannot aggregate bibliography as there is no BibTeX bibliography")
+            message("Cannot aggregate bibliography as there is no BibTeX bibliography")
         }
         handle_bibliography(article_dir)
     } else {
@@ -48,7 +48,7 @@ aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
             rebib_log("bibliography aggregation possible", "info", 1)
         }
         else{
-            print("bibliography aggregation possible")
+            message("bibliography aggregation possible")
         }
 
         bib_items <- extract_embeded_bib_items(article_dir, file_name)
@@ -61,7 +61,7 @@ aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
             rebib_log("BibTeX file aggregated", "info", 1)
         }
         else{
-            print("BibTeX file aggregated")
+            message("BibTeX file aggregated")
         }
 
     }
@@ -87,7 +87,7 @@ filter_repetition <- function(bbl_data, bib_data,log_rebib = FALSE) {
         rebib_log(paste0("aggregation delta : ", length(delta)), "info", 1)
     }
     else {
-        print(paste0("aggregation delta : ", length(delta)))
+        message(paste0("aggregation delta : ", length(delta)))
     }
 
     delta_bbl_data <- list()

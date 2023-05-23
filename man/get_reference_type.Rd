@@ -18,5 +18,4 @@ get reference type
 \examples{
 ref_first_line <- "@book{ihaka:1996,"
 ref_type <- rebib::get_reference_type(ref_first_line)
-print(ref_type)
 }

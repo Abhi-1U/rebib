@@ -99,12 +99,6 @@ bibliography_parser <- function(single_bib_data) {
         bib_record$title <- gsub("\\,$", "",bib_record$title)
         bib_record$title <- gsub("\\.$", "",bib_record$title)
         bib_record$title <- gsub("\\,$", "",bib_record$title)
-        # stray colons
-        #bib_record$title <- gsub("[[:space:]]+\\:+[[:space:]]","",
-        #                                                    bib_record$title)
-        # stray full stops
-        #bib_record$title <- gsub("[[:space:]]+\\.+[[:space:]]","",
-        #                                                    bib_record$title)
     }
     pages_regex <- "(\\d+--\\d+)"
     url_regex <- "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
@@ -138,19 +132,12 @@ bibliography_parser <- function(single_bib_data) {
     for (line in filtered_data) {
         title_line <- paste(title_line, line, sep = "")
     }
-    #print(filtered_data)
     # fetching URL from remaining data
     if(!identical(which(grepl(url_regex,title_line)),integer(0))){
         bib_record$URL <- gsub(",", "", gsub("\\.$", "",
                                             str_extract(title_line, url_regex)))
-        #print(bib_record$URL)
         title_line <- gsub(url_regex, "", title_line)
-        #print(title_line)
         title_line <- gsub("URL", "",title_line)
-        # stray colons
-        #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
-        # stray full stops
-        #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
     }
     # fetching year from remaining data
     # page_ranges
@@ -158,10 +145,6 @@ bibliography_parser <- function(single_bib_data) {
         bib_record$pages <- gsub(",", "", gsub("\\.$", "",
                                               str_extract(title_line, pages_regex)))
         title_line <- gsub(bib_record$pages, "", title_line)
-        # stray colons
-        #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
-        # stray full stops
-        #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
     }
     # year_regex is above
     #or "^[12][0-9]{3}$"
@@ -170,10 +153,6 @@ bibliography_parser <- function(single_bib_data) {
                                         str_extract(title_line, year_regex)))
         bib_record$year <- trimws(bib_record$year, which = "both")
         title_line <- gsub(bib_record$year, "", title_line)
-        # stray colons
-        #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
-        # stray full stops
-        #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
     }
 
     # fetching isbn from remaining data
@@ -185,22 +164,16 @@ bibliography_parser <- function(single_bib_data) {
                                                 sp_title_line[slice_point]))
         title_line <- gsub(bib_record$isbn, "", title_line)
         title_line <- gsub("ISBN", "", title_line)
-        # stray colons
-        #title_line <- gsub("[[:space:]]+\\:+[[:space:]]","",title_line)
-        # stray full stops
-        #title_line <- gsub("[[:space:]]+\\.+[[:space:]]","",title_line)
-        # stray full stops and comma together
-        #title_line <- gsub("[[:space:]]+\\.,+[[:space:]]","",title_line)
     }
+    # Filtering stray commas and periods
     title_line <- gsub("\\.$","",title_line)
     title_line <- gsub("\\,$","",title_line)
-    #title_line <- gsub(" ","",title_line)
     title_line <- gsub("\\.+[[:space:]]"," ",title_line)
     title_line <- gsub("\\,+[[:space:]]"," ",title_line)
     if (!grepl("[[:alpha:]]+", title_line)) {
         title_line <- NULL
     }
-    #  stray spaces
+    # Filtering stray spaces
     title_line <- trimws(title_line, which = "both")
     if (identical(title_line, character(0))) {
         title_line <- NULL

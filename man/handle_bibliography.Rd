@@ -26,5 +26,4 @@ else this function will generate a minimal bibliography
 \examples{
 wd <-  system.file("article", package = "rebib")
 rebib::handle_bibliography(wd)
-cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
 }

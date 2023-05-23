@@ -9,4 +9,4 @@
 library(testthat)
 library(rebib)
 
-test_check("rebib")
+suppressMessages(test_check("rebib"))

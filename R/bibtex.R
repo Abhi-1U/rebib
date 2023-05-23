@@ -31,9 +31,22 @@ split_bibtex_references <- function(bib_path) {
     bib_names <- list()
     raw_lines <- readLines(bib_path)
     bib_breakpoints <- which(grepl("^@\\s*", raw_lines))
+    bib_endpoints <- list()
+    for (iterator in seq_along(bib_breakpoints)){
+        if (iterator == length(bib_breakpoints)){
+            bib_endpoints[iterator] <- bib_breakpoints[iterator] - 1 +
+                which(grepl("\\s*,",raw_lines[bib_breakpoints[iterator]:length(raw_lines)]))[1]
+        }
+        else{
+            bib_endpoints[iterator] <- bib_breakpoints[iterator] - 1 +
+                which(grepl("\\s*,",raw_lines[bib_breakpoints[iterator]:bib_breakpoints[iterator+1]]))[1]
+        }
+    }
+    bib_endpoints <- unlist(bib_endpoints)
     for (iterator in seq_along(bib_breakpoints)) {
         start_pos <- bib_breakpoints[iterator]
-        current_line <-  raw_lines[start_pos]
+        end_pos <- bib_endpoints[iterator]
+        current_line <-  raw_lines[start_pos:end_pos]
         bib_types[iterator] <- get_reference_type(current_line)
         bib_names[iterator] <- get_reference_name(current_line)
     }
@@ -54,6 +67,7 @@ split_bibtex_references <- function(bib_path) {
 #' ref_type <- rebib::get_reference_type(ref_first_line)
 get_reference_type <- function(bib_reference) {
     patt <- "\\@\\s*(.*?)\\s*\\{"
+    bib_reference <-paste(unlist(bib_reference),collapse="")
     ref_type <- stringr::str_extract(bib_reference, patt)
     ref_type <- gsub("^@", "", ref_type)
     ref_type <- gsub("\\{", "", ref_type)
@@ -72,6 +86,7 @@ get_reference_type <- function(bib_reference) {
 #' ref_name <- rebib::get_reference_name(ref_first_line)
 get_reference_name <- function(bib_reference) {
     patt <- "\\{\\s*(.*?)\\s*\\,"
+    bib_reference <-paste(unlist(bib_reference),collapse="")
     ref_name <- stringr::str_extract(bib_reference, patt)
     ref_name <- gsub("\\{", "", ref_name)
     ref_name <- gsub("\\,", "", ref_name)

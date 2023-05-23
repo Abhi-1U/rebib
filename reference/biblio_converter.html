@@ -84,9 +84,9 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">test_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"standalone/sample.bbl"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">rebib</span><span class="fu">::</span><span class="fu">biblio_converter</span><span class="op">(</span>file_path <span class="op">=</span> <span class="va">test_file</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "working directory : /Users/runner/work/_temp/Library/rebib/standalone"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "bib entries : 6"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Written BibTeX file : /Users/runner/work/_temp/Library/rebib/standalone/sample.bib"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> working directory : /Users/runner/work/_temp/Library/rebib/standalone</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> bib entries : 6</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Written BibTeX file : /Users/runner/work/_temp/Library/rebib/standalone/sample.bib</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu">xfun</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xfun/man/file_ext.html" class="external-link">with_ext</a></span><span class="op">(</span><span class="va">test_file</span>,<span class="st">"bib"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "@book{bartky79,"                               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2] "author = {R.I.~{Bartky and E.~Harrison}},"     </span>

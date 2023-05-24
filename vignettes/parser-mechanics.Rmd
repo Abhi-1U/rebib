@@ -26,10 +26,16 @@ This stage is a minor step where it reads the Embedded Bibliography from the LaT
 
 Lastly, the data is broken down based on the LaTeX macro `\\bibitem` as a marker for a new entry and this assorted data is exported to a variable.
 
+```{r stage0.5, echo = FALSE}
+dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+example_files <-  system.file("article", package = "rebib")
+x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+your_article_path <- paste(your_article_folder,"article",sep="/")
+```
+
 ```{r stage1,echo=TRUE}
-wd <-  system.file("article", package = "rebib")
-file_name <- rebib:::get_texfile_name(wd)
-bib_items <- rebib:::extract_embeded_bib_items(wd,file_name)
+file_name <- rebib:::get_texfile_name(your_article_path)
+bib_items <- rebib:::extract_embeded_bib_items(your_article_path,file_name)
 bib_items[[1]]
 bib_items[[2]]
 ```
@@ -85,14 +91,20 @@ bib_entry
 After reading the bibliographic entries and splitting out meaningful values from them, we can finally write a structured file in the BibTeX format.
 
 The writer will read the bib chunks one at a time based on the metadata extracted and will write the corresponding data fields. The default entry type is a book, which should not have any problems with the web articles. 
+```{r prestage3,echo=FALSE}
+file_path <- paste0(your_article_path,"/",file_name)
+bib_path <- paste0(your_article_path,"/example.bib")
+x <- file.remove(bib_path)
+```
 
 ```{r stage3,echo=TRUE}
-file_path <- paste0(wd,"/",file_name)
-bib_path <- paste0(wd,"/example.bib")
-file.remove(bib_path)
 rebib:::bibtex_writer(bib_entry,file_path)
-cat(readLines(paste(wd,"example.bib",sep="/")),sep = "\n")
+cat(readLines(paste(your_article_path,"example.bib",sep="/")),sep = "\n")
 ```
 
 
 I expect the authors who are converting the document to take a look and check if there are any errors or missing values. 
+
+```{r stageend, echo =FALSE}
+unlink(your_article_folder)
+```

@@ -100,18 +100,14 @@ article file as well.</p>
 <h3 id="usage-example">Usage example<a class="anchor" aria-label="anchor" href="#usage-example"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"article"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
-<span><span class="va">bib_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"/example.bib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="va">bib_path</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="co"># for files without BibTeX source</span></span>
-<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/handle_bibliography.html">handle_bibliography</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># for files without BibTeX source</span></span>
+<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/handle_bibliography.html">handle_bibliography</a></span><span class="op">(</span><span class="va">your_article_path</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in get_bib_file(article_dir, file_name): No Bib files found !</span></span>
 <span><span class="co">#&gt; BibTeX file does not exist</span></span>
 <span><span class="co">#&gt; will parse for bibliography</span></span>
 <span><span class="co">#&gt; \bibliography{bib_file} exists!</span></span>
 <span><span class="co">#&gt; bibtex file created</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">your_article_path</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
 <span><span class="co">#&gt; author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>
 <span><span class="co">#&gt; title = {{R: A Language for Data Analysis and Graphics}},</span></span>
@@ -147,8 +143,8 @@ bibliographies in a single BibTeX file.</p>
 <h3 id="usage-example-1">Usage example<a class="anchor" aria-label="anchor" href="#usage-example-1"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wd</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"aggr_example"</span>, package <span class="op">=</span> <span class="st">"rebib"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Suppose you have a example.bib file in your article path</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">your_article_path</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
 <span><span class="co">#&gt;   author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>
 <span><span class="co">#&gt;   title = {{R: A Language for Data Analysis and Graphics}},</span></span>
@@ -172,14 +168,14 @@ bibliographies in a single BibTeX file.</p>
 <span><span class="co">#&gt; url = {http://CRAN.R-project.org/package=LMERConvenienceFunctions}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co"># for files with BibTeX source as well as embedded entries</span></span>
-<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/aggregate_bibliography.html">aggregate_bibliography</a></span><span class="op">(</span><span class="va">wd</span><span class="op">)</span></span>
+<span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/aggregate_bibliography.html">aggregate_bibliography</a></span><span class="op">(</span><span class="fu">xfun</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/xfun/man/normalize_path.html" class="external-link">normalize_path</a></span><span class="op">(</span><span class="va">your_article_path</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Found Bib file  example.bib</span></span>
 <span><span class="co">#&gt; bibliography aggregation possible</span></span>
 <span><span class="co">#&gt; Found Bib file  example.bib</span></span>
 <span><span class="co">#&gt; aggregation delta : 0</span></span>
 <span><span class="co">#&gt; \bibliography{bib_file} exists!</span></span>
 <span><span class="co">#&gt; BibTeX file aggregated</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">wd</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">your_article_path</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
 <span><span class="co">#&gt;   author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>
 <span><span class="co">#&gt;   title = {{R: A Language for Data Analysis and Graphics}},</span></span>

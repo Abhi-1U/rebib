@@ -1,5 +1,10 @@
 ## Resubmission 
-Fixed LICENSE file
+ 
+* Fixed LICENSE file
+* Shorter Title
+* Package writes files to temp folder in examples/tests/vignettes
+* Fixed on.exit error
+* usage of warnings/messages instead of print
 
 ## Test environments
 * local ubuntu 22.04 install, R 4.1.2,4.3.0

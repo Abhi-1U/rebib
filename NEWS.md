@@ -1,4 +1,4 @@
-# version 0.2.1
+# version 0.2.2
 
 ## features updates :  
 
@@ -11,6 +11,10 @@
 1. Corrected usage of `gsub()` for changing extensions with `xfun::with_ext()`. 
 2. Cleaned up documentation and removed un-wanted functions/docs.
 3. Corrected `rebib::citation_reader()` example.
+4. Use of `message()`/`warning()` instead of `print()`
+5. Examples/Tests/Vignettes do not write in user/package directory and work in a temp directory.
+6. Fixed `on.exit()` call in `R/util.R`, move it from line 64 to line 22.
+7. Fixed title and description in `DESCRIPTION` file
 
 # version 0.1.7
 

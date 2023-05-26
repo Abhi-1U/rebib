@@ -5,9 +5,13 @@
 #' @return aggregated bib file
 #' @export
 #' @examples
-#' test_folder <- system.file("aggr_example", package = "rebib")
-#' rebib::aggregate_bibliography(test_folder)
-#' readLines(paste(test_folder,"example.bib",sep="/"))
+#' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+#' example_files <-  system.file("aggr_example", package = "rebib")
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' your_article_path <- paste(your_article_folder,"aggr_example",sep="/")
+#' rebib::aggregate_bibliography(your_article_path)
+#' readLines(paste(your_article_path,"example.bib",sep="/"))
+#' unlink(your_article_folder,recursive = T)
 aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
     article_dir <- xfun::normalize_path(article_dir)
     date <- Sys.Date()

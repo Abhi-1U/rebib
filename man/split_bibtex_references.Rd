@@ -16,8 +16,12 @@ list of references separated as types and names based on indices
 split BibTex references
 }
 \examples{
-wd <-  system.file("article", package = "rebib")
-rebib::handle_bibliography(wd)
-bib_path <- paste(wd, "example.bib", sep = "/")
+dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+example_files <-  system.file("article", package = "rebib")
+x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+your_article_path <- paste(your_article_folder,"article",sep="/")
+rebib::handle_bibliography(your_article_path)
 references <- rebib::split_bibtex_references(bib_path)
+references
+unlink(your_article_folder,recursive = T)
 }

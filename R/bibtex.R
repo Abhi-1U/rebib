@@ -21,10 +21,14 @@ bibtex_reader <- function(article_dir) {
 #' @export
 #'
 #' @examples
-#' wd <-  system.file("article", package = "rebib")
-#' rebib::handle_bibliography(wd)
-#' bib_path <- paste(wd, "example.bib", sep = "/")
+#' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+#' example_files <-  system.file("article", package = "rebib")
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' your_article_path <- paste(your_article_folder,"article",sep="/")
+#' rebib::handle_bibliography(your_article_path)
 #' references <- rebib::split_bibtex_references(bib_path)
+#' references
+#' unlink(your_article_folder,recursive = T)
 split_bibtex_references <- function(bib_path) {
     bib_references <- list()
     bib_types <- list()
@@ -65,6 +69,7 @@ split_bibtex_references <- function(bib_path) {
 #' @examples
 #' ref_first_line <- "@book{ihaka:1996,"
 #' ref_type <- rebib::get_reference_type(ref_first_line)
+#' ref_type
 get_reference_type <- function(bib_reference) {
     patt <- "\\@\\s*(.*?)\\s*\\{"
     bib_reference <-paste(unlist(bib_reference),collapse="")
@@ -84,6 +89,7 @@ get_reference_type <- function(bib_reference) {
 #' @examples
 #' ref_first_line <- "@book{ihaka:1996,"
 #' ref_name <- rebib::get_reference_name(ref_first_line)
+#' ref_name
 get_reference_name <- function(bib_reference) {
     patt <- "\\{\\s*(.*?)\\s*\\,"
     bib_reference <-paste(unlist(bib_reference),collapse="")

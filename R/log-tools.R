@@ -8,13 +8,17 @@
 #' @export
 #'
 #' @examples
-#'  wd <-  system.file("article", package = "rebib")
-#'  rebib::log_setup(wd, "log-file.log", 2)
+#' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+#' example_files <-  system.file("article", package = "rebib")
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' your_article_path <- paste(your_article_folder,"article",sep="/")
+#' rebib::log_setup(your_article_path, "log-file.log", 2)
+#' unlink(your_article_folder,recursive = T)
 log_setup <- function(article_dir, file_name, idx) {
     article_dir <- xfun::normalize_path(article_dir)
     log_file_path <- paste(article_dir, file_name, sep = "/")
     if(! file.exists(log_file_path)) {
-        file.create(log_file_path,showWarnings = T)
+        file.create(log_file_path,showWarnings = F)
     } else {
         #pass
     }
@@ -36,10 +40,14 @@ log_setup <- function(article_dir, file_name, idx) {
 #' @export
 #'
 #' @examples
-#'  wd <-  system.file("article", package = "rebib")
-#' rebib::log_setup(wd, "log-file.log", 2)
+#' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+#' example_files <-  system.file("article", package = "rebib")
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' your_article_path <- paste(your_article_folder,"article",sep="/")
+#' rebib::log_setup(your_article_path, "log-file.log", 2)
 #' rebib::rebib_log("Hello", "INFO", 2)
-#' cat(readLines(paste(wd,"/log-file.log",sep="")),sep="\n")
+#' cat(readLines(paste(your_article_path,"/log-file.log",sep="")),sep="\n")
+#' unlink(your_article_folder,recursive = T)
 rebib_log <- function(message, category, idx) {
     if (identical(tolower(category), "info")) {
         logger::log_info(message, namespace = 'rebib')
@@ -68,5 +76,4 @@ rebib_log <- function(message, category, idx) {
         #pass
         #logger::log_info(message)
     }
-    return()
 }

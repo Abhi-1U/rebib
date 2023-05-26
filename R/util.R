@@ -11,8 +11,12 @@
 #' file to the latex file
 #' @export
 #' @examples
-#' wd <-  system.file("article", package = "rebib")
-#' rebib::handle_bibliography(wd)
+#' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
+#' example_files <-  system.file("article", package = "rebib")
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' your_article_path <- paste(your_article_folder,"article",sep="/")
+#' rebib::handle_bibliography(your_article_path)
+#' unlink(your_article_folder,recursive = T)
 handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
@@ -359,9 +363,13 @@ filter_bbl_data <- function(bbl_data) {
 #' @return bib file
 #' @export
 #' @examples
-#' test_file <- system.file("standalone/sample.bbl", package = "rebib")
-#' rebib::biblio_converter(file_path = test_file)
-#' head(readLines(xfun::with_ext(test_file,"bib")))
+#' test_file <- system.file("standalone/test.bbl", package = "rebib")
+#' dir.create(your_article_folder <- file.path(tempdir(), "testdir"))
+#' file.copy(test_file, your_article_folder)
+#' your_article_path <- xfun::normalize_path(paste(your_article_folder,"test.bbl",sep="/"))
+#' rebib::biblio_converter(file_path = your_article_path)
+#' head(readLines(xfun::with_ext(your_article_path,"bib")))
+#' unlink(your_article_folder,recursive = T)
 biblio_converter <- function(file_path = "", log_rebib = FALSE) {
     file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()
@@ -403,6 +411,7 @@ biblio_converter <- function(file_path = "", log_rebib = FALSE) {
 #'
 #' @examples
 #' wd <-  system.file("article", package = "rebib")
+#' # Only reads the article file
 #' rebib::bibliography_exists(wd)
 bibliography_exists <- function(article_dir) {
     article_dir <- xfun::normalize_path(article_dir)

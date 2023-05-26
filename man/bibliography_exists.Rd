@@ -17,5 +17,6 @@ check if embedded bibliography exists in the latex file or not
 }
 \examples{
 wd <-  system.file("article", package = "rebib")
+# Only reads the article file
 rebib::bibliography_exists(wd)
 }

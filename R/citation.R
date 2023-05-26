@@ -10,6 +10,7 @@
 #' @examples
 #' file_path <- system.file("article/example.tex",
 #'                  package = "rebib")
+#' # Only Reads the example.tex for possible citations
 #' cite <- rebib::citation_reader(file_path)
 #' cite
 citation_reader <- function(file_path) {

@@ -23,8 +23,8 @@ logging
 \examples{
 dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
 example_files <-  system.file("article", package = "rebib")
-x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+x <- file.copy(from = example_files,to=your_article_folder,recursive = TRUE)
 your_article_path <- paste(your_article_folder,"article",sep="/")
 rebib::log_setup(your_article_path, "log-file.log", 2)
-unlink(your_article_folder,recursive = T)
+unlink(your_article_folder,recursive = TRUE)
 }

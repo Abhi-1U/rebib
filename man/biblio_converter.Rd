@@ -24,5 +24,5 @@ file.copy(test_file, your_article_folder)
 your_article_path <- xfun::normalize_path(paste(your_article_folder,"test.bbl",sep="/"))
 rebib::biblio_converter(file_path = your_article_path)
 head(readLines(xfun::with_ext(your_article_path,"bib")))
-unlink(your_article_folder,recursive = T)
+unlink(your_article_folder,recursive = TRUE)
 }

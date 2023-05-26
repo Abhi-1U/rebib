@@ -9,6 +9,6 @@ test_that("complete conversion test 1", {
     rebib::biblio_converter(temp_test_file_path)
     test_bib_file <- xfun::with_ext(temp_test_file_path,"bib")
     expect_equal(readLines(test_bib_file), readLines(exp_test_file))
-    unlink(temp_test_folder, recursive = T)
+    unlink(temp_test_folder, recursive = TRUE)
     dir.exists(temp_test_folder)
 })

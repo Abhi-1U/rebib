@@ -13,10 +13,10 @@
 #' @examples
 #' dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
 #' example_files <-  system.file("article", package = "rebib")
-#' x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+#' x <- file.copy(from = example_files,to=your_article_folder,recursive = TRUE)
 #' your_article_path <- paste(your_article_folder,"article",sep="/")
 #' rebib::handle_bibliography(your_article_path)
-#' unlink(your_article_folder,recursive = T)
+#' unlink(your_article_folder,recursive = TRUE)
 handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = FALSE) {
     # checking for RJwrapper and fetching the file name for tex file
     old_wd <- getwd()
@@ -369,7 +369,7 @@ filter_bbl_data <- function(bbl_data) {
 #' your_article_path <- xfun::normalize_path(paste(your_article_folder,"test.bbl",sep="/"))
 #' rebib::biblio_converter(file_path = your_article_path)
 #' head(readLines(xfun::with_ext(your_article_path,"bib")))
-#' unlink(your_article_folder,recursive = T)
+#' unlink(your_article_folder,recursive = TRUE)
 biblio_converter <- function(file_path = "", log_rebib = FALSE) {
     file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()

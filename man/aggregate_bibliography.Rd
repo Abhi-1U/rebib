@@ -20,9 +20,9 @@ aggregate bibliograhy to fill in the missing references
 \examples{
 dir.create(your_article_folder <- file.path(tempdir(), "exampledir"))
 example_files <-  system.file("aggr_example", package = "rebib")
-x <- file.copy(from = example_files,to=your_article_folder,recursive = T)
+x <- file.copy(from = example_files,to=your_article_folder,recursive = TRUE)
 your_article_path <- paste(your_article_folder,"aggr_example",sep="/")
 rebib::aggregate_bibliography(your_article_path)
 readLines(paste(your_article_path,"example.bib",sep="/"))
-unlink(your_article_folder,recursive = T)
+unlink(your_article_folder,recursive = TRUE)
 }

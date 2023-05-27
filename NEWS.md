@@ -3,7 +3,7 @@
 ## features updates :  
 
 1. Updated Contributor Details and DESCRIPTION
-2. Getting Ready for CRAN
+2. CRAN Release
 3. Updated LICENSE and added `cph` 
 4. Logging events is now optional and turned off by default.
 

@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-![CRAN/METACRAN](https://img.shields.io/cran/v/rebib?color=blue&style=for-the-badge)
+[![CRAN/METACRAN](https://img.shields.io/cran/v/rebib?color=blue&style=for-the-badge)](https://cran.r-project.org/package=rebib)
 [![GitHub Workflow Status
 (branch)](https://img.shields.io/github/actions/workflow/status/Abhi-1U/rebib/pkg_down.yaml?branch=master&label=pkgdown&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/pkg_down.yaml)
 [![GitHub Workflow

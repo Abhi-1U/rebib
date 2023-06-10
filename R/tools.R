@@ -42,6 +42,7 @@ get_texfile_name <- function(article_dir) {
     article_dir <- xfun::normalize_path(article_dir)
     lookup_file <- get_wrapper_type(article_dir)
     wrapper_file <- readLines(file.path(article_dir, lookup_file))
+    wrapper_file <- stringr::str_subset(wrapper_file, ".+")
     article_start <- which(grepl(
         "^\\s*\\\\begin\\{article\\}",
         wrapper_file))

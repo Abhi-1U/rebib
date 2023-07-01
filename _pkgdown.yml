@@ -1,12 +1,50 @@
 url: ~
 template:
   bootstrap: 5
-  bootswatch: lux
+  bootswatch: zephyr
+  theme: dracula
   bslib:
     pkgdown-nav-height: 100px
+    primary: "#14014a"
 authors:
   footer:
     roles: [cre]
     text: "Put Together By"
   sidebar:
     roles: [aut, ctb]
+
+reference:
+- title: Bibliography Conversion
+  desc: >
+    Methods to convert Embedded Bibliography into BibTeX
+  contents:
+    - handle_bibliography
+    - biblio_converter
+
+- title: Bibliography Aggregation
+  desc: >
+    Method to aggregate bibliographies
+  contents:
+    - aggregate_bibliography
+
+- title: Citation Tools
+  desc: >
+    Methods to work with Citations
+  contents:
+    - citation_reader
+    - get_reference_name
+    - get_reference_type
+
+- title: Logger Util
+  desc: >
+    Methods to Setup, Log activities
+  contents:
+    - rebib_log
+    - log_setup
+
+- title: Miscallaneous
+  desc: >
+    Other Methods and tools
+  contents:
+    - bibliography_exists
+    - split_bibtex_references

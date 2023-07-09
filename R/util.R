@@ -25,7 +25,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
     on.exit(setwd(old_wd), add = TRUE)
     date <- Sys.Date()
     file_name <- get_texfile_name(article_dir)
-    if (log_rebib){
+    if (log_rebib) {
         log_file <- paste0("rebib-log-",date,".log")
         log_setup(article_dir, log_file, 2)
         rebib_log(paste0("working directory : ", article_dir), "info", 2)
@@ -33,8 +33,8 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
     }
 
     bib_file <- get_bib_file(article_dir, file_name)
-    if (! identical(bib_file, "") && (! override_mode)) {
-        if (log_rebib){
+    if (!identical(bib_file, "") && (!override_mode)) {
+        if (log_rebib) {
             rebib_log("BibTeX file exists", "info", 2)
             rebib_log("Wont parse for bibliography", "info", 2)
         }
@@ -44,7 +44,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
         }
         link_bibliography_line(article_dir, file_name)
     } else {
-        if (log_rebib){
+        if (log_rebib) {
             rebib_log("BibTeX file does not exist", "info", 2)
             rebib_log("will parse for bibliography", "info", 2)
         }
@@ -56,7 +56,7 @@ handle_bibliography <- function(article_dir, override_mode = FALSE, log_rebib = 
         bibtex_data <- bib_handler(bib_items)
         bibtex_writer(bibtex_data, file_name)
         link_bibliography_line(article_dir, file_name)
-        if (log_rebib){
+        if (log_rebib) {
             rebib_log(bibtex_data, "debug", 2)
             rebib_log("bibtex file created", "info", 2)
         }
@@ -110,13 +110,13 @@ bibtex_writer <- function(bibtex_data, file_name) {
         line_title <- sprintf("title = {{%s}}", title)
 
         # pages field (optional)
-        if (!identical(bibtex_data[["book"]][[iterator]]$pages,NULL)){
+        if (!identical(bibtex_data[["book"]][[iterator]]$pages,NULL)) {
             pages <- bibtex_data[["book"]][[iterator]]$pages
             line_pages <- sprintf("pages = {%s}", pages)
             include_pages <- TRUE
         }
         # year field (optional)
-        if (!identical(bibtex_data[["book"]][[iterator]]$year,NULL)){
+        if (!identical(bibtex_data[["book"]][[iterator]]$year,NULL)) {
             year <- bibtex_data[["book"]][[iterator]]$year
             line_year <- sprintf("year = {%s}", year)
             include_year <- TRUE
@@ -138,7 +138,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         # journal/publisher/misc data
 
         # journal field (optional)
-        if (!identical(bibtex_data[["book"]][[iterator]]$journal,NULL)){
+        if (!identical(bibtex_data[["book"]][[iterator]]$journal,NULL)) {
             journal <- bibtex_data[["book"]][[iterator]]$journal
             line_journal <- sprintf("publisher = {%s}", journal)
             include_journal <- TRUE
@@ -152,7 +152,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         write_external_file(bib_file_name, "a", toString(line_author))
         # if title is the second last line to be written
         if (include_journal | include_url | include_isbn | include_year | include_pages) {
-            line_title <- paste(line_title,",",sep="")
+            line_title <- paste(line_title,",",sep = "")
             write_external_file(bib_file_name, "a", toString(line_title))
         } else {
             write_external_file(bib_file_name, "a", toString(line_title))
@@ -160,7 +160,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
 
         # if journal/publisher details are the second last line to be written
         if (include_journal & ( include_isbn | include_url | include_year | include_pages)) {
-            line_journal <- paste(line_journal,",",sep="")
+            line_journal <- paste(line_journal,",",sep = "")
             write_external_file(bib_file_name, "a", toString(line_journal))
         }
         if (include_journal & ( !include_isbn & !include_url & !include_year & !include_pages)) {
@@ -170,7 +170,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         }
         # if pages is the second last line
         if (include_pages & (include_url | include_isbn | include_year)) {
-            line_pages <- paste(line_pages,",",sep="")
+            line_pages <- paste(line_pages,",",sep = "")
             write_external_file(bib_file_name, "a", toString(line_pages))
         }
         if (include_year & (!include_isbn & !include_url & !include_year)) {
@@ -180,7 +180,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
         }
         # if year is the second last line
         if (include_year & (include_url | include_isbn)) {
-            line_year <- paste(line_year,",",sep="")
+            line_year <- paste(line_year,",",sep = "")
             write_external_file(bib_file_name, "a", toString(line_year))
         }
         if (include_year & (!include_isbn & !include_url)) {
@@ -191,7 +191,7 @@ bibtex_writer <- function(bibtex_data, file_name) {
 
         # if url is the second last line
         if (include_url & include_isbn) {
-            line_url <- paste(line_url,",",sep="")
+            line_url <- paste(line_url,",",sep = "")
             write_external_file(bib_file_name, "a", toString(line_url))
         }
         if (include_url & !include_isbn) {
@@ -272,7 +272,7 @@ export_embeded_bibliography <- function(article_dir, file_name) {
 #' @return a list of bib entries separated at bibitem
 #' @noRd
 extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_path = ""){
-    if( identical(file_path,"")) {
+    if ( identical(file_path,"")) {
         src_file_data <- readLines(file.path(article_dir, file_name))
     } else {
         # absolute path
@@ -286,12 +286,28 @@ extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_pat
     bbl_data <- filter_bbl_data(bbl_data)
     bib_breakpoints <- which(grepl("^\\s*\\\\bibitem\\[", bbl_data))
     bib_items <- list()
+    # In case of no Bib-BreakPoints
+    if (length(bib_breakpoints) == 0) {
+        return(bib_items)
+    }
     # creating chunks of bibliography entries
-    for (i in 1:(length(bib_breakpoints) - 1)) {
-        bib_items[length(bib_items)+1] <- list(bbl_data[(bib_breakpoints[i]):(bib_breakpoints[(i+1)]-1)])
-        if (i == (length(bib_breakpoints) - 1)) {
-            bib_items[length(bib_items)+1] <- list(bbl_data[(bib_breakpoints[i+1]+1):length(bbl_data)-1])
+    final <-  length(bib_breakpoints) - 1
+    if (length(bib_breakpoints) == 1) {
+        final <- 1
+    }
+    for (i in 1:final) {
+        ## Only One Entry
+        if (final == 1) {
+            bib_items[length(bib_items) + 1] <- list(bbl_data[(bib_breakpoints[i]):(length(bbl_data) - 1)])
         }
+        if (length(bib_breakpoints) > 1) {
+            bib_items[length(bib_items) + 1] <- list(bbl_data[(bib_breakpoints[i]):(bib_breakpoints[(i + 1)] - 1)])
+        }
+        ## Last Entry
+        if (i == (length(bib_breakpoints) - 1)) {
+            bib_items[length(bib_items) + 1] <- list(bbl_data[(bib_breakpoints[i + 1]):(length(bbl_data) - 1)])
+        }
+
     }
     return(bib_items)
 }
@@ -323,7 +339,7 @@ link_bibliography_line <- function(article_dir, file_name) {
                           sep = "")
     }
     # Backup original wrapper file
-    backup_file <- paste(file_name,".bk",sep="")
+    backup_file <- paste(file_name,".bk",sep = "")
     backup_file_path <- paste(article_dir, backup_file, sep = "/")
     file_path <- paste(article_dir, file_name, sep = "/")
     write_external_file(backup_file_path, "w", src_file_data)
@@ -373,7 +389,7 @@ filter_bbl_data <- function(bbl_data) {
 biblio_converter <- function(file_path = "", log_rebib = FALSE) {
     file_path <- xfun::normalize_path(file_path)
     date <- Sys.Date()
-    if (log_rebib){
+    if (log_rebib) {
         log_file <- paste0("rebib-biblio-",date,".log")
         log_setup(dirname(file_path), log_file, 1)
         rebib_log(paste0("working directory : ", dirname(file_path)), "info", 1)
@@ -385,15 +401,16 @@ biblio_converter <- function(file_path = "", log_rebib = FALSE) {
     bib_file_path <- toString(paste(tools::file_path_sans_ext(file_path),
                                     ".bib", sep = ""))
     bib_items <- extract_embeded_bib_items(file_path = file_path)
-    if (log_rebib){
+    if (log_rebib) {
         rebib_log(paste0("bib entries : ", length(bib_items)), "info", 1)
     }
     else{
         message(paste0("bib entries : ", length(bib_items)))
     }
+
     bibtex_data <- bib_handler(bib_items)
     bibtex_writer(bibtex_data, bib_file_path)
-    if (log_rebib){
+    if (log_rebib) {
         rebib_log(paste0("Written BibTeX file : ", bib_file_path), "info", 1)
     }
     else{
@@ -423,7 +440,7 @@ bibliography_exists <- function(article_dir) {
                          src_file_data))
     bbl_end <- which(grepl("^\\s*\\\\end\\{thebibliography\\}",
                          src_file_data))
-    if(identical(bbl_start, integer(0)) | identical(bbl_end, integer(0))){
+    if (identical(bbl_start, integer(0)) | identical(bbl_end, integer(0))) {
         return(FALSE)
     } else {
         return(TRUE)

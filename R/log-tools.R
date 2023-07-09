@@ -17,7 +17,7 @@
 log_setup <- function(article_dir, file_name, idx) {
     article_dir <- xfun::normalize_path(article_dir)
     log_file_path <- paste(article_dir, file_name, sep = "/")
-    if(! file.exists(log_file_path)) {
+    if (!file.exists(log_file_path)) {
         file.create(log_file_path,showWarnings = F)
     } else {
         #pass
@@ -25,7 +25,7 @@ log_setup <- function(article_dir, file_name, idx) {
     logger::log_threshold(namespace = 'rebib')
     logger::log_appender(logger::appender_file(log_file_path),
                          namespace = "rebib",
-                         index=idx)
+                         index = idx)
 
 }
 
@@ -70,7 +70,7 @@ rebib_log <- function(message, category, idx) {
         logger::log_appender(namespace = 'rebib')
     }
     if (identical(tolower(category), "failure")) {
-        logger::log_failure(message, namespace = 'rebib')
+        logger::log_error(message, namespace = 'rebib')
         logger::log_appender(namespace = 'rebib')
     } else {
         #pass

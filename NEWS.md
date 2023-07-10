@@ -1,3 +1,11 @@
+# version 0.2.4
+
+## bug fixes : 
+
+1. Fixed a bug where empty lines in the bunch of strings could not be filtered out.
+2. Fixed Issue #14 where the conversion/aggreagtion would fail in case of one or none bib items.
+3. Updated pkgdown site
+
 # version 0.2.2
 
 ## features updates :  
@@ -7,7 +15,8 @@
 3. Updated LICENSE and added `cph` 
 4. Logging events is now optional and turned off by default.
 
-## bug fixes :  
+## bug fixes : 
+
 1. Corrected usage of `gsub()` for changing extensions with `xfun::with_ext()`. 
 2. Cleaned up documentation and removed un-wanted functions/docs.
 3. Corrected `rebib::citation_reader()` example.

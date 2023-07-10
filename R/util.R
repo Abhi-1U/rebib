@@ -290,14 +290,16 @@ extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_pat
     if (length(bib_breakpoints) == 0) {
         return(bib_items)
     }
+    singular_case <- 0
     # creating chunks of bibliography entries
     final <-  length(bib_breakpoints) - 1
     if (length(bib_breakpoints) == 1) {
         final <- 1
+        singular_case <- 1
     }
     for (i in 1:final) {
         ## Only One Entry
-        if (final == 1) {
+        if (singular_case == 1) {
             bib_items[length(bib_items) + 1] <- list(bbl_data[(bib_breakpoints[i]):(length(bbl_data) - 1)])
         }
         if (length(bib_breakpoints) > 1) {

@@ -3,7 +3,7 @@
 ## bug fixes : 
 
 1. Fixed a bug where empty lines in the bunch of strings could not be filtered out.
-2. Fixed Issue #14 where the conversion/aggreagtion would fail in case of one or none bib items.
+2. Fixed Issue #14 where the conversion/aggregation would fail in case of one or none bib items.
 3. Updated pkgdown site
 
 # version 0.2.2

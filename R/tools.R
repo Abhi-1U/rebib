@@ -1,33 +1,3 @@
-#' @title get wrapper file name
-#' @description
-#' This function gets the wrapper file name from the
-#'commonly named R-Journal wrapper files.
-#'@details
-#'Usually the R journal wrapper files are named either
-#'1. RJwrapper.tex\\n
-#'2. RJwrap.tex\\n
-#'3. wrapper.tex\\n
-#' @param article_dir path to the directory which contains tex article
-#' @keywords internal
-#' @return String with name of wrapper file or empty
-#' @noRd
-get_wrapper_type <- function(article_dir) {
-    article_dir <- xfun::normalize_path(article_dir)
-    wrapper_types <- c("wrapper.tex",
-                       "RJwrap.tex",
-                       "RJwrapper.tex")
-    wrapper_file <- ""
-    for (w_type in wrapper_types) {
-        if (file.exists(file.path(article_dir, w_type))) {
-            wrapper_file <- w_type
-        }
-    }
-    if (wrapper_file == "") {
-        warning("Error : No Wrapper File Found in the article dir")
-    }
-    return(wrapper_file)
-}
-
 #' @title get tex file name
 #' @description
 #' Get the name of the tex file included within wrapper file

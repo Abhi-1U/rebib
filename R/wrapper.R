@@ -49,7 +49,7 @@ get_wrapper_type <- function(article_dir, auto_wrapper = FALSE) {
             cli::cli_abort("Could not automatically identify appropriate article tex file. Check that exactly 1 input tex file exists for the wrapper.")
         }
         rjwrapper <- whisker::whisker.render(
-            xfun::read_utf8(system.file("RJwrapper_template.tex", package = "texor")),
+            xfun::read_utf8(system.file("RJwrapper_template.tex", package = "rebib")),
             data = list(article_input = sprintf("\\input{%s}", wrapper_input))
         )
         xfun::write_utf8(rjwrapper, file.path(article_dir, "RJwrapper.tex"))

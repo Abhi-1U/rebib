@@ -40,7 +40,9 @@ Imports:
     tools,
     stringr,
     logger,
-    xfun
+    xfun,
+    cli,
+    whisker
 Suggests: 
     knitr,
     rmarkdown,

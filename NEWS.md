@@ -1,3 +1,12 @@
+# version 0.3.0
+
+## bug fixes :
+
+1. Fixed #15, where certain articles would fail to aggregate bibliography.
+2. Fixed #17, where writer would add extra newlines.
+3. Updated wrapper tools which work with articles without wrapper as well.
+
+
 # version 0.2.4
 
 ## bug fixes : 

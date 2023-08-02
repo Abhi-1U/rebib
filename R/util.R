@@ -207,7 +207,6 @@ bibtex_writer <- function(bibtex_data, file_name) {
         write_external_file(bib_file_name, "a", toString(line_end))
 
     }
-    write_external_file(bib_file_name, "a", toString(""))
 }
 
 

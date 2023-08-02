@@ -64,7 +64,7 @@ aggregate_bibliography <- function(article_dir, log_rebib = FALSE) {
         if (log_rebib){
             rebib_log("BibTeX file aggregated", "info", 1)
         }
-        else{
+        else {
             message("BibTeX file aggregated")
         }
 

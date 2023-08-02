@@ -59,6 +59,7 @@ get_bib_file <- function(article_dir, file_name) {
                 return(file)
             }
         }
+        return("")
     }
 }
 

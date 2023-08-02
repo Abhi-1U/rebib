@@ -9,6 +9,9 @@ bibtex_reader <- function(article_dir) {
     tex_file <- get_texfile_name(article_dir)
     bib_file <- get_bib_file(article_dir,tex_file)
     bib_file_path <- paste(article_dir, bib_file, sep = "/")
+    if (is.null(bib_file)) {
+        return(FALSE)
+    }
     bib_tex_references <- split_bibtex_references(bib_file_path)
     return(bib_tex_references)
 }

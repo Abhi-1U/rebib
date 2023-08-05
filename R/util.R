@@ -99,8 +99,8 @@ bibtex_writer <- function(bibtex_data, file_name) {
 
         # author field
         author <- bibtex_data[["book"]][[iterator]]$author
-        line_author <- gsub("([^a-z]*)([A-Z])([^.].*)",
-                            "author = {\\1{\\2\\3}},", author)
+        line_author <- paste0("author ={",gsub("([^a-z]*)([A-Z])([^.].*)",
+                           "\\1{\\2\\3}", author),"},")
 
         # title field
         title <- bibtex_data[["book"]][[iterator]]$title

@@ -93,9 +93,9 @@ as a path. This way, one can generate BibTeX from the embedded
 bibliography or BBL file.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">rebib</span><span class="fu">::</span><span class="fu"><a href="../reference/biblio_converter.html">biblio_converter</a></span><span class="op">(</span><span class="va">path_to_your_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; working directory : /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKCEJkV/exampledir/standalone</span></span>
+<span><span class="co">#&gt; working directory : /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpSZxasF/exampledir/standalone</span></span>
 <span><span class="co">#&gt; bib entries : 6</span></span>
-<span><span class="co">#&gt; Written BibTeX file : /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpKCEJkV/exampledir/standalone/sample.bib</span></span></code></pre></div>
+<span><span class="co">#&gt; Written BibTeX file : /private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpSZxasF/exampledir/standalone/sample.bib</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="bibliography-aggregator">2. Bibliography Aggregator<a class="anchor" aria-label="anchor" href="#bibliography-aggregator"></a>
@@ -110,7 +110,7 @@ A Flow chart of Bibliography Aggregation
 </div>
 <pre><code><span><span class="co">#&gt; Warning in dir.create(your_article_folder &lt;- file.path(tempdir(),</span></span>
 <span><span class="co">#&gt; "exampledir")):</span></span>
-<span><span class="co">#&gt; '/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpKCEJkV/exampledir'</span></span>
+<span><span class="co">#&gt; '/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpSZxasF/exampledir'</span></span>
 <span><span class="co">#&gt; already exists</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Suppose you have a example.bib file in your article path</span></span>
@@ -138,7 +138,7 @@ A Flow chart of Bibliography Aggregation
 <span><span class="co">#&gt;   url = {https://doi.org/10.1080/10618600.1996.10474713}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{R,</span></span>
-<span><span class="co">#&gt; author ={R {Core Team}},</span></span>
+<span><span class="co">#&gt; author = {R {Core Team}},</span></span>
 <span><span class="co">#&gt; title = {{R: A Language and Environment for Statistical Computing}},</span></span>
 <span><span class="co">#&gt; publisher = {R Foundation for Statistical Computing Vienna Austria    :},</span></span>
 <span><span class="co">#&gt; year = {2016},</span></span>
@@ -146,7 +146,7 @@ A Flow chart of Bibliography Aggregation
 <span><span class="co">#&gt; isbn = {3-900051-07-0}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{Tremblay:2012,</span></span>
-<span><span class="co">#&gt; author ={A.~{Tremblay}},</span></span>
+<span><span class="co">#&gt; author = {A.~{Tremblay}},</span></span>
 <span><span class="co">#&gt; title = {{LMERConvenienceFunctions: A suite of functions to back-fit fixed effects and forward-fit random effects, as well as other miscellaneous functions., }},</span></span>
 <span><span class="co">#&gt; publisher = {R package version 1.6.8.2},</span></span>
 <span><span class="co">#&gt; year = {2012},</span></span>

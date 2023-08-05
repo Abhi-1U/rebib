@@ -100,7 +100,7 @@ article file as well.</p>
 <h3 id="usage-example">Usage example<a class="anchor" aria-label="anchor" href="#usage-example"></a>
 </h3>
 <pre><code><span><span class="co">#&gt; Warning in file.remove(bib_path): cannot remove file</span></span>
-<span><span class="co">#&gt; '/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPzKrLl/exampledir/article/example.bib',</span></span>
+<span><span class="co">#&gt; '/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEje7sl/exampledir/article/example.bib',</span></span>
 <span><span class="co">#&gt; reason 'No such file or directory'</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># for files without BibTeX source</span></span>
@@ -111,7 +111,7 @@ article file as well.</p>
 <span><span class="co">#&gt; bibtex file created</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">your_article_path</span>,<span class="st">"example.bib"</span>,sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span><span class="op">)</span>,sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; @book{ihaka:1996,</span></span>
-<span><span class="co">#&gt; author = {{Ihaka, Ross and Gentleman, Robert}},</span></span>
+<span><span class="co">#&gt; author ={{Ihaka, Ross and Gentleman, Robert}},</span></span>
 <span><span class="co">#&gt; title = {{R: A Language for Data Analysis and Graphics}},</span></span>
 <span><span class="co">#&gt; publisher = {Journal of Computational and Graphical Statistics 3:   :},</span></span>
 <span><span class="co">#&gt; pages = {299--314},</span></span>
@@ -119,7 +119,7 @@ article file as well.</p>
 <span><span class="co">#&gt; url = {https://doi.org/10.1080/10618600.1996.10474713}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{R,</span></span>
-<span><span class="co">#&gt; author = {R {Core Team}},</span></span>
+<span><span class="co">#&gt; author ={R {Core Team}},</span></span>
 <span><span class="co">#&gt; title = {{R: A Language and Environment for Statistical Computing}},</span></span>
 <span><span class="co">#&gt; publisher = {R Foundation for Statistical Computing Vienna Austria    :},</span></span>
 <span><span class="co">#&gt; year = {2016},</span></span>
@@ -127,7 +127,7 @@ article file as well.</p>
 <span><span class="co">#&gt; isbn = {3-900051-07-0}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{Tremblay:2012,</span></span>
-<span><span class="co">#&gt; author = {A.~{Tremblay}},</span></span>
+<span><span class="co">#&gt; author ={A.~{Tremblay}},</span></span>
 <span><span class="co">#&gt; title = {{LMERConvenienceFunctions: A suite of functions to back-fit fixed effects and forward-fit random effects, as well as other miscellaneous functions., }},</span></span>
 <span><span class="co">#&gt; publisher = {R package version 1.6.8.2},</span></span>
 <span><span class="co">#&gt; year = {2012},</span></span>
@@ -170,7 +170,7 @@ bibliographies in a single BibTeX file.</p>
 <span><span class="co">#&gt;   url = {https://doi.org/10.1080/10618600.1996.10474713}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{R,</span></span>
-<span><span class="co">#&gt; author = {R {Core Team}},</span></span>
+<span><span class="co">#&gt; author ={R {Core Team}},</span></span>
 <span><span class="co">#&gt; title = {{R: A Language and Environment for Statistical Computing}},</span></span>
 <span><span class="co">#&gt; publisher = {R Foundation for Statistical Computing Vienna Austria    :},</span></span>
 <span><span class="co">#&gt; year = {2016},</span></span>
@@ -178,7 +178,7 @@ bibliographies in a single BibTeX file.</p>
 <span><span class="co">#&gt; isbn = {3-900051-07-0}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; @book{Tremblay:2012,</span></span>
-<span><span class="co">#&gt; author = {A.~{Tremblay}},</span></span>
+<span><span class="co">#&gt; author ={A.~{Tremblay}},</span></span>
 <span><span class="co">#&gt; title = {{LMERConvenienceFunctions: A suite of functions to back-fit fixed effects and forward-fit random effects, as well as other miscellaneous functions., }},</span></span>
 <span><span class="co">#&gt; publisher = {R package version 1.6.8.2},</span></span>
 <span><span class="co">#&gt; year = {2012},</span></span>

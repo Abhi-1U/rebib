@@ -154,3 +154,24 @@ test_that("parser parsing bibliography test 8", {
     expect_equal(out$URL, NULL)
     expect_equal(out$unique_id, "pcomm:SM13")
 })
+
+test_9 <- c("\\bibitem[Dem{\\v{s}}ar et~al.(2013)Dem{\\v{s}}ar, Curk, Erjavec, Gorup,",
+            "Ho{\\v{c}}evar, Milutinovi{\\v{c}}, Mo{\\v{z}}ina, Polajnar, Toplak,",
+            "Stari{\\v{c}}, et~al.]{demvsar2013orange}",
+            "J.~Dem{\\v{s}}ar, T.~Curk, A.~Erjavec, {\\v{C}}.~Gorup, T.~Ho{\\v{c}}evar,",
+            "M.~Milutinovi{\\v{c}}, M.~Mo{\\v{z}}ina, M.~Polajnar, M.~Toplak,",
+            "A.~Stari{\\v{c}}, et~al.",
+            "\\newblock Orange: data mining toolbox in python.",
+            "\\newblock \\emph{The Journal of Machine Learning Research}, 14\\penalty0",
+            "(1):\\penalty0 2349--2353, 2013.")
+
+test_that("parser parsing bibliography test 9", {
+    out <- rebib:::bibliography_parser(test_9)
+    expect_equal(out$author, "J.~Dem{\\v{s}}ar, T.~Curk, A.~Erjavec, {\\v{C}}.~Gorup, T.~Ho{\\v{c}}evar, M.~Milutinovi{\\v{c}}, M.~Mo{\\v{z}}ina, M.~Polajnar, M.~Toplak, A.~Stari{\\v{c}}, et~al")
+    expect_equal(out$journal, "The Journal of Machine Learning Research 14(1):")
+    expect_equal(out$year, "2013")
+    expect_equal(out$title, "Orange: data mining toolbox in python")
+    expect_equal(out$URL, NULL)
+    expect_equal(out$pages, "2349--2353")
+    expect_equal(out$unique_id, "demvsar2013orange")
+})

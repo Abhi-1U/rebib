@@ -11,51 +11,37 @@ bibliography_parser <- function(single_bib_data) {
     bib_record <- list()
     start_idx <- NULL
     break_points <- NULL
-    if(length(single_bib_data) == 1) {
+    if ( length(single_bib_data) == 1) {
         single_bib_data <- single_bib_data[[1]]
     }
     # starting with unique identifier
-    if (which(grepl("\\}$", single_bib_data))[1] ==
-        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))[1]) {
-        start_idx <- which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))
-        z <- str_split(single_bib_data[1],"\\{")[[1]]
-        bib_record$unique_id <- gsub("\\}","",z[length(z)])
-        break_points <- which(grepl("\\\\newblock", single_bib_data))
-        # author_names
+    mini_iter_stop <- which(grepl("\\\\newblock", single_bib_data))[1]
+    for (line in which(grepl("\\}$", single_bib_data[1:(mini_iter_stop-1)]))){
+        if (line == which(grepl("]\\{", single_bib_data))[1]) {
+            start_idx <- which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))
+            z <- str_split(single_bib_data[line],"]\\{")[[1]]
+            bib_record$unique_id <- gsub("\\}","",z[length(z)])
+            author_start <- line + 1
+            break
+        }
+    }
+    bib_record$unique_id <- gsub("\\}","",z[length(z)])
+    break_points <- which(grepl("\\\\newblock", single_bib_data))
+    # author_names
+    # difference between start of identifier and authors = 2
+    if ((break_points[1] - start_idx) == 2) {
+        bib_record$author <- gsub("\\.$", "",
+                                        single_bib_data[author_start])
+    }
+    # difference between start of identifier and authors >= 3
+    if ((break_points[1] - start_idx) >= 3) {
+        author_end <- break_points[1]-1
+        bib_record$author <- gsub("\\.$", "",
+                    paste(single_bib_data[author_start:author_end],
+                            sep=' ',collapse = ' '))
+    }
 
-        # difference between start of identifier and authors = 2
-        if ((break_points[1] - start_idx) == 2) {
-            bib_record$author <- gsub("\\.$", "",
-                                            single_bib_data[start_idx + 1])
-        }
-        # difference between start of identifier and authors >= 3
-        if ((break_points[1] - start_idx) >= 3) {
-            author_start <- start_idx + 2
-            author_end <- break_points[1]-1
-            bib_record$author <- gsub("\\.$", "",
-                        paste(single_bib_data[author_start:author_end],
-                                sep=' ',collapse = ' '))
-        }
-    }
     bib_record$author <- trimws(bib_record$author, which = "both")
-    # Unique ID is on the second line
-    if ((which(grepl("\\}$", single_bib_data)) - 1)[1] ==
-        which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))[1]) {
-        start_idx <- which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))
-        z <- str_split(single_bib_data[start_idx + 1], "\\{")[[1]]
-        bib_record$unique_id <- gsub("\\}","",z[length(z)])
-        break_points <- which(grepl("\\\\newblock", single_bib_data))
-        # difference between start of identifier and authors = 2
-        if ((break_points[1] - start_idx) == 2) {
-            bib_record$author <- gsub("\\.$", "", single_bib_data[start_idx + 1])
-        }
-        # difference between start of identifier and authors >= 3
-        if ((break_points[1] - start_idx) >= 3) {
-            author_start <- start_idx + 2
-            author_end <- break_points[1]-1
-            bib_record$author <- gsub("\\.$", "", paste(single_bib_data[author_start:author_end],sep=' ',collapse = ' '))
-        }
-    }
     if (length(break_points) == 1) {
        break_points[2] <- length(single_bib_data)
     }

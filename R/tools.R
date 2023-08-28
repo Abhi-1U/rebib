@@ -45,7 +45,7 @@ get_bib_file <- function(article_dir, file_name) {
     bib_file <- unique(grep(paste(extensions, collapse = "|"),
                             file_list, value = TRUE))
     if (identical(bib_file, character(0))) {
-        warning("No Bib files found !")
+        message("No Bib files found !")
         return("")
     }
     if (identical(class(bib_file), "character") &&

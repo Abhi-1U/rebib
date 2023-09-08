@@ -1,7 +1,7 @@
 Package: rebib
 Type: Package
 Title: Convert and Aggregate Bibliographies
-Version: 0.3.0
+Version: 0.3.2
 Authors@R: 
     c(person(given = "Abhishek",
              family = "Ulayil",
@@ -33,7 +33,7 @@ Description: Authors working with 'LaTeX' articles use the built-in bibliography
     function well with Web articles. As a way out, 'rebib' offers tools to
     convert and combine bibliographies from both sources. 
 License: MIT + file LICENSE
-URL: https://github.com/Abhi-1U/rebib#readme
+URL: https://github.com/Abhi-1U/rebib
 BugReports: https://github.com/Abhi-1U/rebib/issues
 Encoding: UTF-8
 Imports: 

@@ -1,3 +1,11 @@
+# version 0.3.2
+
+## bug fixes :
+
+1. Fixed #19 where bib parser would fail to extract identifiers.
+2. Corrected fix #17 to work better.
+
+
 # version 0.3.0
 
 ## bug fixes :

@@ -40,8 +40,18 @@ get_bib_file <- function(article_dir, file_name) {
     article_dir <- xfun::normalize_path(article_dir)
     file_list <- list.files(article_dir, recursive = FALSE)
     extensions <- c("*.bib$")
-    linked_bib <- toString(paste(tools::file_path_sans_ext(file_name),
-                                 ".bib", sep = ""))
+    src_file_data <- readLines(file.path(article_dir, file_name))
+    linked_bib <- ""
+    for (line in src_file_data) {
+        if (grepl("\\\\bibliography\\{", line)) {
+            linked_bib <- gsub("\\\\bibliography\\{|\\}", "", line)
+            linked_bib <- gsub("^\\s+|\\s+$", "", linked_bib)
+            if (!grepl(".bib$", linked_bib)) {
+                linked_bib <- paste0(linked_bib, ".bib")
+            }
+            break
+        }
+    }
     bib_file <- unique(grep(paste(extensions, collapse = "|"),
                             file_list, value = TRUE))
     if (identical(bib_file, character(0))) {

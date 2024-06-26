@@ -16,13 +16,48 @@ bibliography_parser <- function(single_bib_data) {
     }
     # starting with unique identifier
     mini_iter_stop <- which(grepl("\\\\newblock", single_bib_data))[1]
-    for (line in which(grepl("\\}$", single_bib_data[1:(mini_iter_stop-1)]))){
-        if (line == which(grepl("]\\{", single_bib_data))[1]) {
-            start_idx <- which(grepl("^\\s*\\\\bibitem\\[", single_bib_data))
-            z <- str_split(single_bib_data[line],"]\\{")[[1]]
-            bib_record$unique_id <- gsub("\\}","",z[length(z)])
-            author_start <- line + 1
-            break
+    if (is.na(mini_iter_stop)) {
+        # if there is no new block, we can't parse the data
+
+        concat_lines <- function(single_bib_data) {
+            trimmed_lines <- str_trim(single_bib_data)
+            concatenated <- paste(str_trim(trimmed_lines), collapse = " ")
+            return(concatenated)
+        }
+        bib_data_str <- concat_lines(single_bib_data)
+
+        # get unique_id in \bibitem{unique_id}
+        bib_record$unique_id <- str_match(bib_data_str,
+                                          "\\\\bibitem(?:\\[[^\\]]*\\])?\\{([^\\}]+)\\}")[2]
+        bib_record$unique_id <- str_trim(bib_record$unique_id)
+
+        bib_record$author <- str_match(bib_data_str,
+                                        "\\}(.+)\\\\emph\\{")[2]
+        bib_record$author <- str_trim(bib_record$author)
+        bib_record$author <- gsub("[.,]+$", "", bib_record$author)
+
+
+        bib_record$title <- str_match(bib_data_str,
+                                      "\\\\emph\\{([^\\}]+?)\\}")[2]
+        bib_record$title <- str_trim(bib_record$title)
+
+        rest_bib_data <- str_match(bib_data_str,
+                                   "\\\\emph\\{[^\\}]+\\}(.+)")[2]
+
+        bib_record$year <- str_match(rest_bib_data,
+                                    "([0-9]{4})")[2]
+        bib_record$note <- str_trim(rest_bib_data)
+
+        return(bib_record)
+    } else{
+        for (line in which(grepl("\\}$", single_bib_data[1:(mini_iter_stop-1)]))){
+            if (line == which(grepl("]\\{", single_bib_data))[1]) {
+                start_idx <- which(grepl("^\\s*\\\\bibitem", single_bib_data))
+                z <- str_split(single_bib_data[line],"]\\{")[[1]]
+                bib_record$unique_id <- gsub("\\}","",z[length(z)])
+                author_start <- line + 1
+                break
+            }
         }
     }
     bib_record$unique_id <- gsub("\\}","",z[length(z)])

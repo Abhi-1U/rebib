@@ -285,7 +285,8 @@ extract_embeded_bib_items <- function(article_dir = "", file_name = "", file_pat
     bbl_data <- src_file_data[bbl_start:bbl_end]
     ## ignore comments
     bbl_data <- filter_bbl_data(bbl_data)
-    bib_breakpoints <- which(grepl("^\\s*\\\\bibitem\\[", bbl_data))
+    # detect \bibitem[] or \bibitem{}
+    bib_breakpoints <- which(grepl("^\\s*\\\\bibitem", bbl_data))
     bib_items <- list()
     # In case of no Bib-BreakPoints
     if (length(bib_breakpoints) == 0) {

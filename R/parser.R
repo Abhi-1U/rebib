@@ -44,9 +44,16 @@ bibliography_parser <- function(single_bib_data) {
         rest_bib_data <- str_match(bib_data_str,
                                    "\\\\emph\\{[^\\}]+\\}(.+)")[2]
 
-        bib_record$year <- str_match(rest_bib_data,
-                                    "([0-9]{4})")[2]
-        bib_record$note <- str_trim(rest_bib_data)
+        bib_record$year <- str_match(rest_bib_data, "([0-9]{4})")[2]
+        rest_bib_data <- str_match(bib_data_str,
+                                   "\\\\emph\\{[^\\}]+\\}(.+)")[2]
+
+        # put all the remaining data in journal
+        rest_bib_data <- gsub(bib_record$year, "", rest_bib_data)
+        rest_bib_data <- str_trim(rest_bib_data)
+        rest_bib_data <- gsub("^[ ,.]+", "", rest_bib_data)
+        rest_bib_data <- gsub("[ ,.]+$", "", rest_bib_data)
+        bib_record$journal <- str_trim(rest_bib_data)
 
         return(bib_record)
     } else{

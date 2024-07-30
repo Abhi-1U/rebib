@@ -12,6 +12,7 @@
 Status](https://img.shields.io/github/actions/workflow/status/Abhi-1U/rebib/cmdcheck.yaml?branch=master&label=R-CMD-CHECK&style=for-the-badge)](https://github.com/Abhi-1U/rebib/actions/workflows/cmdcheck.yaml)
 [![GitHub R package version (subdirectory of
 monorepo)](https://img.shields.io/github/r-package/v/Abhi-1U/rebib?filename=DESCRIPTION&label=rebib&style=for-the-badge)](https://github.com/Abhi-1U/rebib/blob/master/DESCRIPTION)
+[![codecov](https://img.shields.io/codecov/c/gh/Abhi-1U/rebib?style=for-the-badge&logo=codecov)](https://codecov.io/gh/Abhi-1U/rebib)
 <!-- badges: end -->
 
 rebib is a spun-off package from

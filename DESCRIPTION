@@ -27,7 +27,12 @@ Authors@R:
              family = "Cook",
              email = "dicook@monash.edu",
              role = "ctb",
-             comment = c(ORCID = "0000-0002-3813-7155")))
+             comment = c(ORCID = "0000-0002-3813-7155")),
+      person(given = "Yinxiang",
+             family = "Huang",
+             email = "21375146@buaa.edu.cn",
+             role = "ctb",
+             comment = c(ORCID = "0009-0007-2031-7901")))
 Description: Authors working with 'LaTeX' articles use the built-in bibliography
     options and 'BibTeX' files. While this might work with 'LaTeX', it does not
     function well with Web articles. As a way out, 'rebib' offers tools to

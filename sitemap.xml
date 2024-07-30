@@ -1,72 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/general-Introduction.html</loc>
-  </url>
-  <url>
-    <loc>/articles/general-usage.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/parser-mechanics.html</loc>
-  </url>
-  <url>
-    <loc>/articles/use-with-rjarticle.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/readme.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aggregate_bibliography.html</loc>
-  </url>
-  <url>
-    <loc>/reference/biblio_converter.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bibliography_exists.html</loc>
-  </url>
-  <url>
-    <loc>/reference/citation_reader.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_reference_name.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get_reference_type.html</loc>
-  </url>
-  <url>
-    <loc>/reference/handle_bibliography.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/log_setup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rebib_log.html</loc>
-  </url>
-  <url>
-    <loc>/reference/split_bibtex_references.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE-text.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/articles/general-Introduction.html</loc></url>
+<url><loc>/articles/general-usage.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/parser-mechanics.html</loc></url>
+<url><loc>/articles/use-with-rjarticle.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/readme.html</loc></url>
+<url><loc>/reference/aggregate_bibliography.html</loc></url>
+<url><loc>/reference/biblio_converter.html</loc></url>
+<url><loc>/reference/bibliography_exists.html</loc></url>
+<url><loc>/reference/citation_reader.html</loc></url>
+<url><loc>/reference/get_reference_name.html</loc></url>
+<url><loc>/reference/get_reference_type.html</loc></url>
+<url><loc>/reference/handle_bibliography.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/log_setup.html</loc></url>
+<url><loc>/reference/rebib_log.html</loc></url>
+<url><loc>/reference/split_bibtex_references.html</loc></url>
 </urlset>
+

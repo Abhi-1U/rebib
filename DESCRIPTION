@@ -1,7 +1,7 @@
 Package: rebib
 Type: Package
 Title: Convert and Aggregate Bibliographies
-Version: 0.3.2
+Version: 0.5.0
 Authors@R: 
     c(person(given = "Abhishek",
              family = "Ulayil",
@@ -56,5 +56,5 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Language: en-US

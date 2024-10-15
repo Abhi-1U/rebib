@@ -1,3 +1,13 @@
+# version 0.5.0
+
+## bug fixes :
+
+1. Fixed unresolved dependency issues in parser.
+2. Fixed issue #21 where it could not read paths with spaces.
+3. Fixed issue #23 to detect bibliography files outside of the article folder and refer it from the `thebibliography{...}` command.
+4. Some patches to adapt the parser to parse slightly different format/style of bibliography as mentioned in issue #24.
+5. Included test coverage using codecov and covr, fixing issue #13.
+
 # version 0.3.2
 
 ## bug fixes :

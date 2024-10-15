@@ -20,40 +20,40 @@ bibliography_parser <- function(single_bib_data) {
         # if there is no new block, we can't parse the data
 
         concat_lines <- function(single_bib_data) {
-            trimmed_lines <- str_trim(single_bib_data)
-            concatenated <- paste(str_trim(trimmed_lines), collapse = " ")
+            trimmed_lines <- stringr::str_trim(single_bib_data)
+            concatenated <- paste(stringr::str_trim(trimmed_lines), collapse = " ")
             return(concatenated)
         }
         bib_data_str <- concat_lines(single_bib_data)
 
         # get unique_id in \bibitem{unique_id}
-        bib_record$unique_id <- str_match(bib_data_str,
+        bib_record$unique_id <- stringr::str_match(bib_data_str,
                                           "\\\\bibitem(?:\\[[^\\]]*\\])?\\{([^\\}]+)\\}")[2]
-        bib_record$unique_id <- str_trim(bib_record$unique_id)
+        bib_record$unique_id <- stringr::str_trim(bib_record$unique_id)
 
-        bib_record$author <- str_match(bib_data_str,
+        bib_record$author <- stringr::str_match(bib_data_str,
                                         "\\}(.+)\\\\emph\\{")[2]
-        bib_record$author <- str_trim(bib_record$author)
+        bib_record$author <- stringr::str_trim(bib_record$author)
         bib_record$author <- gsub("[.,]+$", "", bib_record$author)
 
 
-        bib_record$title <- str_match(bib_data_str,
+        bib_record$title <- stringr::str_match(bib_data_str,
                                       "\\\\emph\\{([^\\}]+?)\\}")[2]
-        bib_record$title <- str_trim(bib_record$title)
+        bib_record$title <- stringr::str_trim(bib_record$title)
 
-        rest_bib_data <- str_match(bib_data_str,
+        rest_bib_data <- stringr::str_match(bib_data_str,
                                    "\\\\emph\\{[^\\}]+\\}(.+)")[2]
 
-        bib_record$year <- str_match(rest_bib_data, "([0-9]{4})")[2]
-        rest_bib_data <- str_match(bib_data_str,
+        bib_record$year <- stringr::str_match(rest_bib_data, "([0-9]{4})")[2]
+        rest_bib_data <- stringr::str_match(bib_data_str,
                                    "\\\\emph\\{[^\\}]+\\}(.+)")[2]
 
         # put all the remaining data in journal
         rest_bib_data <- gsub(bib_record$year, "", rest_bib_data)
-        rest_bib_data <- str_trim(rest_bib_data)
+        rest_bib_data <- stringr::str_trim(rest_bib_data)
         rest_bib_data <- gsub("^[ ,.]+", "", rest_bib_data)
         rest_bib_data <- gsub("[ ,.]+$", "", rest_bib_data)
-        bib_record$journal <- str_trim(rest_bib_data)
+        bib_record$journal <- stringr::str_trim(rest_bib_data)
 
         return(bib_record)
     } else{
